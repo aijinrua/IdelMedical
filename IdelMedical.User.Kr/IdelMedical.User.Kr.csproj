@@ -10,7 +10,6 @@
 
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\pc\notice\" />
     <Folder Include="wwwroot\images\pc\realstory\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>

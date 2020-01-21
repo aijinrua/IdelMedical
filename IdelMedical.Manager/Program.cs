@@ -20,6 +20,9 @@ namespace IdelMedical.Manager
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+#if DEBUG
+                    webBuilder.UseUrls("http://*:50000");
+#endif
                     webBuilder.UseStartup<Startup>();
                 });
     }
