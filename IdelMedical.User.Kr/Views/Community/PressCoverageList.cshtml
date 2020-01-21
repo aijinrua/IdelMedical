@@ -1,0 +1,98 @@
+﻿@{
+    var page = (int)ViewBag.Page;
+    var startPage = (int)ViewBag.StartPage;
+    var endPage = (int)ViewBag.EndPage;
+    var prevPage = (int)ViewBag.PrevPage;
+    var nextPage = (int)ViewBag.NextPage;
+
+    var search = (string)ViewBag.Search;
+
+    var items = (IdelMedical.Database.Tables.PressCoverage[])ViewBag.Items;
+}
+
+@section Styles {
+    <link href="~/css/pc_presscoverage.css" rel="stylesheet" />
+}
+
+<div class="presscoverage-list">
+    <div class="title">
+        <span>언론보도</span><br />
+        <span>IDEL PLASTIC SURGERY & AESTHETIC</span>
+    </div>
+    @if (items != null && items.Length > 0)
+    {
+        <div class="content">
+            <table cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            No.
+                        </th>
+                        <th>
+                            이미지
+                        </th>
+                        <th>
+                            제목
+                        </th>
+                        <th>
+                            작성일
+                        </th>
+                        <th>
+                            조회수
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in items)
+                    {
+                        <tr>
+                            <td>
+                                @item.Id.ToString("#,##0")
+                            </td>
+                            <td>
+                                <img src="@item.Thumbnail" />
+                            </td>
+                            <td>
+                                <a href="/community/presscoveragedetail?id=@item.Id">@item.Subject</a>
+                            </td>
+                            <td>
+                                @item.CreateTime.ToString("yyyy-MM-dd")
+                            </td>
+                            <td>
+                                @item.ReadCount.ToString("#,##0")
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pager">
+            <div class="paging">
+                @if (prevPage > 0)
+                {
+                    <a href="@Url.Action("presscoveragelist", new { search, page = prevPage })">&lt;</a>
+                }
+                @for (int i = startPage; i <= endPage; i++)
+                {
+                    <a href="@Url.Action("presscoveragelist", new { search, page = i })" class="@(i == page ? "active" : null)">@i.ToString("#,##0")</a>
+                }
+                @if (nextPage > 0)
+                {
+                    <a href="@Url.Action("presscoveragelist", new { search, page = nextPage })">&gt;</a>
+                }
+            </div>
+            <br />
+            <form class="search">
+                <input name="search" value="@search" />
+                <button>검색</button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="no-content">
+            검색 결과가 없습니다
+        </div>
+    }
+</div>

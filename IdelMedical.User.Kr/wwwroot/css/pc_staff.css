@@ -1,0 +1,30 @@
+﻿img {
+    vertical-align: middle;
+}
+
+.staff {
+
+}
+
+.staff .title {
+    text-align: center;
+    min-width: 1420px;
+    padding: 80px 0 50px 0;
+}
+
+.content {
+    width: 1420px;
+    height: 867px;
+    margin: 0 auto;
+    overflow: auto;
+    cursor: pointer;
+}
+
+.prev, .next {
+    height: 0;
+    overflow: visible;
+}
+
+.next {
+    opacity: 0;
+}

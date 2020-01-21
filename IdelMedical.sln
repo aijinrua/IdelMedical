@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdelMedical.User.Kr", "IdelMedical.User.Kr\IdelMedical.User.Kr.csproj", "{6633FF31-091F-4BFF-9F22-9CD8E00EAFDC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{2DB97141-E6F4-4DD6-B259-82EB978F3D80}"
+	ProjectSection(SolutionItems) = preProject
+		information.json = information.json
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdelMedical.Database", "IdelMedical.Database\IdelMedical.Database.csproj", "{87D8B665-A5E2-413B-A449-11CCE7EE1293}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdelMedical.Manager", "IdelMedical.Manager\IdelMedical.Manager.csproj", "{B9E1054B-49F5-4D35-9026-2A9208D19107}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6633FF31-091F-4BFF-9F22-9CD8E00EAFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6633FF31-091F-4BFF-9F22-9CD8E00EAFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6633FF31-091F-4BFF-9F22-9CD8E00EAFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6633FF31-091F-4BFF-9F22-9CD8E00EAFDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87D8B665-A5E2-413B-A449-11CCE7EE1293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87D8B665-A5E2-413B-A449-11CCE7EE1293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87D8B665-A5E2-413B-A449-11CCE7EE1293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87D8B665-A5E2-413B-A449-11CCE7EE1293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9E1054B-49F5-4D35-9026-2A9208D19107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E1054B-49F5-4D35-9026-2A9208D19107}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9E1054B-49F5-4D35-9026-2A9208D19107}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E1054B-49F5-4D35-9026-2A9208D19107}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4876195A-2B13-4131-9045-BA0BA5ACDA6F}
+	EndGlobalSection
+EndGlobal

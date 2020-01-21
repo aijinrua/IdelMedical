@@ -1,0 +1,42 @@
+﻿@{
+}
+
+@section Styles {
+    <link href="~/css/pc_staff.css" rel="stylesheet" />
+}
+
+<div class="staff">
+    <div class="title">
+        <img src="~/images/pc/staff/title.png" />
+    </div>
+    <div class="content">
+        <div class="prev">
+            <img src="~/images/pc/staff/staff01.png" />
+        </div>
+        <div class="next">
+            <img src="~/images/pc/staff/staff02.jpg" />
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        var current = 0;
+
+        $('.content').on('click', function () {
+            if (current === 0) {
+                $('.prev').animate({ opacity: 0 }, 500);
+                $('.next').animate({ opacity: 1 }, 500);
+                $('.content').animate({ paddingBottom: 80 }, 500);
+                current = 1;
+            }
+            else {
+                $('.prev').animate({ opacity: 1 }, 500);
+                $('.next').animate({ opacity: 0 }, 500);
+                $('.content').animate({ paddingBottom: 0 }, 500);
+                current = 0;
+            }
+        });
+    </script>
+}

@@ -1,0 +1,61 @@
+﻿img {
+    vertical-align: middle;
+}
+
+.title {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.comment {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 30px;
+    line-height: 32px;
+}
+
+.tab-menu {
+    width: 1360px;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 40px 0;
+}
+
+.tab-menu > button {
+    float: left;
+    width: 20%;
+    font-size: 26px;
+    line-height: 30px;
+    border: 1px solid #0d0d0d;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #262626;
+    color: #ffffff;
+    padding: 10px 0;
+    outline: none;
+    cursor: pointer;
+}
+
+.tab-menu > button.active {
+    background-color: #f2f2f2;
+    color: #000000;
+}
+
+.tab-menu > button strong {
+    font-size: 30px;
+}
+
+.image-view {
+    width: 1360px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+
+.image-view img {
+    display: block;
+    width: 100%;
+}

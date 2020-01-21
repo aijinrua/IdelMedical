@@ -1,0 +1,61 @@
+﻿@{ 
+    string useragent = Context.Request.Headers["user-agent"];
+    bool isMobile = (useragent?.ToLower().IndexOf("mobile") ?? -1) >= 0;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta property="og:image" content="/images/og_image.jpg" />
+    <meta property="og:title" content="아이델 성형외과" />
+    <meta property="og:description" content="아이델 성형외과에서 상담하세요" />
+
+    <meta name="naver-site-verification" content="7525e360f21a08ea1f0bc73ce3f8b9a0c8606eca" />
+
+    <title>아이델 성형외과</title>
+    @if (!isMobile)
+    {
+        <link href="~/css/site.css" rel="stylesheet" />
+    }
+    else
+    {
+
+    }
+
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+
+    @if (!isMobile)
+    {
+        await Html.RenderPartialAsync("_PCMenuLayout");
+    }
+    else
+    {
+
+    }
+    @RenderBody()
+    @if (!isMobile)
+    {
+        await Html.RenderPartialAsync("_PCFooterLayout");
+    }
+    else
+    {
+
+    }
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    @if (!isMobile)
+    {
+        <script src="~/js/site.js"></script>
+    }
+    else
+    {
+
+    }
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,318 @@
+﻿@section Styles {
+    <link href="~/css/mobile.css" rel="stylesheet" />
+    <link href="/lib/owl-carousel/owl.carousel.min.css" rel="stylesheet" />
+    <link href="/lib/owl-carousel/owl.theme.min.css" rel="stylesheet" />
+}
+
+<div class="top-bar">
+    <div>
+        <img src="~/images/mobile/button_menu.png" />
+    </div>
+    <div>
+        <img src="~/images/mobile/logo_main.png" />
+    </div>
+    <div>
+        <img src="~/images/mobile/reservation.png" />
+    </div>
+</div>
+<div class="main-slide">
+    <div>
+        <img src="~/images/mobile/slide/image01.png" />
+    </div>
+    <div>
+        <img src="~/images/mobile/slide/image01.png" />
+    </div>
+</div>
+<div class="youtube">
+    <div class="logo">
+        <img src="~/images/mobile/logo_youtube.png" />
+    </div>
+    <div class="content">
+        <div onclick="slideToLeftForYoutube();">
+            <img src="~/images/mobile/slide_left.png" />
+        </div>
+        <div>
+            <div class="slide_youtube owl-theme">
+                <div class="slide_item">
+                    &nbsp;
+                </div>
+                <div class="slide_item">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+        <div onclick="slideToLeftForYoutube();">
+            <img src="~/images/mobile/slide_right.png" />
+        </div>
+    </div>
+    <div class="more">
+        <a href="#">VIEW MORE +</a>
+    </div>
+</div>
+<div class="instagram">
+    <div class="logo">
+        <img src="~/images/mobile/logo_instagram.png" />
+    </div>
+    <div class="content">
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+    </div>
+</div>
+<div class="beauty">
+    <div class="logo">
+        <img src="~/images/mobile/logo_beauty.png" />
+    </div>
+    <div class="content">
+        <a href="#">
+            <img src="~/images/mobile/beauty_ba.png" />
+        </a>
+        <a href="#">
+            <img src="~/images/mobile/beauty_event.png" />
+        </a>
+        <a href="#">
+            <img src="~/images/mobile/beauty_model.png" />
+        </a>
+        <a href="#">
+            <img src="~/images/mobile/beauty_story.png" />
+        </a>
+        <a href="#">
+            <img src="~/images/mobile/beauty_online.png" />
+        </a>
+    </div>
+</div>
+<div class="info_sub">
+    <div class="left">
+        <div>
+            <a href="https://www.facebook.com/profile.php?id=100044048685682" target="_blank">
+                <img src="~/images/mobile/thirdparty_facebook.png" />
+            </a>
+        </div>
+        <div>
+            <a href="https://www.instagram.com/idel_._._" target="_blank">
+                <img src="~/images/mobile/thirdparty_instagram.png" />
+            </a>
+        </div>
+        <div>
+            <a href="#">
+                <img src="~/images/mobile/thirdparty_youtube.png" />
+            </a>
+        </div>
+        <div>
+            <a href="https://cafe.naver.com/idel1911" target="_blank">
+                <img src="~/images/mobile/thirdparty_blog.png" />
+            </a>
+        </div>
+    </div>
+    <div class="right">
+        <img src="~/images/mobile/map.png" />
+        <span>아이델성형외과</span><br />
+        <span>서울시 강남구 언주로 856</span><br />
+        <span>(신사동 635-2) 남강빌딩</span><br />
+        <span><a href="tel:02-3442-5900">02.3442.5900</a></span>
+    </div>
+    <div style="clear: both;"></div>
+    <div class="menu_sub">
+        <a href="#">병원소개</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="#">온라인상담</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="#">오시는길</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="#">PC버전 보기</a>
+    </div>
+    <div class="footer-logo">
+        <img src="~/images/mobile/logo_sub.png" />
+    </div>
+    <div class="footer-info">
+        <span>서울시 강남구 언주로 856 남강빌딩(신사동 635-2) | 전화 : 02)3442-5900</span><br />
+        <span>아이델성형외과의원 | 대표자 : 김대희 | 사업자등록번호 : 762-29-00754</span><br />
+        <span>COPYRIGHT&copy; 2019 아이델성형외과. ALL RIGHTS RESERVED.</span>
+    </div>
+</div>
+<div class="question">
+    <div class="button" onclick="showForm();">
+        <img src="~/images/mobile/footer_button.png" />
+    </div>
+    <div class="model">
+        <img src="~/images/mobile/footer_model.png" />
+    </div>
+    <form id="form01" style="display: none;" onsubmit="return sendQuestionForm.call(this);">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    이름
+                </td>
+                <td>
+                    <input name="username" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    연락처
+                </td>
+                <td>
+                    <select name="phone1" style="width: 60px; float: left;">
+                        <option>010</option>
+                        <option>011</option>
+                        <option>016</option>
+                        <option>017</option>
+                        <option>018</option>
+                        <option>019</option>
+                    </select>
+                    <input name="phone2" style="float: left; width: calc((100% - 65px) / 2); margin-left: 5px;" />
+                    <input name="phone3" style="float: left; width: calc((100% - 75px) / 2); margin-left: 5px;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    상담부위
+                </td>
+                <td>
+                    <select name="question" style="width: 100%;">
+                        <option value="">=== 선택하세요 ===</option>
+                        <option value="가슴성형">가슴성형</option>
+                        <option value="동안성형">동안성형</option>
+                        <option value="체형성형">체형성형</option>
+                        <option value="눈성형">눈성형</option>
+                        <option value="코성형">코성형</option>
+                        <option value="안면윤곽">안면윤곽</option>
+                        <option value="피부시술">피부시술</option>
+                        <option value="쁘띠시술">쁘띠시술</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td style="padding: 15px 0;">
+                    <input id="cbox" name="confirmpolicy" type="checkbox" value="True" style="width: 20px; height: 20px; vertical-align: middle;" />
+                    <label for="cbox">개인정보수집동의</label>
+                    <a href="#">[자세히보기]</a>
+                </td>
+            </tr>
+        </table>
+        <div style="font-size: 12px; text-align: center;">빠른 시간 내에 친절하고 정확하게 상담해 드리겠습니다.</div>
+        <div>
+            <button type="submit">상담신청하기</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="/lib/owl-carousel/owl.carousel.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(initPage);
+
+        function initPage() {
+            $('.main-slide').owlCarousel({
+                items: 1,
+                autoPlay: 3000,
+                stopOnHover: true,
+                scrollPerPage: true,
+                mouseDrag: true,
+                touchDrag: true
+            });
+
+            $('.slide_youtube').owlCarousel({
+                items: 1,
+                autoPlay: false,
+                stopOnHover: true,
+                mouseDrag: true,
+                touchDrag: true,
+                autoWidth: true,
+                pagination: false
+            });
+
+            $(window).resize(instagramItemResize);
+            instagramItemResize();
+        }
+
+        function sendQuestionForm() {
+            try {
+                $.ajax({
+                    url: '/home/requestadd',
+                    method: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: new FormData(this)
+                }).always(function (data, status, xhr) {
+                    if (status !== 'success') {
+                        alert('서버와의 통신이 실패했습니다.');
+                    }
+                    else if (!data.status) {
+                        if (data.message) {
+                            alert(data.message);
+                        }
+                        else {
+                            alert('서버와의 통신이 실패했습니다.');
+                        }
+                    }
+                    else {
+                        alert('신청이 접수되었습니다.');
+                    }
+                });
+            } catch (e) {
+                console.log(e);
+            }
+
+            return false;
+        }
+
+        function slideToLeftForYoutube() {
+            $(".slide_youtube").data('owlCarousel').prev();
+        }
+
+        function slideToRightForYoutube() {
+            $(".slide_youtube").data('owlCarousel').next();
+        }
+
+        function instagramItemResize() {
+            $('.instagram .content > div').height($('.instagram .content > div').width());
+        }
+
+        function showForm() {
+            $('#form01').css('display', 'block');
+            $(document).scrollTop($(document).height());
+        }
+
+        function sendQuestionForm() {
+            try {
+                $.ajax({
+                    url: '/home/requestadd',
+                    method: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: new FormData(this)
+                }).always(function (data, status, xhr) {
+                    if (status !== 'success') {
+                        alert('서버와의 통신이 실패했습니다.');
+                    }
+                    else if (!data.status) {
+                        if (data.message) {
+                            alert(data.message);
+                        }
+                        else {
+                            alert('서버와의 통신이 실패했습니다.');
+                        }
+                    }
+                    else {
+                        alert('신청이 접수되었습니다.');
+                    }
+                });
+            } catch (e) {
+                console.log(e);
+            }
+
+            return false;
+        }
+    </script>
+}

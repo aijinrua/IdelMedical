@@ -1,0 +1,36 @@
+﻿@{
+    var item = (IdelMedical.Database.Tables.IdelEvent)ViewBag.Item;
+}
+
+@section Styles {
+    <link href="~/css/pc_idelevent.css" rel="stylesheet" />
+}
+
+<div class="idelevent-detail">
+    <div>
+        <div class="spliter1"></div>
+        <div class="date">
+            @item.CreateTime.ToString("yyyy-MM-dd")
+        </div>
+        <div class="title">
+            @Html.Raw(item.Subject)
+        </div>
+        <div class="spliter2"></div>
+        <div class="content">
+            @if (!string.IsNullOrWhiteSpace(item.ContentPC))
+            {
+                @if (!string.IsNullOrWhiteSpace(item.Link))
+                {
+                    <a href="@item.Link" target="@item.LinkTarget"><img src="@item.ContentPC" /></a>
+                }
+                else
+                {
+                    <img src="@item.ContentPC" />
+                }
+            }
+        </div>
+        <div class="control-pannel">
+            <button onclick="history.back();">목록</button>
+        </div>
+    </div>
+</div>

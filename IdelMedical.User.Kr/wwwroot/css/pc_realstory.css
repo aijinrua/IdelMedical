@@ -1,0 +1,57 @@
+﻿img {
+    vertical-align: middle;
+}
+
+.realstory {
+    overflow: auto;
+    min-width: 1200px;
+}
+
+.title {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.tab-menu {
+    height: 0;
+    overflow: visible;
+    text-align: center;
+}
+
+.tab-menu button {
+    margin-top: 50px;
+    position: relative;
+    z-index: 10;
+    font-size: 24px;
+    color: #000000;
+    border: none;
+    outline: none;
+    background-color: #c2c3c0;
+    padding: 25px;
+    width: 250px;
+    cursor: pointer;
+}
+
+.tab-menu button.active {
+    color: #ffffff;
+    background-color: #807f81;
+}
+
+.content {
+    text-align: center;
+}
+
+.content > img:first-child {
+    width: 100%;
+}
+
+.content > div {
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.content > div:nth-of-type(2n+1) {
+    background-color: #ffffff;
+}

@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="information.json" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\pc\notice\" />
+    <Folder Include="wwwroot\images\pc\realstory\" />
+    <Folder Include="wwwroot\lib\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\policy.html" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.0" Contition="'$(Configuration)' == 'Debug'" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\IdelMedical.Database\IdelMedical.Database.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,76 @@
+﻿@{
+    var page = (int)ViewBag.Page;
+    var startPage = (int)ViewBag.StartPage;
+    var endPage = (int)ViewBag.EndPage;
+    var prevPage = (int)ViewBag.PrevPage;
+    var nextPage = (int)ViewBag.NextPage;
+
+    var search = (string)ViewBag.Search;
+
+    var items = (IdelMedical.Database.Tables.IdelStar[])ViewBag.Items;
+}
+
+@section Styles {
+    <link href="~/css/pc_idelstar.css" rel="stylesheet" />
+}
+
+<div class="idelstar-list">
+    <div class="title">
+        <span>아이델스타</span><br />
+        <span>IDEL PLASTIC SURGERY & AESTHETIC</span>
+    </div>
+    @if (items != null && items.Length > 0)
+    {
+        <div class="content">
+            @foreach (var item in items)
+            {
+                <a href="/community/idelstardetail?id=@item.Id">
+                    <div>
+                        <div class="thumbnail">
+                            <img src="@item.Thumbnail" />
+                        </div>
+                        <div class="info">
+                            <div title="@item.Subject">
+                                @item.Subject
+                            </div>
+                            <div>
+                                <img src="~/images/pc/icon_hand.png" />
+                            </div>
+                            <div>
+                                @item.CreateTime.ToString("yyyy-MM-dd")
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+
+        <div class="pager">
+            <div class="paging">
+                @if (prevPage > 0)
+                {
+                    <a href="@Url.Action("idelstarlist", new { search, page = prevPage })">&lt;</a>
+                }
+                @for (int i = startPage; i <= endPage; i++)
+                {
+                    <a href="@Url.Action("idelstarlist", new { search, page = i })" class="@(i == page ? "active" : null)">@i.ToString("#,##0")</a>
+                }
+                @if (nextPage > 0)
+                {
+                    <a href="@Url.Action("idelstarlist", new { search, page = nextPage })">&gt;</a>
+                }
+            </div>
+            <br />
+            <form class="search">
+                <input name="search" value="@search" />
+                <button>검색</button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="no-content">
+            검색 결과가 없습니다
+        </div>
+    }
+</div>

@@ -1,0 +1,208 @@
+﻿@using IdelMedical.User.Kr.Models
+@model Home_LandingRequestList_Response
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+    <title>2차 랜딩 상담 문의 내역</title>
+
+    <style type="text/css">
+        body, input, button, textarea, pre {
+            padding: 0;
+            margin: 0;
+            font-family: 'Nanum Gothic', sans-serif;
+            font-size: 14px;
+        }
+
+        body {
+            padding: 20px;
+        }
+
+        input {
+            padding: 5px 7px;
+            width: 100%;
+            height: 30px;
+            border: 1px solid lightgray;
+            border-radius: 3px;
+            box-sizing: border-box;
+            -webkit-appearance: none;
+        }
+
+        textarea {
+            width: 100%;
+            resize: none;
+            height: 100px;
+            padding: 5px 7px;
+            box-sizing: border-box;
+            -webkit-appearance: none;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .searchButton {
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            padding: 5px 7px;
+            box-sizing: border-box;
+            color: white;
+            background-color: #84cfcb;
+            border-radius: 3px;
+            border: none;
+            margin-left: 5px;
+            float: left;
+        }
+
+        .card {
+            margin: 5px 0;
+            border: 1px solid #84cfcb;
+            border-radius: 3px;
+        }
+
+        .cardHeader {
+            overflow: auto;
+            background-color: #84cfcb;
+            color: white;
+            padding: 10px 15px;
+        }
+
+        .username {
+            float: left;
+        }
+
+        .createtime {
+            float: right;
+        }
+
+        .phone {
+            padding: 10px 15px;
+        }
+
+        .question {
+            padding: 0 15px;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .memo {
+            padding: 10px 15px;
+        }
+
+        .memo button {
+            width: 100%;
+            height: 30px;
+            border: none;
+            border-radius: 3px;
+            color: white;
+            background-color: #84cfcb;
+        }
+
+        .paging {
+            overflow: auto;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        .paging > * {
+            display: inline-block;
+            float: left;
+        }
+
+        .paging > a {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #84cfcb;
+            border-radius: 3px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .paging > input {
+            width: calc(100% - 70px);
+            margin: 0 5px;
+            border: 1px solid #84cfcb;
+            border-radius: 3px;
+            box-sizing: border-box;
+            padding: 6px 7px;
+        }
+    </style>
+</head>
+<body>
+    <form method="get" style="overflow: auto; margin-bottom: 10px;">
+        <input style="width: calc(100% - 65px); float: left;" placeholder="단어 검색만 가능합니다." name="Search" value="@Model.Search" /><button class="searchButton" style="">검색</button>
+    </form>
+    <div>
+        @foreach (var item in Model.Items)
+        {
+            <div class="card">
+                <div class="cardHeader">
+                    <div class="username">@Html.Raw(item.UserName)</div>
+                    <div class="createtime">@Html.Raw(item.CreateTime.ToString("yy.MM.dd HH:mm"))</div>
+                </div>
+                <div class="phone">
+                    <span class="label">연락처 :</span> <a href="tel:@item.Phone">@item.Phone</a>
+                </div>
+                <div class="question">
+                    <span class="label" style="margin-bottom: 5px; display: inline-block;">문의내용 :</span>
+                    <pre>@item.Question</pre>
+                </div>
+                <form class="memo" onsubmit="return memoSubmit.call(this);">
+                    <input type="hidden" name="Id" value="@item.Id" />
+                    <span class="label" style="margin-bottom: 5px; display: inline-block;">메모 :</span>
+                    <textarea name="Memo">@item.Memo</textarea>
+                    <button>메모저장</button>
+                </form>
+            </div>
+        }
+    </div>
+    <form method="get" action="@Url.Link("", new { })" class="paging">
+        <input type="hidden" name="Search" value="@Model.Search" />
+        <a href="@Url.Link("", new { Page = Model.Page - 1 })">&lt;</a>
+        <input name="Page" value="@Model.Page" type="number" />
+        <a href="@Url.Link("", new { Page = Model.Page + 1 })">&gt;</a>
+    </form>
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+        function memoSubmit() {
+            $.ajax({
+                url: '/manager/71e836bb058041b2a2f3438a92581701',
+                method: 'post',
+                contentType: false,
+                processData: false,
+                data: new FormData(this)
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('서버와의 연결에 실패했습니다.\r\n담당자에게 문의해 주시기 바립니다.');
+                }
+                else if (!data.status) {
+                    alert('저장되지 않았습니다.\r\n담당자에게 문의해 주시기 바랍니다.');
+
+                    if (data.log) {
+                        console.log(log);
+                    }
+                }
+                else {
+                    alert('저장되었습니다.');
+                }
+            });
+
+            return false;
+        }
+    </script>
+</body>
+</html>

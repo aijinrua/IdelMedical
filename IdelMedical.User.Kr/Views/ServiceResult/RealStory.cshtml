@@ -1,0 +1,70 @@
+﻿@{
+}
+
+@section Styles {
+    <link href="~/css/pc_realstory.css" rel="stylesheet" />
+}
+
+<div class="realstory">
+    <div class="title">
+        <img src="~/images/pc/realstory/title.png" />
+    </div>
+    <div class="tab-menu">
+        <button menuindex="1" class="active">배수지</button><button menuindex="2">이민영</button>
+    </div>
+    <div class="content">
+        <img src="~/images/pc/realstory/01_01.jpg" />
+        <div>
+            <img src="~/images/pc/realstory/01_02.png" />
+        </div>
+        <div>
+            <img src="~/images/pc/realstory/01_03.png" />
+        </div>
+        <div>
+            <img src="~/images/pc/realstory/01_04.png" />
+        </div>
+        <div>
+            <img src="~/images/pc/realstory/01_05.png" />
+        </div>
+        <div>
+            <img src="~/images/pc/realstory/01_06.png" />
+        </div>
+    </div>
+    <div class="content" style="display: none;">
+        <img src="~/images/pc/realstory/02_01.jpg" />
+        <div>
+            <img src="~/images/pc/realstory/02_02.png" />
+        </div>
+        <div>
+            <img src="~/images/pc/realstory/02_03.png" />
+        </div>
+        <div>
+            <img src="~/images/pc/realstory/02_04.png" />
+        </div>
+        <div>
+            <img src="~/images/pc/realstory/02_05.png" style="width: 100%; max-width: 1498px;" />
+        </div>
+        <div>
+            <img src="~/images/pc/realstory/02_06.png" />
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $('.tab-menu > button').on('click', function () {
+            $('.tab-menu > button').removeClass('active');
+            $(event.currentTarget).addClass('active');
+
+            var menuindex = $(event.currentTarget).attr('menuindex');
+
+            $('.content').css('display', 'none');
+            if (menuindex === '1') {
+                $($('.content')[0]).css('display', 'block');
+            }
+            else {
+                $($('.content')[1]).css('display', 'block');
+            }
+        });
+    </script>
+}

@@ -1,0 +1,11 @@
+﻿.introduce {
+    width: 100%;
+    min-width: 1200px;
+    /*overflow: auto;*/
+}
+
+.introduce img {
+    width: 100%;
+    vertical-align: middle;
+    /*float: left;*/
+}

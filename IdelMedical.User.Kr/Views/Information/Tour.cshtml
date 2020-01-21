@@ -1,0 +1,66 @@
+﻿@{
+}
+
+@section Styles {
+    <link href="~/css/pc_tour.css" rel="stylesheet" />
+}
+
+<div class="tour">
+    <div class="title">
+        <img src="~/images/pc/tour/title.png" />
+    </div>
+    <div class="comment">
+        <strong>아이델성형외과의원</strong>은 건물 전체가 하나의 <strong>뷰티센터</strong>로서 환자분의 <strong>편의와 안정성</strong>을 추구합니다.<br />
+        환자분들의 요구에 응대할 수 있도록 <strong>서비스와 관리를 제공</strong>합니다.
+    </div>
+    <div class="tab-menu">
+        <button menuindex="1" class="active">
+            <strong>1F</strong><br />
+            접수센터
+        </button>
+        <button menuindex="2">
+            <strong>2F</strong><br />
+            상담센터
+        </button>
+        <button menuindex="3">
+            <strong>3F</strong><br />
+            피부클리닉센터
+        </button>
+        <button menuindex="4">
+            <strong>4F</strong><br />
+            안티에이징센터
+        </button>
+        <button menuindex="5">
+            <strong>5F</strong><br />
+            수술센터
+        </button>
+    </div>
+    <div class="image-view">
+        <img src="~/images/pc/tour/01.jpg" />
+        <img src="~/images/pc/tour/02.jpg" style="display: none;" />
+        <img src="~/images/pc/tour/03.jpg" style="display: none;" />
+        <img src="~/images/pc/tour/04.jpg" style="display: none;" />
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $('.tab-menu button').on('click', function () {
+
+            var menuindex = $(event.currentTarget).attr('menuindex');
+            if (menuindex === '5') {
+                alert('준비중입니다.');
+                return;
+            }
+
+
+            $('.tab-menu button').removeClass('active');
+            $(event.currentTarget).addClass('active');
+
+            
+
+            $('.image-view img').css('display', 'none');
+            $('.image-view img:nth-of-type(' + menuindex + ')').css('display', 'block')
+        });
+    </script>
+}

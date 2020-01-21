@@ -1,0 +1,92 @@
+﻿@{
+    var page = (int)ViewBag.Page;
+    var startPage = (int)ViewBag.StartPage;
+    var endPage = (int)ViewBag.EndPage;
+    var prevPage = (int)ViewBag.PrevPage;
+    var nextPage = (int)ViewBag.NextPage;
+
+    var search = (string)ViewBag.Search;
+
+    var items = (IdelMedical.Database.Tables.IdelTV[])ViewBag.Items;
+}
+
+@section Styles {
+    <link href="~/css/pc_ideltv.css" rel="stylesheet" />
+}
+
+<div class="ideltv-list">
+    <div class="title">
+        <span>아이델TV</span><br />
+        <span>IDEL PLASTIC SURGERY & AESTHETIC</span>
+    </div>
+    @if (items != null && items.Length > 0)
+    {
+        <div class="content">
+            @foreach (var item in items)
+            {
+                <div>
+                    <input type="hidden" value="@item.VideoLink" />
+                    <img src="@item.Thumbnail" />
+                    <span title="@item.Subject">@item.Subject</span>
+                    <span title="@item.SubjectComment">@item.SubjectComment</span>
+                </div>
+            }
+        </div>
+
+        <div class="pager">
+            <div class="paging">
+                @if (prevPage > 0)
+                {
+                    <a href="@Url.Action("ideltvlist", new { search, page = prevPage })">&lt;</a>
+                }
+                @for (int i = startPage; i <= endPage; i++)
+                {
+                    <a href="@Url.Action("ideltvlist", new { search, page = i })" class="@(i == page ? "active" : null)">@i.ToString("#,##0")</a>
+                }
+                @if (nextPage > 0)
+                {
+                    <a href="@Url.Action("ideltvlist", new { search, page = nextPage })">&gt;</a>
+                }
+            </div>
+            <br />
+            <form class="search">
+                <input name="search" value="@search" />
+                <button>검색</button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="no-content">
+            검색 결과가 없습니다
+        </div>
+    }
+
+    <div class="video-pannel">
+        <div>
+            <div class="close">
+                <img src="~/images/icon_close.png" />
+            </div>
+            <div class="video">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            $('.content > div').on('click', function () {
+                var iframe = $(event.currentTarget).find('input').val();
+                $('.video-pannel .video').html(iframe);
+                $('.video-pannel').css('display', 'flex');
+            });
+
+            $('.video-pannel .close img').on('click', function () {
+                $('.video-pannel .video').html('');
+                $('.video-pannel').css('display', 'none');
+            });
+        });
+    </script>
+}

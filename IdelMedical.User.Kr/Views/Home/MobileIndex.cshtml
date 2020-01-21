@@ -1,0 +1,251 @@
+﻿@{
+    Layout = "/Views/Shared/_LandingLayout.cshtml";
+}
+@section Styles {
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+        input, select, textarea {
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+        .content > img {
+            width: 100%;
+            vertical-align: top;
+        }
+
+        img.bg {
+            width: 100%;
+            vertical-align: top;
+        }
+
+        img.naver {
+            position: fixed;
+            right: 30px;
+            bottom: 170px;
+            width: 50px;
+            height: 50px;
+        }
+
+        img.instagram {
+            position: fixed;
+            right: 30px;
+            bottom: 110px;
+            width: 50px;
+            height: 50px;
+        }
+
+        img.facebook {
+            position: fixed;
+            right: 30px;
+            bottom: 50px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .info {
+            padding: 4% 10%;
+            background-color: #efd3d2;
+        }
+
+            .info > .title {
+                text-align: center;
+                margin-bottom: 5%;
+            }
+
+                .info > .title > img {
+                    width: 77%;
+                }
+
+            .info > .buttons {
+                overflow: auto;
+                margin-bottom: 6%;
+            }
+
+                .info > .buttons > img {
+                    width: 20%;
+                    cursor: pointer;
+                    float: left;
+                }
+
+            .info > .subscript {
+                background-color: #feeaeb;
+            }
+
+                .info > .subscript > img {
+                    width: 100%;
+                    vertical-align: top;
+                }
+
+        .request {
+            background-color: #4f1521;
+            padding: 4%;
+        }
+
+            .request > form > table {
+                margin: 0 auto;
+            }
+
+            .request .requestButton {
+                background-color: #782131;
+                color: white;
+                border: none;
+                width: 100%;
+                height: 40px;
+                font-size: 14px;
+            }
+    </style>
+}
+
+<div>
+    <div class="content">
+        <img src="~/images/mobile/01.jpg" />
+        <img src="~/images/mobile/02.jpg" />
+        <img src="~/images/mobile/03.jpg" />
+        <div class="info">
+            <div class="title">
+                <img src="~/images/mobile/04-title.png" />
+            </div>
+            <div class="buttons">
+                <img src="~/images/mobile/04-2.png" onclick="showSubscript(1);" />
+                <img src="~/images/mobile/04-3.png" onclick="showSubscript(2);" />
+                <img src="~/images/mobile/04-4.png" onclick="showSubscript(3);" />
+                <img src="~/images/mobile/04-5.png" onclick="showSubscript(4);" />
+                <img src="~/images/mobile/04-6.png" onclick="showSubscript(5);" />
+            </div>
+            <div class="subscript">
+                <img src="~/images/pc/04_08_subscript.png" />
+            </div>
+        </div>
+        <img src="~/images/mobile/05.jpg" />
+        <img src="~/images/mobile/06.jpg" />
+        <img src="~/images/mobile/07.jpg" />
+        <div class="request">
+            <form onsubmit="submitData.call(this); return false;">
+                <table cellpadding="0" cellspacing="10" style="width: 100%; color: white; font-size: 12px;">
+                    <tr>
+                        <td style="text-align: right; width: 50px;">
+                            이름
+                        </td>
+                        <td>
+                            <input name="username" style="font-size: 12px; width: 100%; padding: 5px 7px; box-sizing: border-box;" placeholder="이름을 입력하세요" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; width: 50px;">
+                            휴대폰
+                        </td>
+                        <td>
+                            <select name="phone1" style="font-size: 12px; padding: 5px 7px; box-sizing: border-box;">
+                                <option>010</option>
+                                <option>011</option>
+                                <option>016</option>
+                                <option>017</option>
+                            </select>
+                            -
+                            <input name="phone2" style="font-size: 12px; width: 60px; padding: 5px 7px; box-sizing: border-box;" />
+                            -
+                            <input name="phone3" style="font-size: 12px; width: 60px; padding: 5px 7px; box-sizing: border-box;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; vertical-align: top;">
+                            상담내용
+                        </td>
+                        <td colspan="3">
+                            <textarea name="question" style="padding: 10px; box-sizing: border-box; font-size: 12px; width: 100%; height: 100px; resize: none; box-sizing: border-box;" placeholder="굼금하신 점을 적어 주세요 ^^"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td colspan="3">
+                            <input name="confirmpolicy" id="policyCheck" type="checkbox" style="width: 14px; height: 14px; vertical-align: sub;" value="True" />
+                            <label for="policyCheck">
+                                개인정보 수집동의
+                            </label>
+                            <a href="~/policy.html" target="_blank" style="color: white;">[자세히보기]</a>
+                        </td>
+                    </tr>
+                </table>
+
+                <button type="submit" class="requestButton">상담신청</button>
+            </form>
+        </div>
+        <img src="~/images/mobile/08.png" />
+        <img src="~/images/mobile/09.jpg" />
+    </div>
+
+    <a href="https://cafe.naver.com/idel1911" target="_blank">
+        <img class="naver" src="~/images/naver_circle-512.png" />
+    </a>
+    <a href="https://www.instagram.com/idel_._._" target="_blank">
+        <img class="instagram" src="~/images/instagram_circle-512.png" />
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=100044048685682" target="_blank">
+        <img class="facebook" src="~/images/facebook_circle-512.png" />
+    </a>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function showSubscript(idx) {
+            switch (idx) {
+                case 1:
+                    document.querySelector('.subscript > img').src = '/images/mobile/04-2-1.png';
+                    break;
+                case 2:
+                    document.querySelector('.subscript > img').src = '/images/mobile/04-3-1.png';
+                    break;
+                case 3:
+                    document.querySelector('.subscript > img').src = '/images/mobile/04-4-1.png';
+                    break;
+                case 4:
+                    document.querySelector('.subscript > img').src = '/images/mobile/04-5-1.png';
+                    break;
+                case 5:
+                    document.querySelector('.subscript > img').src = '/images/mobile/04-6-1.png';
+                    break;
+                default:
+                    document.querySelector('.subscript > img').src = '/images/pc/04_08_subscript.png';
+                    break;
+            }
+        }
+
+        function submitData() {
+            try {
+                $.ajax({
+                    url: '/Home/RequestAdd',
+                    method: 'post',
+                    processData: false,
+                    contentType: false,
+                    data: new FormData(this)
+                }).always(function (data, status, xhr) {
+                    if (status !== 'success') {
+                        alert('서버 접속에 실패했습니다.');
+                    }
+                    else if (!data.status) {
+                        if (data.message) {
+                            alert(data.message);
+                        }
+                        else {
+                            alert('상담신청 접수가 되지 않았습니다.\r\n관리자에게 문의해 주시기 바랍니다.');
+                        }
+                    }
+                    else {
+                        alert('상담신청이 접수되었습니다.');
+                    }
+                });
+            } catch (e) {
+
+            }
+        }
+    </script>
+}

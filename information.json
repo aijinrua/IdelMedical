@@ -1,0 +1,59 @@
+{
+    "Accounts": {
+        "Google": {
+            "UserId": "idel19111@gmail.com",
+            "Passwd": "dltndus5900"
+        },
+        "Naver": {
+            "UserId": "idel1911@naver.com",
+            "Passwd": "idel8888!"
+        },
+        "Kakao": {
+            "UserId": "idel1911@naver.com",
+            "Passwd": "idel8888!"
+        },
+        "Instagram": {
+            "UserId": "idel_._._",
+            "Passwd": ""
+        },
+        "Cafe24": {
+            "UserId": "idel5900",
+            "Passwd": "dltndus5900"
+        }
+    },
+
+    "Hosting": {
+        "Url": "https://www.cafe24.com",
+        "UserId": "idel5900",
+        "Passwd": "dltndus5900",
+
+        "Server": {
+            "IP": "175.126.166.209",
+            "Domain": "idelmedi.com",
+            "UserId": "administrator",
+            "Passwd": "28b8a9Fa"
+        },
+
+        "Database": {
+            "IP": "175.126.166.209",
+            "Domain": "idelmedi.com",
+            "DatabaseName": "idelmedical",
+            "UserId1": "root",
+            "Passwd1": "28b8a9Fa",
+            "UserId2": "idelmedical",
+            "Passwd2": "28b8a9Fa"
+        },
+
+        "Email": {
+            "Url": "http://gw.idelmedi.com",
+            "UserId": "idel5900",
+            "Passwd": "dltndus5900"
+        },
+
+        "SSL": [
+            {
+                "www.idelmedi.com" : "dltndus5900"
+            }
+        ]
+    }
+}
