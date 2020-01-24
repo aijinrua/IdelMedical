@@ -1,0 +1,119 @@
+﻿.login img {
+    vertical-align: middle;
+}
+
+.login .title {
+    margin: 0 auto;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.login .title span:first-child {
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.login .title span:last-child {
+    font-size: 25px;
+}
+
+.login .pannel {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.login .pannel > div.input-box {
+    border: 1px solid #dedede;
+    box-sizing: border-box;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.login .pannel input {
+    width: calc(100% - 43px);
+    height: 32px;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    padding: 0 23px;
+    font-size: 20px;
+}
+
+.login .pannel .submit-button {
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.login .links {
+    text-align: right;
+    color: #aaaaaa;
+    padding: 10px 0;
+}
+
+.login .links a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.login .oauths {
+    width: 500px;
+    margin: 30px auto 80px auto;
+}
+
+.login .oauths {
+    overflow: auto;
+}
+
+.login .oauths > div {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    margin: 4px 0;
+}
+
+.login .oauths > div:nth-child(2n) {
+    padding-left: 8px;
+}
+
+.login .oauths > div:nth-child(2n+1) {
+    padding-right: 8px;
+}
+
+.login .oauths button {
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login .oauths > div:nth-of-type(1) button {
+    background-color: #27d34a;
+    color: white;
+}
+
+.login .oauths > div:nth-of-type(2) button {
+    background-color: #ffeb00;
+    color: #3c1e1f;
+}
+
+.login .oauths > div:nth-of-type(3) button {
+    background-color: #45629c;
+    color: white;
+}
+
+.login .oauths > div:nth-of-type(4) button {
+    background-color: #f45a5d;
+    color: white;
+}

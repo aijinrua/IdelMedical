@@ -1,0 +1,89 @@
+﻿@section Styles {
+    <link href="~/css/pc_login.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+}
+
+<div class="login">
+    <div class="title">
+        <span>로그인</span><br />
+        <span>IDEL PLASTIC SURGERY & AESTHETIC</span>
+    </div>
+    <form class="pannel" onsubmit="return doSubmit.call(this);">
+        <div class="input-box">
+            <img src="~/images/pc/auth/icon_login_userid.png" />
+            <input name="userid" placeholder="ID" />
+        </div>
+        <div class="input-box" style="margin-top: 10px;">
+            <img src="~/images/pc/auth/icon_login_password.png" />
+            <input name="passwd" placeholder="Password" type="password" />
+        </div>
+        <button class="submit-button">로그인</button>
+        <div class="links">
+            <a href="/auth/join">▶ 회원가입</a> &nbsp; | &nbsp; <a href="#">아이디 / 비밀번호 찾기</a>
+        </div>
+    </form>
+    <div class="oauths">
+        <div>
+            <div id="naverIdLogin"></div>
+            @*<button>네이버 로그인</button>*@
+        </div>
+        <div>
+            <button>카카오 로그인</button>
+        </div>
+        <div>
+            <button>페이스북 로그인</button>
+        </div>
+        <div>
+            <button>구글 로그인</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        $(window).on('load', function () {
+            naverInit();
+        });
+
+        function naverInit() {
+            var naverLogin = new naver.LoginWithNaverId(
+		        {
+			        clientId: "EWZx95TWAW2KEpcx4csT",
+                    callbackUrl: "https://aijinrua.iptime.org/auth/naverlogin",
+                    isPopup: false, /* 팝업을 통한 연동처리 여부 */
+                    loginButton: { color: "green", type: 3, height: 50} /* 로그인 버튼의 타입을 지정 */
+		        }
+	        );
+            naverLogin.init();
+            $('#naverIdLogin img').css('width', '100%');
+        }
+
+        function doSubmit() {
+            try {
+                $.ajax({
+                    url: '/auth/dologin',
+                    method: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: new FormData(this)
+                }).always(function (data, status) {
+                    if (status !== 'success') {
+                        alert('잠시 후에 다시 시도해 주세요');
+                    }
+                    else if (!data.status) {
+                        alert(data.message);
+                    }
+                    else {
+                        location.href = '/';
+                    }
+                });
+            } catch (e) {
+                console.log(e);
+                alert('잠시 후에 다시 시도해 주세요');
+            }
+
+            return false;
+        }
+    </script>
+}

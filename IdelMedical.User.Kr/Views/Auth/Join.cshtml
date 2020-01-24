@@ -1,0 +1,186 @@
+﻿
+@section Styles {
+    <link href="~/css/pc_join.css" rel="stylesheet" />
+}
+
+<div class="join">
+    <div class="title">
+        <span>회원가입</span><br />
+        <span>IDEL PLASTIC SURGERY & AESTHETIC</span>
+    </div>
+
+    <iframe src="/join.html"></iframe>
+    <div class="iframe-checker" style="margin-bottom: 50px;">
+        <input id="cbox1" type="checkbox" value="True" />
+        <label for="cbox1">회원가입약관에 동의합니다.</label>
+    </div>
+
+    <iframe src="/policy.html"></iframe>
+    <div class="iframe-checker" style="margin-bottom: 60px;">
+        <input id="cbox2" type="checkbox" value="True" />
+        <label for="cbox2">개인정보취급방침에 동의합니다.</label>
+    </div>
+
+    <form onsubmit="return doSubmit.call(this);">
+        <table cellpadding="0" cellspacing="0">
+            @if (ViewBag.AccountType == "Idel")
+            {
+                <tr>
+                    <td style="width: 150px;">아이디</td>
+                    <td colspan="3">
+                        <div class="flexbox">
+                            <input name="userid" style="width: 300px; margin-right: 10px;" />
+                            <button type="button" style="width: 100px;" onclick="checkUserId();">ID 중복확인</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        비밀번호
+                    </td>
+                    <td>
+                        <input name="passwd" type="password" style="width: 300px;" />
+                    </td>
+                    <td style="width: 150px;">
+                        비밀번호 확인
+                    </td>
+                    <td>
+                        <input name="passwdRe" type="password" style="width: 300px;" />
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    이름
+                </td>
+                <td>
+                    <input name="name" style="width: 300px;" value="@ViewBag.Name" />
+                </td>
+                <td>
+                    생년월일
+                </td>
+                <td>
+                    <input name="birthday" placeholder="6자리로 입력해주세요(YYMMDD)" style="width: 300px;" maxlength="6" />
+                </td>
+            </tr>
+            <tr>
+                <td>휴대폰</td>
+                <td colspan="3">
+                    <div class="flexbox">
+                        <select name="phone1" style="margin-right: 10px;">
+                            <option value="010">010</option>
+                            <option value="016">016</option>
+                            <option value="017">017</option>
+                            <option value="018">018</option>
+                            <option value="019">019</option>
+                        </select>
+                        <input name="phone2" maxlength="4" style="width: 100px; margin-right: 10px;" />
+                        <input name="phone3" maxlength="4" style="width: 100px; margin-right: 10px;" />
+                        <input name="isreceivephone" id="cbox3" type="checkbox" value="True" />
+                        <label for="cbox3">수신</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    이메일
+                </td>
+                <td colspan="3">
+                    <div class="flexbox">
+                        <input name="email1" style="margin-right: 10px;" value="@(((string)ViewBag.Email)?.Split('@')[0])" />
+                        @@
+                        <input name="email2" style="margin-left: 10px; margin-right: 10px;"  value="@(((string)ViewBag.Email)?.Split('@')[1])" />
+                        <select style="margin-right: 10px;">
+                            <option value="">직접입력</option>
+                            <option value="naver.com">네이버</option>
+                            <option value="hanmail.net">다음</option>
+                            <option value="google.com">구글</option>
+                            <option value="hotmail.com">핫메일</option>
+                        </select>
+                        <input name="isreceiveemail" id="cbox4" type="checkbox" value="True" />
+                        <label for="cbox4">수신</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    성별
+                </td>
+                <td colspan="3">
+                    <div class="flexbox">
+                        <input id="radio1" name="gender" type="radio" value="Female" @(ViewBag.Gender == "F" ? "checked" : null) />
+                        <label for="radio1">여자</label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input id="radio2" name="gender" type="radio" value="Male" @(ViewBag.Gender == "M" ? "checked" : null) />
+                        <label for="radio2">남자</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="control-pannel">
+            <button type="submit">확인</button>
+            <button type="reset">취소</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts  {
+    <script type="text/javascript">
+        function checkUserId() {
+            $.ajax({
+                url: '/auth/checkuserid',
+                method: 'post',
+                data: {
+                    userid: $('input[name=userid]').val()
+                }
+            }).always(function (data, status) {
+                if (status !== 'success') {
+                    alert('잠시 후에 다시 시도해 주세요');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    alert('사용 가능한 아이디 입니다.');
+                }
+            });
+        }
+
+        function doSubmit() {
+            try {
+                if (!$('#cbox1').prop('checked')) {
+                    alert('회원가입 약관에 동의해야 합니다.');
+                    return false;
+                }
+                if (!$('#cbox2').prop('checked')) {
+                    alert('개인정보 취급방침에 동의해야 합니다.');
+                    return false;
+                }
+
+                $.ajax({
+                    url: '/auth/dojoin',
+                    method: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: new FormData(this)
+                }).always(function (data, status) {
+                    if (status !== 'success') {
+                        alert('잠시 후에 다시 시도해 주세요');
+                    }
+                    else if (!data.status) {
+                        alert(data.message);
+                    }
+                    else {
+                        location.href = '/';
+                    }
+                });
+            } catch (e) {
+
+            }
+
+            return false;
+        }
+    </script>
+}

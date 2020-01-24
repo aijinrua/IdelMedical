@@ -34,6 +34,7 @@ namespace IdelMedical.Database
             PressCoverage.Build(modelBuilder);
             IdelTV.Build(modelBuilder);
             IdelEvent.Build(modelBuilder);
+            User.Build(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
 
@@ -56,5 +57,6 @@ namespace IdelMedical.Database
         public DbSet<PressCoverage> PressCoverages { get; set; }
         public DbSet<IdelTV> IdelTVs { get; set; }
         public DbSet<IdelEvent> IdelEvents { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

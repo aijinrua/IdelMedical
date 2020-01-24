@@ -12,5 +12,15 @@ namespace IdelMedical.User.Kr.Controllers
         {
             return View();
         }
+
+        public IActionResult Man()
+        {
+            return View();
+        }
+
+        public IActionResult Re()
+        {
+            return View();
+        }
     }
 }
