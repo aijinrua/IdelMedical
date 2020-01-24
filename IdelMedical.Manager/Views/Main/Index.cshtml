@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Main Page";
+    var SlideData = (List<SlideModel>)ViewBag.SlideData;
+    var Pager = (PageHandler)ViewBag.Pager;
+    var Search = (string)ViewBag.Search;
+
+}
+
+@section Styles {
+    <environment include="Development">
+        <link href="~/css/admin_main.css" rel="stylesheet" />
+    </environment>
+}
+
+<div class="main">
+    <div class="topBar">
+        <div class="categoly">
+            <div>
+                <span>카테고리 선택</span>
+                <select name="categolyItems" onchange="">
+                    <option value="Slide">Slide</option>
+                    <option value="Youtube">Youtube</option>
+                    <option value="Instagram">Instagram</option>
+                </select>
+            </div>
+            <div>
+                <button class="addBtn">
+                    <span>신규 등록</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="splitLine"></div>
+
+        <div class="table">
+            <div class="header">
+                <div>
+                    No.
+                </div>
+                <div>
+                    제 목
+                </div>
+                <div>
+                    등록일자
+                </div>
+            </div>
+            @foreach (var item in SlideData)
+            {
+                <div>
+                    <div style="text-align: center;">
+                        @item.Number
+                    </div>
+                    <div style="text-align: center;">
+                        @item.Title
+                    </div>
+                    <div style="text-align: center;">
+                        @item.UploadTime
+                    </div>
+                </div>
+            }
+        </div>
+        @{
+            if (SlideData != null)
+            {
+                <div class="splitLine"></div>
+            }
+            if (SlideData.Count > 15)
+            {
+                <div class="bottom-menu">
+                    <form method="get" action="/Member">
+                        <a class="pager-prev"
+                           href="@Url.Action("Index", new { Page = Pager.PrevPage, Search })">&lt;</a><input name="Page" value="@Pager.CurrentPage"
+                                                                                                             style="width: 80px; text-align: right; border-radius: 0px;"
+                                                                                                             type="number" /><a href="@Url.Action("Index", new { Page = Pager.NextPage, Search })" class="pager-next">&gt;</a>
+                        <input name="Search" type="hidden" value="@Search" />
+                    </form>
+                </div>
+            }
+        }
+    </div>
+</div>
