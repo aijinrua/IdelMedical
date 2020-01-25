@@ -25,7 +25,7 @@ namespace IdelMedical.User.Kr
         {
             services.AddControllersWithViews();
             services.AddDbContext<Database.DatabaseContext>();
-
+            services.AddSession();
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif
@@ -46,6 +46,7 @@ namespace IdelMedical.User.Kr
             }
 
 
+            app.UseSession();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

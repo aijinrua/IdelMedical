@@ -18,6 +18,11 @@ namespace IdelMedical.User.Kr.Controllers
             return View();
         }
 
+        public IActionResult Map()
+        {
+            return View();
+        }
+
         public IActionResult Tour()
         {
             return View();

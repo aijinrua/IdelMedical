@@ -1,0 +1,133 @@
+﻿label {
+    cursor: pointer;
+}
+
+.join img {
+    vertical-align: middle;
+}
+
+.join .title {
+    margin: 0 auto;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.join .title span:first-child {
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.join .title span:last-child {
+    font-size: 25px;
+}
+
+iframe {
+    display: block;
+    width: 1200px;
+    height: 370px;
+    margin: 0 auto;
+    padding: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #e5e5e5;
+}
+
+.iframe-checker {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: right;
+    background-color: #fcfcfc;
+    border: 1px solid #e5e5e5;
+}
+
+form {
+    width: 1200px;
+    margin: 0 auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-top: 2px solid #84888c;
+}
+
+.join table {
+    width: 100%;
+}
+
+.join table tr td {
+    height: 70px;
+    border-bottom: 1px solid #84888c;
+}
+
+.join table tr td:nth-of-type(1) {
+    width: 150px;
+    text-align: center;
+}
+
+.join table tr td:nth-of-type(3) {
+    width: 150px;
+    text-align: center;
+}
+
+.join table .flexbox {
+    display: flex;
+    align-items: center;
+}
+
+.join table input {
+    height: 37px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 10px;
+    border: 1px solid #dedede;
+}
+
+.join table select {
+    height: 37px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 10px;
+    border: 1px solid #dedede;
+}
+
+.join table button {
+    height: 37px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #b7b7b7;
+    color: #ffffff;
+    border: none;
+}
+
+.join .control-pannel {
+    padding-top: 50px;
+    padding-bottom: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.join .control-pannel button {
+    width: 200px;
+    height: 60px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.join .control-pannel button:nth-of-type(1) {
+    background-color: #333333;
+    margin-right: 10px;
+}
+
+.join .control-pannel button:nth-of-type(2) {
+    background-color: #cccccc;
+}
