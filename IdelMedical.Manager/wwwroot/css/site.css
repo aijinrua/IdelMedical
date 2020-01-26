@@ -5,6 +5,7 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
+    min-width: 1200px;
     font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -29,4 +30,52 @@ body > table.layout tr:nth-of-type(2) td:nth-of-type(1) {
 
 body > table.layout tr:nth-of-type(2) td:nth-of-type(2) {
     vertical-align: top;
+}
+
+.logo {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.logo img {
+    height: 36px;
+    vertical-align: middle;
+}
+
+.top-area {
+    text-align: right;
+    color: #fff;
+    padding: 0 36px;
+}
+
+.top-area a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.menu-area {
+    vertical-align: top;
+    background-color: rgba(130, 217, 208, 0.20);
+}
+
+.menu-area a {
+    display: flex;
+    text-decoration: none;
+    height: 60px;
+    -webkit-justify-content: start;
+    justify-content: start;
+    -webkit-align-items: center;
+    align-items: center;
+    padding-left: 20px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-left: 5px solid transparent;
+    color: inherit;
+}
+
+.menu-area a.active {
+    border-left-color: #55908a;
+    background-color: #82d9d0;
+    color: #fff;
 }

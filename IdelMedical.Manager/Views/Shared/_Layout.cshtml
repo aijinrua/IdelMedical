@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@{
+    var controller = (string)ViewContext.RouteData.Values["controller"];
+    var action = (string)ViewContext.RouteData.Values["action"];
+    var userkey = Context.Session.GetString("UserKey");
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,19 +17,33 @@
 <body>
     <table class="layout" cellpadding="0" cellspacing="0">
         <tr>
-            <td>
-                타이틀 아이콘
+            <td class="logo">
+                <img src="~/images/logo_main.png" />
             </td>
-            <td>
-                탑 영역
+            <td class="top-area">
+                @if (string.IsNullOrWhiteSpace(userkey))
+                {
+                    <a href="/Auth/Login">로그인</a>
+                }
+                else
+                {
+                    <a href="/Auth/Logout">로그아웃</a>
+                }
             </td>
         </tr>
         <tr>
-            <td>
-                <div>
-                    @*메뉴영역*@
-                    <a>메인 관리</a>
-                </div>
+            <td class="menu-area">
+                <a href="/Member" class="@(controller == "Member" ? "active" : null)">회원목록</a>
+                <a href="/Counseling" class="@(controller == "Counseling" ? "active" : null)">상담요청</a>
+                <a href="/Reservation" class="@(controller == "Reservation" ? "active" : null)">예약요청</a>
+                <a href="/Main" class="@(controller == "Main" ? "active" : null)">메인관리</a>
+                <a href="/BeforeAfter" class="@(controller == "BeforeAfter" ? "active" : null)">전후사진</a>
+                <a href="/Notice" class="@(controller == "Notice" ? "active" : null)">공지사항</a>
+                <a href="/Broadcast" class="@(controller == "Broadcast" ? "active" : null)">방송출연</a>
+                <a href="/PressCoverage" class="@(controller == "PressCoverage" ? "active" : null)">언론보도</a>
+                <a href="/IdelStar" class="@(controller == "IdelStar" ? "active" : null)">아이델스타</a>
+                <a href="/IdelTV" class="@(controller == "IdelTV" ? "active" : null)">아이델TV</a>
+                <a href="/IdelEvent" class="@(controller == "IdelEvent" ? "active" : null)">이벤트</a>
             </td>
             <td>
                 @RenderBody()
