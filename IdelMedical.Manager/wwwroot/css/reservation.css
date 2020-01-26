@@ -1,0 +1,11 @@
+﻿* {
+    cursor: default;
+}
+input {
+    cursor:text;
+}
+.beforeAfter {
+    width:1440px;
+    height: 810px;
+    font-family: 'Noto Sans KR', sans-serif;
+}

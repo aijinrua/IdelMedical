@@ -1,0 +1,395 @@
+﻿.notice * {
+    cursor: default;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.notice input {
+    cursor: text;
+}
+.notice button:hover {
+    cursor:pointer;
+}
+.notice button > *:hover {
+    cursor: pointer;
+}
+.notice button::-moz-focus-inner {
+    outline: 0;
+    color: transparent;
+}
+.notice button.launch:hover {
+cursor: pointer;
+background-color: #FABD44;
+}
+
+.notice button.change {
+background-color: #F88F00;
+border: none;
+height: 40px;
+padding: 5px 15px;
+color: #ffffff;
+font-size: 16px;
+font-weight: 300;
+margin-top: 10px;
+margin-right: 10px;
+}
+
+.notice button.change:hover {
+cursor: pointer;
+background-color: #F89900;
+}
+.notice button:hover {
+    cursor:pointer;
+}
+.notice button:active {
+outline: none;
+border: none;
+}
+
+.notice button:focus {outline:0;}
+
+
+.notice {
+    width: 1440px;
+    height: 810px;
+}
+.topBar {
+    width:calc(100% - 200px);
+    height:10%;
+    display:flex;
+    padding-left:100px;
+    padding-right:100px;
+    align-items:center;
+}
+.topBar > div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+.topBar > div > button {
+    font-size: 20px;
+    width:200px;
+    height:40px;
+}
+.notice .splitLine {
+    height: 1px;
+    width: calc(100% - 10px);
+    border-top: 1px solid #82d9d0;
+    border-bottom: 1px solid #82d9d0;
+    margin-left: auto;
+    margin-right:auto;
+    margin-top:10px;
+    margin-bottom:10px;
+    height:1px;
+}
+
+.notice .itemList {
+    height: 90%;
+}
+.notice .itemList .table {
+    padding: 10px;
+    font-size:16px;
+    box-sizing:border-box;
+    display:table;
+    width:100%;
+}
+.notice .itemList .table .header {
+    background-color:#000;
+    color:#FFF;
+    text-align:center;
+    display:table-row;
+    height:35px;
+    cursor:default;
+}
+.notice .itemList .table .header > div {
+    display:table-cell;
+    vertical-align:middle;
+}
+.notice .itemList .table > div {
+    height:35px;
+    display:table-row;
+    font-size: 16px;
+}
+.notice .itemList .table > div:hover {
+    color: #82d9d0;
+}
+.notice .itemList .table > div > div {
+    display:table-cell;
+    vertical-align:middle;
+    cursor:pointer;
+}
+.notice .itemList .table > *:nth-child(2n+1) {
+    background-color:#eee;
+}
+.notice .itemList .table .header {
+    background-color:#000;
+    color:#FFF;
+    text-align:center;
+    display:table-row;
+    height:35px;
+    cursor:default;
+}
+.notice .itemList .table .header:hover {
+    color:#FFF;
+}
+.notice .itemList .pageBtn {
+    width: 100%;
+    height: 30px;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+}
+.notice .itemList .pageBtn > a {
+    width: 50px;
+    color: #787878;
+    text-align:center;
+    margin-left:2px;
+    margin-right:2px;
+}
+.notice .itemList .pageBtn > a:hover {
+    color: #0836e8;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+
+.detail * {
+    cursor: default;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.detail input {
+    cursor: text;
+}
+
+.detail button:hover {
+    cursor: pointer;
+}
+
+.detail button > *:hover {
+    cursor: pointer;
+}
+
+.detail button::-moz-focus-inner {
+    outline: 0;
+    color: transparent;
+}
+
+.detail button.launch:hover {
+    cursor: pointer;
+    background-color: #FABD44;
+}
+
+.detail button.change {
+    background-color: #F88F00;
+    border: none;
+    height: 40px;
+    padding: 5px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.detail button.change:hover {
+    cursor: pointer;
+    background-color: #F89900;
+}
+
+.detail button:hover {
+    cursor: pointer;
+}
+
+.detail button:active {
+    outline: none;
+    border: none;
+}
+
+.detail .submit:focus {
+    outline: 0;
+}
+
+.detail .submit:hover {
+    cursor: pointer;
+}
+
+.detail .submit > *:hover {
+    cursor: pointer;
+}
+
+.detail .submit::-moz-focus-inner {
+    outline: 0;
+    color: transparent;
+}
+
+.detail .submit.launch:hover {
+    cursor: pointer;
+    background-color: #FABD44;
+}
+
+.detail .submit.change {
+    background-color: #F88F00;
+    border: none;
+    height: 40px;
+    padding: 5px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.detail .submit.change:hover {
+    cursor: pointer;
+    background-color: #F89900;
+}
+
+.detail .submit:hover {
+    cursor: pointer;
+}
+
+.detail .submit:active {
+    outline: none;
+    border: none;
+}
+
+.detail .submit:focus {
+    outline: 0;
+}
+
+
+.detail {
+    width: 1440px;
+    height: 810px;
+}
+.detail .contentArea {
+    width:calc(100% - 320px);
+    padding-left:120px;
+    padding-right:200px;
+    padding-top:10px;
+    height:100%;
+}
+.detail .splitLine {
+    width: calc(100% - 10px);
+    margin: auto;
+    height: 1px;
+    border-bottom: 1px solid #82d9d0;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.detail .itemLine {
+    display:flex;
+    width:100%;
+    align-items:center;
+}
+.detail .itemLine > div:nth-of-type(1) {
+    display:flex;
+    width:160px;
+    font-size:20px;
+    align-content:center;
+    justify-content:center;
+}
+.detail .itemLine > div:nth-of-type(1) > span {
+    display:flex;
+    height:30px;
+}
+.detail .itemLine > div:nth-of-type(2) {
+    display:flex;
+    width:calc(100% - 160px);
+}
+.detail .itemLine .textData {
+    width:100%;
+    height:30px;
+}
+.detail .itemLine .textData input {
+    width:90%;
+    font-size:16px;
+    height:24px;
+    text-align:center;
+}
+.detail .itemLine .thumbnailArea{
+    width: 200px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    font-size:20px;
+}
+.detail .itemLine .originArea{
+    text-align:center;
+    width: 300px;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:20px;
+}
+.detail .itemLine .thumbnailArea > span {
+    color:#787878;
+    height:30px;
+    display:block;
+    background-color:rgba(130, 217, 208, 0.20);
+}
+.detail .itemLine .originArea > span {
+    color:#787878;
+    height:30px;
+    display:block;
+    background-color:rgba(130, 217, 208, 0.20);
+}
+.detail .itemLine .thumbnailArea > img {
+    color: #787878;
+    display: flex;
+    border: 2px solid #fff;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+    height: 198px;
+    width: 198px;
+}
+.detail .itemLine .originArea > img {
+    color: #787878;
+    display: flex;
+    border: 2px solid #fff;
+    justify-content:center;
+    align-items:center;
+    font-size:16px;
+    font-size:16px;
+    height: 198px;
+    width:298px;
+}
+.detail .itemLine .thumbnailArea > button {
+    height: 30px;
+    width:200px;
+    font-size:16px;
+    margin-top:2px;
+
+}
+.detail .itemLine .originArea > button {
+    height: 30px;
+    width: 300px;
+    font-size:16px;
+    margin-top:2px;
+}
+.detail .itemLine:nth-of-type(4) {
+    background-color:rgba(130, 217, 208, 0.20);
+    padding-top:5px;
+    padding-bottom:5px;
+}
+.detail .itemLine:nth-of-type(5) {
+    margin-top:5px;
+    background-color:rgba(130, 217, 208, 0.20);
+    padding-top:5px;
+    padding-bottom:5px;
+}
+.detail .itemLine:nth-last-of-type(1) {
+    height:80px;
+    justify-content:flex-end;
+}
+.detail .itemLine:nth-last-of-type(1) .submit {
+    height:40px;
+    width: 200px;
+    margin-left:30px;
+    margin-right:30px;
+    font-weight:bold;
+    font-size:18px;
+    cursor:pointer;
+}

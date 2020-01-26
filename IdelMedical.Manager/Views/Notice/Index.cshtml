@@ -1,5 +1,6 @@
 ﻿@{
-    ViewData["Title"] = "Main Page";
+    ViewData["Title"] = "Notice Page";
+
     var SlideData = (List<SlideModel>)ViewBag.SlideData;
     var Pager = (PageHandler)ViewBag.Pager;
     var Search = (string)ViewBag.Search;
@@ -8,29 +9,18 @@
 
 @section Styles {
     <environment include="Development">
-        <link href="~/css/main.css" rel="stylesheet" />
+        <link href="~/css/notice.css" rel="stylesheet" />
     </environment>
 }
-
-<div class="main">
+<div class="notice">
     <div class="topBar">
-        <div class="categoly">
-            <div>
-                <span>카테고리 선택</span>
-                <select name="categolyItems" onchange="">
-                    <option value="Slide">Slide</option>
-                    <option value="YouTube">YouTube</option>
-                    <option value="Instagram">Instagram</option>
-                </select>
-            </div>
-            <div>
-                <button class="addBtn">
-                    <span>신규 등록</span>
-                </button>
-            </div>
+        <div>
+            <button class="addBtn">
+                <span>신규 등록</span>
+            </button>
         </div>
     </div>
-    <div class="content">
+    <div class="itemList">
         <div class="splitLine"></div>
 
         <div class="table">
@@ -45,7 +35,7 @@
                     등록일자
                 </div>
             </div>
-            @{ 
+            @{
                 int count = 0;
             }
             @foreach (var item in SlideData)

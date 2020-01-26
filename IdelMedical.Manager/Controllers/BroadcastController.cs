@@ -11,5 +11,9 @@ namespace IdelMedical.Manager.Controllers
     /// </summary>
     public class BroadcastController : Controller
     {
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }

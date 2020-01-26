@@ -11,5 +11,9 @@ namespace IdelMedical.Manager.Controllers
     /// </summary>
     public class MemberController : Controller
     {
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }

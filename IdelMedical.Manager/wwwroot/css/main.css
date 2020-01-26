@@ -1,8 +1,8 @@
-﻿* {
+﻿.main * {
     cursor: default;
 }
-input {
-    cursor:text;
+.main input {
+    cursor: text;
 }
 .main {
     width:1440px;
@@ -73,10 +73,6 @@ input {
     outline:0;
     color:transparent;
 }
-button::-moz-focus-inner {
-    outline: 0;
-    color: transparent;
-}
 .main .topBar .categoly .addBtn.launch {
     border: none;
     height: 40px;
@@ -86,6 +82,10 @@ button::-moz-focus-inner {
     font-weight: 300;
     margin-top: 10px;
     margin-right: 10px;
+}
+button::-moz-focus-inner {
+    outline: 0;
+    color: transparent;
 }
 button.launch:hover {
 cursor: pointer;
