@@ -19,7 +19,7 @@
                 <span>카테고리 선택</span>
                 <select name="categolyItems" onchange="">
                     <option value="Slide">Slide</option>
-                    <option value="Youtube">Youtube</option>
+                    <option value="YouTube">YouTube</option>
                     <option value="Instagram">Instagram</option>
                 </select>
             </div>
@@ -35,18 +35,23 @@
 
         <div class="table">
             <div class="header">
-                <div>
+                <div style="width:120px;">
                     No.
                 </div>
                 <div>
                     제 목
                 </div>
-                <div>
+                <div style="width:120px;">
                     등록일자
                 </div>
             </div>
+            @{ 
+                int count = 0;
+            }
             @foreach (var item in SlideData)
             {
+                count++;
+                if (count > 15) break;
                 <div>
                     <div style="text-align: center;">
                         @item.Number
@@ -67,14 +72,17 @@
             }
             if (SlideData.Count > 15)
             {
-                <div class="bottom-menu">
-                    <form method="get" action="/Member">
-                        <a class="pager-prev"
-                           href="@Url.Action("Index", new { Page = Pager.PrevPage, Search })">&lt;</a><input name="Page" value="@Pager.CurrentPage"
-                                                                                                             style="width: 80px; text-align: right; border-radius: 0px;"
-                                                                                                             type="number" /><a href="@Url.Action("Index", new { Page = Pager.NextPage, Search })" class="pager-next">&gt;</a>
-                        <input name="Search" type="hidden" value="@Search" />
-                    </form>
+                var pageCount = SlideData.Count % 15;
+                <div class="pageBtn">
+                    <a>&lt&lt</a>
+                    <a>&lt</a>
+                    @for (int i = 0; i < pageCount; i++)
+                    {
+                        <a>@(i + 1)</a>
+                    }
+                    <a>&gt</a>
+                    <a>&gt&gt</a>
+
                 </div>
             }
         }

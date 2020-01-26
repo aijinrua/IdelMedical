@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Main Page";
+    var SlideData = (List<SlideModel>)ViewBag.SlideData;
+    var Pager = (PageHandler)ViewBag.Pager;
+    var Search = (string)ViewBag.Search;
+
+}
+
+@section Styles {
+    <environment include="Development">
+        <link href="~/css/admin_main.css" rel="stylesheet" />
+    </environment>
+}
+
+<div class="slide">
+    <div class="topBar">
+        <div>Slide 편집 화면</div>
+    </div>
+    <div class="content">
+        <div class="splitLine"></div>
+        <div class="imageSection">
+            <div class="pcSection">
+                <div class="selectImage">
+                    <span>PC용 이미지</span>
+                    <div class="fileInfo">
+                        <span>선택된파일</span>
+                        <input type="text" name="pcSlideImageFile" value="" readonly />
+                        <div>
+                            <button>파일선택</button>
+                        </div>
+                    </div>
+                    <div class="imageInfo">
+                        <img src="~/images/image01.jpg" alt="PC용 이미지 미리보기" />
+                    </div>
+                </div>
+            </div>
+            <div class="mobileSection">
+                <div class="selectImage">
+                    <span>Mobile용 이미지</span>
+                    <div class="fileInfo">
+                        <span>선택된파일</span>
+                        <input type="text" name="mobileSlideImageFile" value="" readonly />
+                        <div>
+                            <button>파일선택</button>
+                        </div>
+                    </div>
+                    <div class="imageInfo">
+                        <img src="~/images/image01.jpg" alt="Mobile용 이미지 미리보기" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="targetLink">
+            <span>이동링크</span>
+            <input type="text" name="slideLink" value="" />
+        </div>
+        <div class="targetTitle">
+            <span>관리용제목</span>
+            <input type="text" name="slideTitle" value="" />
+        </div>
+        <div class="splitLine"></div>
+        <div class="bottomBtn">
+            <button name="deleteBtn">삭제하기</button>
+            <button name="updateBtn">등록하기</button>
+            <button name="gotoListBtn">목록으로</button>
+        </div>
+    </div>
+</div>
