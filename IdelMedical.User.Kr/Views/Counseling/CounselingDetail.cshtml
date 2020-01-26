@@ -1,0 +1,56 @@
+﻿@{
+    var isShow = (bool)ViewBag.IsShow;
+    var item = (IdelMedical.Database.Tables.Counseling)ViewBag.Item;
+}
+
+@section Styles {
+    <link href="~/css/pc_counseling.css" rel="stylesheet" />
+}
+
+<div class="counseling-detail">
+    <div class="title">
+        <span>온라인 상담</span><br />
+        <span>IDEL PLASTIC SURGERY & AESTHETIC</span>
+    </div>
+
+    @if (isShow)
+    {
+        <div class="spliter1"></div>
+        <div class="date">
+            @item.UserName &nbsp;&nbsp;&nbsp;
+            @item.CreateTime.ToString("yyyy-MM-dd")
+        </div>
+        <div class="subject">
+            @Html.Raw(item.Subject)
+        </div>
+        <div class="spliter2"></div>
+        <div class="content">
+            <pre>@item.Substance</pre>
+        </div>
+        <div class="spliter2"></div>
+        <div class="content">
+            @if (string.IsNullOrWhiteSpace(item.Answer))
+            {
+                <div>
+                    답변을 준비중입니다.
+                </div>
+            }
+            else
+            {
+                <pre>@item.Answer</pre>
+            }
+        </div>
+        <div class="spliter2"></div>
+        <div class="control-pannel">
+            <button onclick="history.back();">목록</button>
+        </div>
+    }
+    else
+    {
+        <div class="secret">
+            해당 게시글은 비공개 게시글입니다.<br />
+            <button onclick="history.back();">목록</button>
+        </div>
+    }
+</div>
+

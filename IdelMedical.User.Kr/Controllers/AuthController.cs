@@ -1,9 +1,12 @@
 ﻿using IdelMedical.Database;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -12,14 +15,19 @@ namespace IdelMedical.User.Kr.Controllers
     public class AuthController : Controller
     {
         public DatabaseContext Db { get; }
+        public IConfiguration Configuration { get; }
 
-        public AuthController(DatabaseContext db)
+        public AuthController(DatabaseContext db, IConfiguration Configuration)
         {
             this.Db = db;
+            this.Configuration = Configuration;
         }
 
         public IActionResult Login()
         {
+            ViewBag.NaverClientId = this.Configuration["OauthNaver:ClientId"];
+            ViewBag.NaverRedirectUrl = this.Configuration["OauthNaver:RedirectUrl"];
+
             return View();
         }
 
@@ -53,34 +61,87 @@ namespace IdelMedical.User.Kr.Controllers
             }
         }
 
+
         [HttpGet]
-        public IActionResult NaverLogin()
+        public async Task<IActionResult> NaverLogin(string access_token)
         {
-            return View();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(access_token))
+                {
+                    return View();
+                }
+                else
+                {
+                    using (var http = new HttpClient())
+                    {
+                        http.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", $"Bearer {access_token}");
+                        using (var response = await http.GetAsync($"https://openapi.naver.com/v1/nid/me"))
+                        {
+                            var content = await response.Content.ReadAsStringAsync();
+                            content = Regex.Unescape(content);
+                            var data = JsonConvert.DeserializeAnonymousType(content, new
+                            {
+                                resultcode = default(string),
+                                message = default(string),
+                                response = new
+                                {
+                                    id = default(string),
+                                    gender = default(string),
+                                    email = default(string),
+                                    name = default(string),
+                                    birthday = default(string)
+                                }
+                            });
+
+                            HttpContext.Session.SetString("AccountType", "Naver");
+                            HttpContext.Session.SetString("AccessToken", access_token);
+
+                            if (this.Db.Users.Any(x => x.UserKey == $"naver_{data.response.id}"))
+                            {
+                                HttpContext.Session.SetString("UserKey", $"naver_{data.response.id}");
+                                return Redirect("/");
+                            }
+                            else
+                            {
+                                HttpContext.Session.SetString("Id", data.response.id);
+                                HttpContext.Session.SetString("Name", data.response.name ?? "");
+                                HttpContext.Session.SetString("Email", data.response.email ?? "");
+                                HttpContext.Session.SetString("Gender", data.response.gender ?? "");
+
+                                return Redirect("/Auth/Join?accountType=naver");
+                            }
+                        }
+                    }
+                }
+
+                throw new Exception();
+            }
+            catch
+            {
+                return NotFound();
+            }
         }
 
-        [HttpPost]
-        public IActionResult NaverLogin(string id, string name, string email, string gender)
-        {
-            if (this.Db.Users.Any(x => x.UserKey == $"naver_{id}"))
-            {
-                HttpContext.Session.SetString("UserKey", $"naver_{id}");
-                return Redirect("/");
-            }
-            else
-            {
-                HttpContext.Session.SetString("Id", id);
-                HttpContext.Session.SetString("Name", name);
-                HttpContext.Session.SetString("Email", email);
-                HttpContext.Session.SetString("Gender", gender);
-
-                return Redirect("/Auth/Join?accountType=naver");
-            }
-        }
-
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
             HttpContext.Session.Remove("UserKey");
+
+            var accountType = HttpContext.Session.GetString("AccountType");
+
+            if (accountType == "Naver")
+            {
+                var accessToken = HttpContext.Session.GetString("AccessToken");
+                var clientId = this.Configuration["OauthNaver:ClientId"];
+                var clientSecret = this.Configuration["OauthNaver:ClientSecret"];
+                using (var http = new HttpClient())
+                {
+                    await http.GetAsync($"https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id={clientId}&client_secret={clientSecret}&access_token={accessToken}&service_provider=NAVER");
+                }
+
+                HttpContext.Session.Remove("AccountType");
+                HttpContext.Session.Remove("AccessToken");
+            }
 
             return Redirect("/");
         }

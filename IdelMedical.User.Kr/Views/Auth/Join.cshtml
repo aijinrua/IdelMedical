@@ -89,8 +89,8 @@
                     <div class="flexbox">
                         <input name="email1" style="margin-right: 10px;" value="@(((string)ViewBag.Email)?.Split('@')[0])" />
                         @@
-                        <input name="email2" style="margin-left: 10px; margin-right: 10px;"  value="@(((string)ViewBag.Email)?.Split('@')[1])" />
-                        <select style="margin-right: 10px;">
+                        <input name="email2" style="margin-left: 10px; margin-right: 10px;" value="@(((string)ViewBag.Email)?.Split('@')[1])" />
+                        <select style="margin-right: 10px;" onchange="changeMailDomain.call(this);">
                             <option value="">직접입력</option>
                             <option value="naver.com">네이버</option>
                             <option value="hanmail.net">다음</option>
@@ -146,6 +146,17 @@
                     alert('사용 가능한 아이디 입니다.');
                 }
             });
+        }
+
+        function changeMailDomain() {
+            var domain = $(this).val();
+            $(this).prev().val(domain);
+            if (domain === '' || domain === undefined || domain === null) {
+                $(this).prev().removeAttr('disabled');
+            }
+            else {
+                $(this).prev().attr('disabled', 'disabled');
+            }
         }
 
         function doSubmit() {

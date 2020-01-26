@@ -1,0 +1,369 @@
+﻿img {
+    vertical-align: middle;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.counseling {
+    background-color: #ffffff;
+    color: #000000;
+    min-width: 1200px;
+}
+
+.counseling .title {
+    margin: 0 auto;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.counseling .title span:first-child {
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.counseling .title span:last-child {
+    font-size: 25px;
+}
+
+.counseling .content {
+    width: 1200px;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.counseling .tab-menu {
+    overflow: auto;
+    margin-bottom: 40px;
+}
+
+.counseling .tab-menu > a {
+    display: flex;
+    float: left;
+    width: 12.5%;
+    height: 60px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #555555;
+    border-right: none;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.counseling .tab-menu > a:last-child {
+    border-right: 1px solid #555555;
+}
+
+.counseling .tab-menu > a.active {
+    background-color: #81d8d0;
+}
+
+.counseling table {
+    width: 100%;
+}
+
+.counseling table th {
+    height: 50px;
+    text-align: center;
+    font-weight: bold;
+    border-top: 2px solid #84888c;
+    border-bottom: 1px solid #84888c;
+}
+
+.counseling table td {
+    height: 50px;
+    text-align: center;
+    border-bottom: 1px solid #84888c;
+}
+
+.counseling table td:nth-of-type(3) {
+    text-align: left;
+}
+
+.counseling table td:nth-of-type(3) span {
+    text-align: left;
+    display: inline-block;
+    max-width: 600px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: text-bottom;
+}
+
+.counseling .btn-create {
+    display: inline-flex;
+    border: 1px solid #84888c;
+    width: 100px;
+    height: 34px;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.counseling span.state-ready {
+    display: inline-block;
+    background-color: #ff8181;
+    color: #fff;
+    padding: 2px 7px;
+    border-radius: 6px;
+}
+
+.counseling span.state-complete {
+    display: inline-block;
+    background-color: #81d8d0;
+    color: #fff;
+    padding: 2px 7px;
+    border-radius: 6px;
+}
+
+.pager {
+    background-color: #fff;
+    padding-bottom: 60px;
+    color: black;
+    text-align: center;
+}
+
+.pager .paging {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pager .paging a {
+    display: inline-block;
+    border: 1px solid #131313;
+    min-width: 30px;
+    font-size: 20px;
+    margin: 0 2px;
+    padding: 0 7px;
+    box-sizing: border-box;
+}
+
+.pager .paging a.active {
+    background-color: #131313;
+    color: white;
+}
+
+.pager .search {
+    display: inline-flex;
+    overflow: auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.pager .search select,
+.pager .search input,
+.pager .search button {
+    font-size: 18px;
+    height: 34px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.pager .search select {
+    margin-right: 5px;
+}
+
+.pager .search input {
+    width: 200px;
+    padding: 0 7px;
+}
+
+.pager .search button {
+    width: 70px;
+    background-color: #a6a6a6;
+    color: white;
+    border: none;
+    outline: none;
+}
+
+
+.counseling-create {
+    width: 1200px;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.counseling-create .title {
+    margin: 0 auto;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.counseling-create .title span:first-child {
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.counseling-create .title span:last-child {
+    font-size: 25px;
+}
+
+.counseling-create .spliter1 {
+    height: 0;
+    border-top: 2px solid #888888;
+    margin-bottom: 20px;
+}
+
+.counseling-create .spliter2 {
+    height: 0;
+    border-top: 1px solid #c4c7ca;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.counseling-create select {
+    height: 30px;
+    margin: 0;
+    padding: 0 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.counseling-create input[name=subject] {
+    width: 100%;
+    margin: 0;
+    padding: 0 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 30px;
+}
+
+.counseling-create input[name=isSecret] {
+    width: 16px;
+    height: 16px;
+    vertical-align: bottom;
+}
+
+.counseling-create textarea {
+    width: 100%;
+    margin: 0;
+    padding: 10px 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 300px;
+    resize: vertical;
+}
+
+.counseling-create .control-pannel {
+    padding-top: 20px;
+    padding-bottom: 60px;
+    text-align: center;
+}
+
+.counseling-create .control-pannel button:nth-of-type(1) {
+    background-color: #acacac;
+    color: #fff;
+    width: 120px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+.counseling-create .control-pannel button:nth-of-type(2) {
+    background-color: #81d8d0;
+    color: #fff;
+    width: 120px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+.counseling-detail {
+    width: 1200px;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.counseling-detail .title {
+    margin: 0 auto;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.counseling-detail .title span:first-child {
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.counseling-detail .title span:last-child {
+    font-size: 25px;
+}
+
+.counseling-detail .secret {
+    text-align: center;
+    font-size: 26px;
+    padding-bottom: 80px;
+}
+
+.counseling-detail .secret button {
+    width: 120px;
+    height: 40px;
+    background-color: #acacac;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    margin-top: 60px;
+}
+
+.counseling-detail .spliter1 {
+    height: 0;
+    border-top: 2px solid #888888;
+}
+
+.counseling-detail .spliter2 {
+    height: 0;
+    border-top: 1px solid #c4c7ca;
+}
+
+.counseling-detail .date {
+    font-size: 18px;
+    padding: 30px 20px 20px 20px;
+}
+
+.counseling-detail .subject {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0 20px 30px 20px;
+}
+
+.counseling-detail .content {
+    padding: 20px;
+    text-align: left;
+}
+
+.counseling-detail pre {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+}
+
+.counseling-detail .control-pannel {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 80px;
+}
+
+.counseling-detail .control-pannel button {
+    font-size: 18px;
+    width: 130px;
+    height: 40px;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #5b5b5b;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}

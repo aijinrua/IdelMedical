@@ -49,8 +49,8 @@
         function naverInit() {
             var naverLogin = new naver.LoginWithNaverId(
 		        {
-			        clientId: "EWZx95TWAW2KEpcx4csT",
-                    callbackUrl: "https://aijinrua.iptime.org/auth/naverlogin",
+			        clientId: "@ViewBag.NaverClientId",
+                    callbackUrl: "@ViewBag.NaverRedirectUrl",
                     isPopup: false, /* 팝업을 통한 연동처리 여부 */
                     loginButton: { color: "green", type: 3, height: 50} /* 로그인 버튼의 타입을 지정 */
 		        }

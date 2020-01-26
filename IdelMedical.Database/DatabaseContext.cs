@@ -35,6 +35,7 @@ namespace IdelMedical.Database
             IdelTV.Build(modelBuilder);
             IdelEvent.Build(modelBuilder);
             User.Build(modelBuilder);
+            Counseling.Build(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
 
@@ -58,5 +59,6 @@ namespace IdelMedical.Database
         public DbSet<IdelTV> IdelTVs { get; set; }
         public DbSet<IdelEvent> IdelEvents { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Counseling> Counselings { get; set; }
     }
 }

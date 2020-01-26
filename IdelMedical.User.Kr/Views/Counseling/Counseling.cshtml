@@ -1,0 +1,149 @@
+﻿@{ 
+    var page = (int)ViewBag.Page;
+    var startPage = (int)ViewBag.StartPage;
+    var endPage = (int)ViewBag.EndPage;
+    var prevPage = (int)ViewBag.PrevPage;
+    var nextPage = (int)ViewBag.NextPage;
+
+    var category = (string)ViewBag.Category;
+
+    var items = (IdelMedical.Database.Tables.Counseling[])ViewBag.Items;
+}
+
+
+@section Styles {
+    <link href="~/css/pc_counseling.css" rel="stylesheet" />
+}
+
+<div class="counseling">
+    <div class="title">
+        <span>온라인 상담</span><br />
+        <span>IDEL PLASTIC SURGERY & AESTHETIC</span>
+    </div>
+    <div class="content">
+        <div class="tab-menu">
+            <a href="/counseling/counseling" class="@(string.IsNullOrWhiteSpace(category) ? "active" : null)">전체</a>
+            <a href="/counseling/counseling?category=가슴성형" class="@(category == "가슴성형" ? "active" : null)">가슴성형</a>
+            <a href="/counseling/counseling?category=동안성형" class="@(category == "동안성형" ? "active" : null)">동안성형</a>
+            <a href="/counseling/counseling?category=체형성형" class="@(category == "체형성형" ? "active" : null)">체형성형</a>
+            <a href="/counseling/counseling?category=눈성형" class="@(category == "눈성형" ? "active" : null)">눈성형</a>
+            <a href="/counseling/counseling?category=코성형" class="@(category == "코성형" ? "active" : null)">코성형</a>
+            <a href="/counseling/counseling?category=안면윤곽" class="@(category == "안면윤곽" ? "active" : null)">안면윤곽</a>
+            <a href="/counseling/counseling?category=피부과" class="@(category == "피부과" ? "active" : null)">피부과</a>
+        </div>
+
+        <table cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th style="width: 80px;">
+                        번호
+                    </th>
+                    <th style="width: 100px;">
+                        진료과목
+                    </th>
+                    <th>
+                        제목
+                    </th>
+                    <th style="width: 120px;">
+                        답변
+                    </th>
+                    <th style="width: 80px;">
+                        공개
+                    </th>
+                    <th style="width: 100px;">
+                        작성자
+                    </th>
+                    <th style="width: 120px;">
+                        작성일
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (items != null && items.Length > 0)
+                {
+                    foreach (var item in items)
+                    {
+                        <tr>
+                            <td>
+                                @item.Id.ToString("#,##0")
+                            </td>
+                            <td>
+                                @item.Category
+                            </td>
+                            <td>
+                                <span>
+                                    <a href="/counseling/counselingdetail?id=@item.Id" title="@item.Subject">
+                                        @item.Subject
+                                    </a>
+                                </span>
+                            </td>
+                            <td>
+                                @if (string.IsNullOrWhiteSpace(item.Answer))
+                                {
+                                    <span class="state-ready">답변대기</span>
+                                }
+                                else
+                                {
+                                    <span class="state-complete">답변완료</span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.IsSecret)
+                                {
+                                <text>
+                                    비공개
+                                </text>
+                                }
+                                else
+                                {
+                                <text>
+                                    공개
+                                </text>
+                                }
+                            </td>
+                            <td>
+                                @item.UserName
+                            </td>
+                            <td>
+                                @item.CreateTime.ToString("yyyy-MM-dd")
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" style="height: 200px;">
+                            검색 결과가 없습니다.
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="7" style="border-bottom: none; text-align: right;">
+                        <a class="btn-create" href="/counseling/counselingcreate">글쓰기</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <div class="pager">
+                            <div class="paging">
+                                @if (prevPage > 0)
+                                {
+                                    <a href="@Url.Action("noticelist", new { category, page = prevPage })">&lt;</a>
+                                }
+                                @for (int i = startPage; i <= endPage; i++)
+                                {
+                                    <a href="@Url.Action("noticelist", new { category, page = i })" class="@(i == page ? "active" : null)">@i.ToString("#,##0")</a>
+                                }
+                                @if (nextPage > 0)
+                                {
+                                    <a href="@Url.Action("noticelist", new { category, page = nextPage })">&gt;</a>
+                                }
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
