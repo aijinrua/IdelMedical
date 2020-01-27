@@ -1,0 +1,155 @@
+﻿.memberList * {
+    cursor: default;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.memberList input {
+    cursor: text;
+}
+.memberList button:hover {
+    cursor:pointer;
+}
+.memberList button > *:hover {
+    cursor: pointer;
+}
+.memberList button::-moz-focus-inner {
+    outline: 0;
+    color: transparent;
+}
+.memberList button.launch:hover {
+cursor: pointer;
+background-color: #FABD44;
+}
+
+.memberList button.change {
+background-color: #F88F00;
+border: none;
+height: 40px;
+padding: 5px 15px;
+color: #ffffff;
+font-size: 16px;
+font-weight: 300;
+margin-top: 10px;
+margin-right: 10px;
+}
+
+.memberList button.change:hover {
+cursor: pointer;
+background-color: #F89900;
+}
+.memberList button:hover {
+    cursor:pointer;
+}
+.memberList button:active {
+outline: none;
+border: none;
+}
+
+.memberList button:focus {outline:0;}
+
+
+.memberList {
+    width: 1440px;
+    height: 810px;
+}
+.memberList .topBar {
+    width:calc(100% - 200px);
+    height:10%;
+    display:flex;
+    padding-left:100px;
+    padding-right:100px;
+    align-items:center;
+}
+.memberList .topBar > div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.memberList .topBar > div > button {
+    font-size: 20px;
+    width: 200px;
+    height: 40px;
+}
+.memberList .splitLine {
+    height: 1px;
+    width: calc(100% - 10px);
+    border-top: 1px solid #82d9d0;
+    border-bottom: 1px solid #82d9d0;
+    margin-left: auto;
+    margin-right:auto;
+    margin-top:10px;
+    margin-bottom:10px;
+    height:1px;
+}
+
+.memberList .itemList {
+    margin-top:13px;
+    height: 100%;
+}
+.memberList .itemList .table {
+    padding: 10px;
+    font-size:16px;
+    box-sizing:border-box;
+    display:table;
+    width:100%;
+}
+.memberList .itemList .table .header {
+    background-color:#000;
+    color:#FFF;
+    text-align:center;
+    display:table-row;
+    height:35px;
+    cursor:default;
+}
+.memberList .itemList .table .header > div {
+    display:table-cell;
+    vertical-align:middle;
+}
+.memberList .itemList .table > div {
+    height:35px;
+    display:table-row;
+    font-size: 16px;
+}
+.memberList .itemList .table > div:hover {
+    color: #82d9d0;
+}
+.memberList .itemList .table > div > div {
+    display:table-cell;
+    vertical-align:middle;
+    cursor:pointer;
+}
+.memberList .itemList .table > *:nth-child(2n+1) {
+    background-color:#eee;
+}
+.memberList .itemList .table .header {
+    background-color:#000;
+    color:#FFF;
+    text-align:center;
+    display:table-row;
+    height:35px;
+    cursor:default;
+}
+.memberList .itemList .table .header:hover {
+    color:#FFF;
+}
+.memberList .itemList .pageBtn {
+    width: 100%;
+    height: 30px;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+}
+.memberList .itemList .pageBtn > a {
+    width: 50px;
+    color: #787878;
+    text-align:center;
+    margin-left:2px;
+    margin-right:2px;
+}
+.memberList .itemList .pageBtn > a:hover {
+    color: #0836e8;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+}

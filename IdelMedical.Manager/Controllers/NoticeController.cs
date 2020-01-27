@@ -1,5 +1,6 @@
 ﻿using IdelMedical.Manager.DataModels;
 using IdelMedical.Manager.Handlers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -89,5 +90,6 @@ namespace IdelMedical.Manager.Controllers
             ViewBag.SlideData = slideTest;
             return View();
         }
+
     }
 }

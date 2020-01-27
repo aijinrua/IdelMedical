@@ -6,10 +6,10 @@
 
 @section Styles {
     <environment include="Development">
-        <link href="~/css/community.css" rel="stylesheet" />
+        <link href="~/css/beforeAfter.css" rel="stylesheet" />
     </environment>
 }
-<div class="detail">
+<div class="beforeAfterDetail">
     <div class="contentArea">
         <form>
             <div class="itemLine">
@@ -23,15 +23,43 @@
                 </div>
             </div>
             <div class="splitLine"></div>
+            <div class="itemLine categoly">
+                <div>
+                    <span>카테고리 선택</span>
+                </div>
+                <div>
+                    <select name="categolyItems" onchange="">
+                        <option value="가슴성형">가슴성형</option>
+                        <option value="동안성형">동안성형</option>
+                        <option value="체형성형">체형성형</option>
+                        <option value="눈성형">눈성형</option>
+                        <option value="코성형">코성형</option>
+                        <option value="안면윤곽">안면윤곽</option>
+                        <option value="피부과">피부과</option>
+                    </select>
+                </div>
+                <div>
+                    <span>코멘트</span>
+                </div>
+                <div>
+                    <div class="textData">
+                        <input type="text" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="splitLine"></div>
             <div class="itemLine">
                 <div>
                 </div>
                 <div>
-                    <div class="thumbnailArea">
-                        <span>썸네일</span>
+                    <div class="front">
+                        <span>정면</span>
                     </div>
-                    <div class="originArea">
-                        <span>내용 이미지</span>
+                    <div class="degrees45">
+                        <span>45도</span>
+                    </div>
+                    <div class="side">
+                        <span>측면</span>
                     </div>
                 </div>
             </div>
@@ -40,16 +68,23 @@
                     <span>P C</span>
                 </div>
                 <div>
-                    <div class="thumbnailArea">
+                    <div class="front">
                         <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
+                        <input type="hidden" value="" />
                         <button onclick="">
                             <span>파일선택</span>
                         </button>
                     </div>
-                    <div class="originArea">
+                    <div class="degrees45">
                         <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
+                        <input type="hidden" value="" />
+                        <button onclick="">
+                            <span>파일선택</span>
+                        </button>
+                    </div>
+                    <div class="side">
+                        <img alt="썸네일 미리보기" />
+                        <input type="hidden" value="" />
                         <button onclick="">
                             <span>파일선택</span>
                         </button>
@@ -61,45 +96,26 @@
                     <span>Mobile</span>
                 </div>
                 <div>
-                    <div class="thumbnailArea">
+                    <div class="front">
                         <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
+                        <input type="hidden" value="" />
                         <button onclick="">
                             <span>파일선택</span>
                         </button>
                     </div>
-                    <div class="originArea">
+                    <div class="degrees45">
                         <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
+                        <input type="hidden" value="" />
                         <button onclick="">
                             <span>파일선택</span>
                         </button>
                     </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                    <div>
-                        <span>페이지 링크</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="textData">
-                        <input type="text" />
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                    <div>
-                        <span>동영상 링크</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="textData">
-                        <input type="text" />
+                    <div class="side">
+                        <img alt="썸네일 미리보기" />
+                        <input type="hidden" value="" />
+                        <button onclick="">
+                            <span>파일선택</span>
+                        </button>
                     </div>
                 </div>
             </div>

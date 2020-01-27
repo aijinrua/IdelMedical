@@ -1,36 +1,36 @@
-﻿.beforeAfterList * {
+﻿.counselingList * {
     cursor: default;
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-.beforeAfterList input {
+.counselingList input {
     cursor: text;
 }
 
-.beforeAfterList .topBar {
+.counselingList .topBar {
     height: 10%;
     display: flex;
     align-items: center;
     padding-left: 100px;
     padding-right: 100px;
 }
-.beforeAfterList .topBar .categoly {
+.counselingList .topBar .categoly {
     display:flex;
     font-size:22px;
     width:100%;
 }
-.beforeAfterList .topBar .categoly > div:nth-of-type(1) {
+.counselingList .topBar .categoly > div:nth-of-type(1) {
     display: flex;
     width:50%;
 }
-.beforeAfterList .topBar .categoly > div > span {
+.counselingList .topBar .categoly > div > span {
     display:inline-flex;
     height:40px;
     width: 130px;
     font-family: 'Noto Sans KR', sans-serif;
     align-items:center;
 }
-.beforeAfterList .topBar .categoly > div > select {
+.counselingList .topBar .categoly > div > select {
     margin-left:8px;
     width: 150px;
     height:40px;
@@ -40,37 +40,36 @@
     align-items:center; 
     cursor:pointer;
 }
-.beforeAfterList .topBar .categoly > div > select::-moz-focus-inner {
+.counselingList .topBar .categoly > div > select::-moz-focus-inner {
     border:none;
 }
-.beforeAfterList .topBar .categoly > div > select:-moz-focusring {
+.counselingList .topBar .categoly > div > select:-moz-focusring {
     color:transparent;
     text-shadow: 0 0 0 #000;
 }
-.beforeAfterList .topBar .categoly div:nth-of-type(2) {
+.counselingList .topBar .categoly div:nth-of-type(2) {
     width:50%;
+    display:flex;
+
 }
-.beforeAfterList .topBar .categoly .addBtn {
+.counselingList .topBar .categoly .findBtn {
     width:200px;
-    height:100%;
     font-size:20px;
-    height:100%;
     font-family: 'Noto Sans KR', sans-serif;
-    margin-right:20px;
     background-color:#F0F0F0;
 }
-.beforeAfterList .topBar .categoly .addBtn span {
+.counselingList .topBar .categoly .addBtn span {
     cursor:pointer;
 
 }
-.beforeAfterList .topBar .categoly .addBtn.active {
+.counselingList .topBar .categoly .addBtn.active {
     background-color: #F1F1F1;
 }
-.beforeAfterList .topBar .categoly .addBtn::-moz-focus-inner {
+.counselingList .topBar .categoly .addBtn::-moz-focus-inner {
     outline:0;
     color:transparent;
 }
-.beforeAfterList .topBar .categoly .addBtn.launch {
+.counselingList .topBar .categoly .addBtn.launch {
     border: none;
     height: 40px;
     padding: 5px 15px;
@@ -80,25 +79,25 @@
     margin-top: 10px;
     margin-right: 10px;
 }
-.beforeAfterList button:hover {
+.counselingList button:hover {
     cursor: pointer;
 }
 
-.beforeAfterList button > *:hover {
+.counselingList button > *:hover {
     cursor: pointer;
 }
 
-.beforeAfterList button::-moz-focus-inner {
+.counselingList button::-moz-focus-inner {
     outline: 0;
     color: transparent;
 }
 
-.beforeAfterList button.launch:hover {
+.counselingList button.launch:hover {
     cursor: pointer;
     background-color: #FABD44;
 }
 
-.beforeAfterList button.change {
+.counselingList button.change {
     background-color: #F88F00;
     border: none;
     height: 40px;
@@ -110,31 +109,31 @@
     margin-right: 10px;
 }
 
-    .beforeAfterList button.change:hover {
-        cursor: pointer;
-        background-color: #F89900;
-    }
+.counselingList button.change:hover {
+    cursor: pointer;
+    background-color: #F89900;
+}
 
-.beforeAfterList button:hover {
+.counselingList button:hover {
     cursor: pointer;
 }
 
-.beforeAfterList button:active {
+.counselingList button:active {
     outline: none;
     border: none;
 }
 
-.beforeAfterList button:focus {
+.counselingList button:focus {
     outline: 0;
 }
 
 
-.beforeAfterList {
+.counselingList {
     width: 1440px;
     height: 810px;
 }
 
-    .beforeAfterList .topBar {
+    .counselingList .topBar {
         width: calc(100% - 200px);
         height: 10%;
         display: flex;
@@ -143,7 +142,7 @@
         align-items: center;
     }
 
-        .beforeAfterList .topBar > div {
+        .counselingList .topBar > div {
             width: 100%;
             height: 100%;
             display: flex;
@@ -151,13 +150,13 @@
             justify-content: center;
         }
 
-            .beforeAfterList .topBar > div > button {
+            .counselingList .topBar > div > button {
                 font-size: 20px;
                 width: 200px;
                 height: 40px;
             }
 
-    .beforeAfterList .splitLine {
+    .counselingList .splitLine {
         height: 1px;
         width: calc(100% - 10px);
         border-top: 1px solid #82d9d0;
@@ -169,11 +168,11 @@
         height: 1px;
     }
 
-    .beforeAfterList .itemList {
+    .counselingList .itemList {
         height: 90%;
     }
 
-        .beforeAfterList .itemList .table {
+        .counselingList .itemList .table {
             padding: 10px;
             font-size: 16px;
             box-sizing: border-box;
@@ -181,7 +180,7 @@
             width: 100%;
         }
 
-            .beforeAfterList .itemList .table .header {
+            .counselingList .itemList .table .header {
                 background-color: #000;
                 color: #FFF;
                 text-align: center;
@@ -190,32 +189,32 @@
                 cursor: default;
             }
 
-                .beforeAfterList .itemList .table .header > div {
+                .counselingList .itemList .table .header > div {
                     display: table-cell;
                     vertical-align: middle;
                 }
 
-            .beforeAfterList .itemList .table > div {
+            .counselingList .itemList .table > div {
                 height: 35px;
                 display: table-row;
                 font-size: 16px;
             }
 
-                .beforeAfterList .itemList .table > div:hover {
+                .counselingList .itemList .table > div:hover {
                     color: #82d9d0;
                 }
 
-                .beforeAfterList .itemList .table > div > div {
+                .counselingList .itemList .table > div > div {
                     display: table-cell;
                     vertical-align: middle;
                     cursor: pointer;
                 }
 
-            .beforeAfterList .itemList .table > *:nth-child(2n+1) {
+            .counselingList .itemList .table > *:nth-child(2n+1) {
                 background-color: #eee;
             }
 
-            .beforeAfterList .itemList .table .header {
+            .counselingList .itemList .table .header {
                 background-color: #000;
                 color: #FFF;
                 text-align: center;
@@ -224,11 +223,11 @@
                 cursor: default;
             }
 
-                .beforeAfterList .itemList .table .header:hover {
+                .counselingList .itemList .table .header:hover {
                     color: #FFF;
                 }
 
-        .beforeAfterList .itemList .pageBtn {
+        .counselingList .itemList .pageBtn {
             width: 100%;
             height: 30px;
             display: inline-flex;
@@ -236,7 +235,7 @@
             align-items: center;
         }
 
-            .beforeAfterList .itemList .pageBtn > a {
+            .counselingList .itemList .pageBtn > a {
                 width: 50px;
                 color: #787878;
                 text-align: center;
@@ -244,7 +243,7 @@
                 margin-right: 2px;
             }
 
-                .beforeAfterList .itemList .pageBtn > a:hover {
+                .counselingList .itemList .pageBtn > a:hover {
                     color: #0836e8;
                     font-weight: bold;
                     font-size: 18px;
@@ -252,16 +251,16 @@
                 }
 
 
-.beforeAfterDetail * {
+.counselingDetail * {
     cursor: default;
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-.beforeAfterDetail input {
+.counselingDetail input {
     cursor: text;
 }
 
-.beforeAfterDetail .categoly > div > select {
+.counselingDetail .categoly > div > select {
     width: 150px;
     height: 40px;
     font-size: 20px;
@@ -270,54 +269,54 @@
     align-items: center;
     cursor: pointer;
 }
-.beforeAfterDetail .itemLine.categoly > div:nth-of-type(2) {
+.counselingDetail .itemLine.categoly > div:nth-of-type(2) {
     width:150px;
     margin-right:40px;
 }
-.beforeAfterDetail .itemLine.categoly > div:nth-of-type(3) {
+.counselingDetail .itemLine.categoly > div:nth-of-type(3) {
     font-size: 20px;
     font-family: 'Noto Sans KR', sans-serif;
     align-items:center;
     justify-content:center;
     height: 30px;
 }
-    .beforeAfterDetail .itemLine.categoly > div:nth-of-type(3) > span {
+    .counselingDetail .itemLine.categoly > div:nth-of-type(3) > span {
         height: 100%;
         margin-right: 20px;
         display: block;
     }
-.beforeAfterDetail .itemLine.categoly .textData input {
+.counselingDetail .itemLine.categoly .textData input {
     width: 599px;
     font-size: 16px;
     height: 24px;
     text-align: center;
 }
-.beforeAfterDetail .categoly > div > select::-moz-focus-inner {
+.counselingDetail .categoly > div > select::-moz-focus-inner {
     border:none;
 }
-.beforeAfterDetail .categoly > div > select:-moz-focusring {
+.counselingDetail .categoly > div > select:-moz-focusring {
     color:transparent;
     text-shadow: 0 0 0 #000;
 }
-.beforeAfterDetail button:hover {
+.counselingDetail button:hover {
     cursor: pointer;
 }
 
-.beforeAfterDetail button > *:hover {
+.counselingDetail button > *:hover {
     cursor: pointer;
 }
 
-.beforeAfterDetail button::-moz-focus-inner {
+.counselingDetail button::-moz-focus-inner {
     outline: 0;
     color: transparent;
 }
 
-.beforeAfterDetail button.launch:hover {
+.counselingDetail button.launch:hover {
     cursor: pointer;
     background-color: #FABD44;
 }
 
-.beforeAfterDetail button.change {
+.counselingDetail button.change {
     background-color: #F88F00;
     border: none;
     height: 40px;
@@ -329,43 +328,43 @@
     margin-right: 10px;
 }
 
-    .beforeAfterDetail button.change:hover {
+    .counselingDetail button.change:hover {
         cursor: pointer;
         background-color: #F89900;
     }
 
-.beforeAfterDetail button:hover {
+.counselingDetail button:hover {
     cursor: pointer;
 }
 
-.beforeAfterDetail button:active {
+.counselingDetail button:active {
     outline: none;
     border: none;
 }
 
-.beforeAfterDetail .submit:focus {
+.counselingDetail .submit:focus {
     outline: 0;
 }
 
-.beforeAfterDetail .submit:hover {
+.counselingDetail .submit:hover {
     cursor: pointer;
 }
 
-.beforeAfterDetail .submit > *:hover {
+.counselingDetail .submit > *:hover {
     cursor: pointer;
 }
 
-.beforeAfterDetail .submit::-moz-focus-inner {
+.counselingDetail .submit::-moz-focus-inner {
     outline: 0;
     color: transparent;
 }
 
-.beforeAfterDetail .submit.launch:hover {
+.counselingDetail .submit.launch:hover {
     cursor: pointer;
     background-color: #FABD44;
 }
 
-.beforeAfterDetail .submit.change {
+.counselingDetail .submit.change {
     background-color: #F88F00;
     border: none;
     height: 40px;
@@ -377,31 +376,31 @@
     margin-right: 10px;
 }
 
-    .beforeAfterDetail .submit.change:hover {
+    .counselingDetail .submit.change:hover {
         cursor: pointer;
         background-color: #F89900;
     }
 
-.beforeAfterDetail .submit:hover {
+.counselingDetail .submit:hover {
     cursor: pointer;
 }
 
-.beforeAfterDetail .submit:active {
+.counselingDetail .submit:active {
     outline: none;
     border: none;
 }
 
-.beforeAfterDetail .submit:focus {
+.counselingDetail .submit:focus {
     outline: 0;
 }
 
 
-.beforeAfterDetail {
+.counselingDetail {
     width: 1440px;
     height: 810px;
 }
 
-    .beforeAfterDetail .contentArea {
+    .counselingDetail .contentArea {
         width: calc(100% - 320px);
         padding-left: 120px;
         padding-right: 200px;
@@ -409,7 +408,7 @@
         height: 100%;
     }
 
-    .beforeAfterDetail .splitLine {
+    .counselingDetail .splitLine {
         width: calc(100% - 10px);
         margin: auto;
         height: 1px;
@@ -418,13 +417,13 @@
         margin-bottom: 10px;
     }
 
-    .beforeAfterDetail .itemLine {
+    .counselingDetail .itemLine {
         display: flex;
         width: 100%;
         align-items: center;
     }
 
-        .beforeAfterDetail .itemLine > div:nth-of-type(1) {
+        .counselingDetail .itemLine > div:nth-of-type(1) {
             display: flex;
             width: 160px;
             font-size: 20px;
@@ -432,36 +431,36 @@
             justify-content: center;
         }
 
-            .beforeAfterDetail .itemLine > div:nth-of-type(1) > span {
+            .counselingDetail .itemLine > div:nth-of-type(1) > span {
                 display: flex;
                 height: 30px;
             }
 
-        .beforeAfterDetail .itemLine > div:nth-of-type(2) {
+        .counselingDetail .itemLine > div:nth-of-type(2) {
             display: flex;
             width: calc(100% - 160px);
         }
 
-        .beforeAfterDetail .itemLine .textData {
+        .counselingDetail .itemLine .textData {
             width: 100%;
             height: 30px;
         }
 
-            .beforeAfterDetail .itemLine .textData input {
+            .counselingDetail .itemLine .textData input {
                 width: 90%;
                 font-size: 16px;
                 height: 24px;
                 text-align: center;
             }
 
-        .beforeAfterDetail .itemLine .front {
+        .counselingDetail .itemLine .front {
             width: 200px;
             margin-left: auto;
             margin-right: auto;
             text-align: center;
             font-size: 20px;
         }
-        .beforeAfterDetail .itemLine .degrees45 {
+        .counselingDetail .itemLine .degrees45 {
             width: 200px;
             margin-left: auto;
             margin-right: auto;
@@ -469,7 +468,7 @@
             font-size: 20px;
         }
 
-        .beforeAfterDetail .itemLine .side {
+        .counselingDetail .itemLine .side {
             text-align: center;
             width: 200px;
             margin-left: auto;
@@ -477,24 +476,24 @@
             font-size: 20px;
         }
         
-        .beforeAfterDetail .itemLine .front > span {
+        .counselingDetail .itemLine .front > span {
             color: #787878;
             height: 30px;
             display: block;
         }
 
-        .beforeAfterDetail .itemLine .degrees45 > span {
+        .counselingDetail .itemLine .degrees45 > span {
             color: #787878;
             height: 30px;
             display: block;
         }
-        .beforeAfterDetail .itemLine .side > span {
+        .counselingDetail .itemLine .side > span {
             color: #787878;
             height: 30px;
             display: block;
         }
 
-        .beforeAfterDetail .itemLine .front > img {
+        .counselingDetail .itemLine .front > img {
             color: #787878;
             display: flex;
             border: 2px solid #fff;
@@ -505,7 +504,7 @@
             width: 198px;
         }
 
-        .beforeAfterDetail .itemLine .degrees45 > img {
+        .counselingDetail .itemLine .degrees45 > img {
             color: #787878;
             display: flex;
             border: 2px solid #fff;
@@ -515,7 +514,7 @@
             height: 198px;
             width: 198px;
         }
-        .beforeAfterDetail .itemLine .side > img {
+        .counselingDetail .itemLine .side > img {
             color: #787878;
             display: flex;
             border: 2px solid #fff;
@@ -527,51 +526,51 @@
             width: 198px;
         }
 
-        .beforeAfterDetail .itemLine .front > button {
+        .counselingDetail .itemLine .front > button {
             height: 30px;
             width: 200px;
             font-size: 16px;
             margin-top: 2px;
         }
 
-        .beforeAfterDetail .itemLine .degrees45 > button {
+        .counselingDetail .itemLine .degrees45 > button {
             height: 30px;
             width: 200px;
             font-size: 16px;
             margin-top: 2px;
         }
-        .beforeAfterDetail .itemLine .side > button {
+        .counselingDetail .itemLine .side > button {
             height: 30px;
             width: 200px;
             font-size: 16px;
             margin-top: 2px;
         }
 
-        .beforeAfterDetail .itemLine:nth-of-type(5) {
+        .counselingDetail .itemLine:nth-of-type(5) {
             background-color: rgba(130, 217, 208, 0.20);
             padding-top: 5px;
         }
 
-        .beforeAfterDetail .itemLine:nth-of-type(6) {
+        .counselingDetail .itemLine:nth-of-type(6) {
             margin-top: 2px;
             background-color: rgba(130, 217, 208, 0.20);
             padding-top: 10px;
             padding-bottom: 10px;
         }
 
-        .beforeAfterDetail .itemLine:nth-of-type(7) {
+        .counselingDetail .itemLine:nth-of-type(7) {
             margin-top: 2px;
             background-color: rgba(130, 217, 208, 0.20);
             padding-top: 10px;
             padding-bottom: 10px;
         }
 
-        .beforeAfterDetail .itemLine:nth-last-of-type(1) {
+        .counselingDetail .itemLine:nth-last-of-type(1) {
             height: 80px;
             justify-content: flex-end;
         }
 
-            .beforeAfterDetail .itemLine:nth-last-of-type(1) .submit {
+            .counselingDetail .itemLine:nth-last-of-type(1) .submit {
                 height: 40px;
                 width: 200px;
                 margin-left: 30px;
