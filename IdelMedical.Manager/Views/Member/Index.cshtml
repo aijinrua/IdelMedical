@@ -1,14 +1,90 @@
 ﻿@{
-    ViewData["Title"] = "Community Page";
-  
+    ViewData["Title"] = "Member Index Page";
+
+    var SlideData = (List<SlideModel>)ViewBag.SlideData;
+    var Pager = (PageHandler)ViewBag.Pager;
+    var Search = (string)ViewBag.Search;
 
 }
 
 @section Styles {
     <environment include="Development">
-        <link href="~/css/community.css" rel="stylesheet" />
+        <link href="~/css/member.css" rel="stylesheet" />
     </environment>
 }
-<div class="body">
+<div class="memberList">
+    <div class="itemList">
 
+        <div class="table">
+            <div class="header">
+                <div style="width:120px;">
+                    No.
+                </div>
+                <div>
+                    생년월일
+                </div>
+                <div>
+                    전화번호
+                </div>
+                <div>
+                    이메일
+                </div>
+                <div style="width:120px;">
+                    성 별
+                </div>
+                <div style="width:200px;">
+                    가입일자
+                </div>
+            </div>
+            @{
+                int count = 0;
+            }
+            @foreach (var item in SlideData)
+            {
+                count++;
+                if (count > 20) break;
+                <div>
+                    <div style="text-align: center;">
+                        @item.Number
+                    </div>
+                    <div style="text-align: center;">
+                        1988-05-25
+                    </div>
+                    <div style="text-align: center;">
+                        010-1234-1234
+                    </div>
+                    <div style="text-align: center;">
+                        sampleMail@email.com
+                    </div>
+                    <div style="text-align: center;">
+                        여 성
+                    </div>
+                    <div style="text-align: center;">
+                        @item.UploadTime
+                    </div>
+                </div>
+            }
+        </div>
+        @{
+            if (SlideData != null)
+            {
+                <div class="splitLine"></div>
+            }
+            if (SlideData.Count > 15)
+            {
+                var pageCount = SlideData.Count % 15;
+                <div class="pageBtn">
+                    <a>&lt&lt</a>
+                    <a>&lt</a>
+                    @for (int i = 0; i < pageCount; i++)
+                    {
+                        <a>@(i + 1)</a>
+                    }
+                    <a>&gt</a>
+                    <a>&gt&gt</a>
+
+                </div>
+            }
+        }
+    </div>
 </div>

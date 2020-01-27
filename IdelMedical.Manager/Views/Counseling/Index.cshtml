@@ -1,14 +1,102 @@
 ﻿@{
     ViewData["Title"] = "Counseling Index Page";
-  
+
+    var SlideData = (List<SlideModel>)ViewBag.SlideData;
+    var Pager = (PageHandler)ViewBag.Pager;
+    var Search = (string)ViewBag.Search;
 
 }
 
 @section Styles {
     <environment include="Development">
-        <link href="~/css/community.css" rel="stylesheet" />
+        <link href="~/css/counseling.css" rel="stylesheet" />
     </environment>
 }
-<div class="body">
+<div class="counselingList">
+    <div class="topBar">
+        <div class="categoly">
+            <div>
+                <span>카테고리 선택</span>
+                <select name="categolyItems" onchange="">
+                    <option value="모두보기">모두보기</option>
+                    <option value="가슴성형">가슴성형</option>
+                    <option value="동안성형">동안성형</option>
+                    <option value="체형성형">체형성형</option>
+                    <option value="눈성형">눈성형</option>
+                    <option value="코성형">코성형</option>
+                    <option value="안면윤곽">안면윤곽</option>
+                    <option value="피부과">피부과</option>
+                </select>
+            </div>
+            <div>
+                <span>검색필터</span>
+                <select name="categolyItems" onchange="">
+                    <option value="모두포함">모두포함</option>
+                    <option value="답변완료제외">답변완료제외</option>
+                    <option value="답변미완료제외">답변미처리제외</option>
+                </select>
+                <input type="text" />
+                <button class="findBtn">
+                    <span>검색</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="itemList">
+        <div class="splitLine"></div>
 
+        <div class="table">
+            <div class="header">
+                <div style="width:120px;">
+                    No.
+                </div>
+                <div>
+                    제 목
+                </div>
+                <div style="width:120px;">
+                    등록일자
+                </div>
+            </div>
+            @{
+                int count = 0;
+            }
+            @foreach (var item in SlideData)
+            {
+                count++;
+                if (count > 15) break;
+                <div>
+                    <div style="text-align: center;">
+                        @item.Number
+                    </div>
+                    <div style="text-align: center;">
+                        @item.Title
+                    </div>
+                    <div style="text-align: center;">
+                        @item.UploadTime
+                    </div>
+                </div>
+            }
+        </div>
+        @{
+            if (SlideData != null)
+            {
+                <div class="splitLine"></div>
+            }
+            if (SlideData.Count > 15)
+            {
+                var pageCount = SlideData.Count % 15;
+                <div class="pageBtn">
+                    <a>&lt&lt</a>
+                    <a>&lt</a>
+                    @for (int i = 0; i < pageCount; i++)
+                    {
+                        <a>@(i + 1)</a>
+                    }
+                    <a>&gt</a>
+                    <a>&gt&gt</a>
+
+                </div>
+            }
+        }
+    </div>
 </div>

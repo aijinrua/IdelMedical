@@ -41,8 +41,6 @@
     align-items:center; 
     cursor:pointer;
 }
-.main .topBar .categoly > div > select > option {
-}
 .main .topBar .categoly > div > select::-moz-focus-inner {
     border:none;
 }
