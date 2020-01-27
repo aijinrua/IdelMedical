@@ -129,131 +129,173 @@
     padding: 20px;
 }
 
-    .counselingList .topBar {
-        display:flex;
-    }
+.counselingList .topBar {
+    display:flex;
+    width:100%;
+}
 
-        .counselingList .topBar .categoly > div {
-            text-align: right;
-            padding-bottom: 10px;
-            background-color:blue;
-        }
-        .counselingList .topBar .findArea > div {
-            text-align: right;
-            padding-bottom: 10px;
-            background-color:red;
-        }
+.counselingList .topBar .categoly {
+    width:50%;
+}
+.counselingList .topBar .categoly > div {
+    padding-bottom: 10px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:start;
+}
+.counselingList .topBar .categoly > div > span {
+    width: 120px;
+    font-size: 16px;
+    text-align:center;
+}
+.counselingList .topBar .categoly > div > select {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-            .counselingList .topBar .findArea > div > button {
-                width: 120px;
-                height: 40px;
-                font-size: 16px;
-                cursor: pointer;
-                background-color: #82d9d0;
-                border: none;
-                color: #fff;
-            }
+.counselingList .topBar .findArea {
+    width:50%;
+    display:inline-flex;
+    align-items:end;
+}
+.counselingList .topBar .findArea > div {
+    padding-bottom: 10px;
+    display:flex;
+    align-items:center;
+    justify-content:end;
+    width:100%;
+}
 
-    .counselingList .splitLine {
-        height: 1px;
-        width: calc(100% - 10px);
-        border-top: 1px solid #82d9d0;
-        border-bottom: 1px solid #82d9d0;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        height: 1px;
-    }
+.counselingList .topBar .findArea > div > span {
+    font-size: 16px;
+    padding-right:10px;
+    text-align:center;
+}
+.counselingList .topBar .findArea > div > select {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    margin-right:20px;
+    cursor: pointer;
+}
+.counselingList .topBar .findArea > div > input {
+    width: 200px;
+    font-size: 16px;
+    height:25px;
+    padding-bottom:10px;
+    text-align:center;
+}
+.counselingList .topBar .findArea > div > button {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #82d9d0;
+    border: none;
+    color: #fff
+}
+.counselingList .splitLine {
+    height: 1px;
+    width: calc(100% - 10px);
+    border-top: 1px solid #82d9d0;
+    border-bottom: 1px solid #82d9d0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 1px;
+}
 
-    .counselingList .itemList {
-        height: 90%;
-    }
+.counselingList .itemList {
+    height: 90%;
+}
 
-        .counselingList .itemList .table {
-            padding: 10px;
-            font-size: 16px;
-            box-sizing: border-box;
-            display: table;
-            width: 100%;
-        }
+.counselingList .itemList .table {
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    display: table;
+    width: 100%;
+}
 
-            .counselingList .itemList .table .header {
-                background-color: #000;
-                color: #FFF;
-                text-align: center;
-                display: table-row;
-                height: 35px;
-                cursor: default;
-            }
+.counselingList .itemList .table .header {
+    background-color: #000;
+    color: #FFF;
+    text-align: center;
+    display: table-row;
+    height: 35px;
+    cursor: default;
+}
 
-                .counselingList .itemList .table .header > div {
-                    display: table-cell;
-                    vertical-align: middle;
-                }
+.counselingList .itemList .table .header > div {
+    display: table-cell;
+    vertical-align: middle;
+}
 
-            .counselingList .itemList .table > div {
-                height: 35px;
-                display: table-row;
-                font-size: 16px;
-            }
+.counselingList .itemList .table > div {
+    height: 35px;
+    display: table-row;
+    font-size: 16px;
+}
 
-                .counselingList .itemList .table > div > div {
-                    display: table-cell;
-                    vertical-align: middle;
-                    height: 50px;
-                    text-align:center;
-                }
+.counselingList .itemList .table > div > div {
+    display: table-cell;
+    vertical-align: middle;
+    height: 50px;
+    text-align:center;
+}
 
-                    .counselingList .itemList .table > div > div a {
-                        cursor: pointer;
-                        color: inherit;
-                        text-decoration: none;
-                    }
+.counselingList .itemList .table > div > div a {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+}
 
-                .counselingList .itemList .table > div:nth-of-type(n+2) > div:nth-of-type(2) {
-                    text-align: center;
-                }
+.counselingList .itemList .table > div:nth-of-type(n+2) > div:nth-of-type(2) {
+    text-align: center;
+}
 
-            .counselingList .itemList .table > *:nth-child(2n+1) {
-                background-color: #eee;
-            }
+.counselingList .itemList .table > *:nth-child(2n+1) {
+    background-color: #eee;
+}
 
-            .counselingList .itemList .table .header {
-                background-color: #000;
-                color: #FFF;
-                text-align: center;
-                display: table-row;
-                height: 35px;
-                cursor: default;
-            }
+.counselingList .itemList .table .header {
+    background-color: #000;
+    color: #FFF;
+    text-align: center;
+    display: table-row;
+    height: 35px;
+    cursor: default;
+}
 
-                .counselingList .itemList .table .header:hover {
-                    color: #FFF;
-                }
+.counselingList .itemList .table .header:hover {
+    color: #FFF;
+}
 
-        .counselingList .itemList .pageBtn {
-            width: 100%;
-            height: 30px;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-        }
+.counselingList .itemList .pageBtn {
+    width: 100%;
+    height: 30px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
 
-            .counselingList .itemList .pageBtn > a {
-                width: 50px;
-                color: #787878;
-                text-align: center;
-                margin-left: 2px;
-                margin-right: 2px;
-            }
+.counselingList .itemList .pageBtn > a {
+    width: 50px;
+    color: #787878;
+    text-align: center;
+    margin-left: 2px;
+    margin-right: 2px;
+}
 
-                .counselingList .itemList .pageBtn > a:hover {
-                    color: #0836e8;
-                    font-weight: bold;
-                    font-size: 18px;
-                    cursor: pointer;
-                }
+.counselingList .itemList .pageBtn > a:hover {
+    color: #0836e8;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+}
 
 
 .communityDetail * {
