@@ -24,6 +24,7 @@ namespace IdelMedical.Manager
         {
             services.AddControllersWithViews();
             services.AddSession();
+            services.AddDbContext<Database.DatabaseContext>();
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif
@@ -58,6 +59,8 @@ namespace IdelMedical.Manager
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            Database.DatabaseContext.Init(Configuration);
         }
     }
 }
