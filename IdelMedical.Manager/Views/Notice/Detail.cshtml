@@ -1,17 +1,15 @@
-﻿@{
-    ViewData["Title"] = "Notice Detail Page";
-
-
+﻿@model IdelMedical.Database.Tables.Notice
+@{
 }
 
 @section Styles {
-    <environment include="Development">
-        <link href="~/css/community.css" rel="stylesheet" />
-    </environment>
+    <link href="~/css/community.css" rel="stylesheet" />
 }
 <div class="communityDetail">
     <div class="contentArea">
         <form>
+            <input name="Id" type="hidden" value="@Model.Id" />
+
             <div class="splitLine"></div>
             <div class="itemLine">
                 <div>
@@ -19,7 +17,7 @@
                 </div>
                 <div>
                     <div class="textData">
-                        <input type="text" value="" />
+                        <input name="Subject" type="text" value="@Model.Subject" />
                     </div>
                 </div>
             </div>
@@ -93,7 +91,7 @@
                 </div>
                 <div>
                     <div class="textData">
-                        <input type="text" />
+                        <input name="Link" type="text" value="@Model.Link" />
                     </div>
                 </div>
             </div>

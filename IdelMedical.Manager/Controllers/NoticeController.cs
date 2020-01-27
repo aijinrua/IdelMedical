@@ -1,11 +1,14 @@
 ﻿using IdelMedical.Database;
+using IdelMedical.Database.Tables;
 using IdelMedical.Manager.DataModels;
 using IdelMedical.Manager.Handlers;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,12 +20,15 @@ namespace IdelMedical.Manager.Controllers
     public class NoticeController : Controller
     {
         public DatabaseContext Db { get; }
+        public IWebHostEnvironment Env { get; }
 
-        public NoticeController(DatabaseContext db)
+        public NoticeController(DatabaseContext db, IWebHostEnvironment env)
         {
             this.Db = db;
+            this.Env = env;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index(int Page = 1)
         {
             var query = this.Db.Notices.AsQueryable();
@@ -46,43 +52,86 @@ namespace IdelMedical.Manager.Controllers
             return View();
         }
 
-        public IActionResult Detail(string Search, int Page = 1)
+        [HttpGet]
+        public async Task<IActionResult> Detail(int? id)
         {
-            var slideTest = new List<SlideModel>();
-
-
-            int testItemCount = 50;
-
-
-
-            //if (!string.IsNullOrWhiteSpace(Search))
-            //{
-            //    list = list
-            //        .Where(x => x.NickName.IndexOf(Search) >= 0 ||
-            //                    x.UserId.IndexOf(Search) >= 0 ||
-            //                    x.TelegramId.IndexOf(Search) >= 0);
-            //}
-
-
-
-            for (int i = 0; i < testItemCount; i++)
+            var item = default(Notice);
+            if (id == null)
             {
-                var item = i + 1;
-                slideTest.Add(new SlideModel()
+                item = new Notice
                 {
-                    Number = item,
-                    Title = "SlideTitle_" + (item < 10 ? ("0" + item.ToString()) : item.ToString()),
-                    UploadTime = DateTime.Now.ToString("yyyy-MM-dd")
-                });
+                    Id = -1
+                };
+            }
+            else
+            {
+                item = await this.Db.Notices
+                    .FirstOrDefaultAsync(x => x.Id == id);
             }
 
-            //var pager = new PageHandler(Page, totalItemCount, 20);
-            var pager = new PageHandler(Page, testItemCount, 15);
+            if (item == null)
+                return NotFound();
 
-            ViewBag.Pager = pager;
-            ViewBag.SlideData = slideTest;
-            return View();
+            return View(item);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Update(int id, string subject, IFormFile thumb_pc, IFormFile img_pc, IFormFile thumb_mb, IFormFile img_mb, string link)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(subject))
+                    throw new Exception("제목을 입력하세요");
+
+                var item = default(Notice);
+
+                if (id <= 0)
+                {
+                    if (thumb_pc == null || img_pc == null || thumb_mb == null || img_mb == null)
+                        throw new Exception("이미지 파일을 모두 선택해야 합니다");
+
+                    item = new Notice
+                    {
+                        CreateTime = DateTime.Now
+                    };
+                    await this.Db.AddAsync(item);
+                }
+                else
+                {
+                    item = await this.Db.Notices
+                        .FirstOrDefaultAsync(x => x.Id == id);
+                }
+
+                item.Subject = subject;
+                item.Link = link;
+
+                if (thumb_pc != null)
+                {
+                    var savefile = new FileInfo(Path.Combine(
+                        Env.WebRootPath, 
+                        "images",
+                        "upload", 
+                        "notice", 
+                        DateTime.Now.ToString("yyMMddHHmmss_") + new FileInfo(thumb_pc.FileName).Name));
+
+                    var url = savefile.FullName.Replace(Env.WebRootPath, $"http://{Request.Host.ToString()}").Replace("\\", "/");
+
+                    using (var fileStream = new FileStream(savefile.FullName, FileMode.Create))
+                    {
+                        await thumb_pc.OpenReadStream().CopyToAsync(fileStream);
+                    }
+
+                    item.Thumbnail = url;
+                }
+
+                await this.Db.SaveChangesAsync();
+
+                return Json(new { status = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = false, message = ex.Message });
+            }
+        }
     }
 }
