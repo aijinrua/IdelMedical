@@ -5,10 +5,10 @@
 }
 @section Styles {
     <environment include="Development">
-        <link href="~/css/community.css" rel="stylesheet" />
+        <link href="~/css/member.css" rel="stylesheet" />
     </environment>
 }
-<div class="communityList">
+<div class="memberList">
     <div class="itemList">
         <div class="splitLine"></div>
 
@@ -43,19 +43,19 @@
                         @item.Id
                     </div>
                     <div>
-                        <a href="#">@item.Name</a>
+                        @item.Name
                     </div>
                     <div>
-                        <a href="#">@item.Birthday</a>
+                        @item.Birthday
                     </div>
                     <div>
-                        <a href="#">@item.Phone</a>
+                        @item.Phone
                     </div>
                     <div>
-                        <a href="#">@item.Email</a>
+                        @item.Email
                     </div>
                     <div>
-                        <a href="#">@item.Gender</a>
+                        @item.Gender
                     </div>
                     <div style="text-align: center;">
                         @item.CreateTime.ToString("yyyy-MM-dd")

@@ -184,7 +184,7 @@ border: none;
     text-decoration: none;
 }
 .communityList .itemList .table > div:nth-of-type(n+2) > div:nth-of-type(2) {
-    text-align: left;
+    text-align: center;
 }
 
 .communityList .itemList .table > *:nth-child(2n+1) {
