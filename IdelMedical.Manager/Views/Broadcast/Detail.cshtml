@@ -1,7 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Broadcast Detail Page";
 
-
 }
 
 @section Styles {
@@ -12,6 +11,7 @@
 <div class="communityDetail">
     <div class="contentArea">
         <form>
+            <div class="splitLine"></div>
             <div class="itemLine">
                 <div>
                     <span>제 목</span>
@@ -35,45 +35,51 @@
                     </div>
                 </div>
             </div>
+            <div class="splitLine"></div>
             <div class="itemLine">
                 <div>
                     <span>P C</span>
                 </div>
                 <div>
                     <div class="thumbnailArea">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
+                        <input id="thumb_pc" name="thumb_pc" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                        <label for="thumb_pc" style="display: inline-block; margin: 0 auto;">
+                            <div class="thumb">
+                                No Image
+                            </div>
+                        </label>
                     </div>
                     <div class="originArea">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
+                        <input id="img_pc" name="img_pc" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                        <label for="img_pc" style="display: inline-block; margin: 0 auto;">
+                            <div class="thumb">
+                                No Image
+                            </div>
+                        </label>
                     </div>
                 </div>
             </div>
+            <div class="splitLine"></div>
             <div class="itemLine">
                 <div>
                     <span>Mobile</span>
                 </div>
                 <div>
                     <div class="thumbnailArea">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
+                        <input id="thumb_mb" name="thumb_mb" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                        <label for="thumb_mb" style="display: inline-block; margin: 0 auto;">
+                            <div class="thumb">
+                                No Image
+                            </div>
+                        </label>
                     </div>
                     <div class="originArea">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
+                        <input id="img_mb" name="img_mb" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                        <label for="img_mb" style="display: inline-block; margin: 0 auto;">
+                            <div class="thumb">
+                                No Image
+                            </div>
+                        </label>
                     </div>
                 </div>
             </div>
@@ -104,10 +110,26 @@
                 </div>
             </div>
             <div class="splitLine"></div>
-            <div class="itemLine">
-                <input class="submit" type="submit" value="삭 제" />
-                <input class="submit" type="submit" value="등 록" />
+            <div class="itemLine" style="text-align: center;">
+                <button class="btn-delete" type="button" style="margin-right: 10px;">삭제</button>
+                <button class="btn-default" type="button" style="margin-right: 10px;" onclick="history.back();">목록</button>
+                <button class="btn-primary" type="submit">등록</button>
             </div>
         </form>
     </div>
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function updateImage() {
+            if ($(this).prop('files').length > 0) {
+                var file = $(this).prop('files')[0];
+                var localurl = URL.createObjectURL(file);
+
+                var thumb = $(this).next().find('.thumb');
+                thumb.css('background-image', 'url(' + localurl + ')');
+                thumb.text('');
+            }
+        }
+    </script>
+}

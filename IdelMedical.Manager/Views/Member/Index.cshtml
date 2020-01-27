@@ -1,29 +1,29 @@
 ﻿@{
-    ViewData["Title"] = "Member Index Page";
-
-    var SlideData = (List<SlideModel>)ViewBag.SlideData;
-    var Pager = (PageHandler)ViewBag.Pager;
-    var Search = (string)ViewBag.Search;
+    var pager = (PageHandler)ViewBag.Pager;
+    var items = (IdelMedical.Database.Tables.User[])ViewBag.Items;
 
 }
-
 @section Styles {
     <environment include="Development">
-        <link href="~/css/member.css" rel="stylesheet" />
+        <link href="~/css/community.css" rel="stylesheet" />
     </environment>
 }
-<div class="memberList">
+<div class="communityList">
     <div class="itemList">
+        <div class="splitLine"></div>
 
         <div class="table">
             <div class="header">
-                <div style="width:120px;">
+                <div style="width:150px;">
                     No.
                 </div>
-                <div>
+                <div style="width:180px;">
+                    이 름
+                </div>
+                <div style="width:200px;">
                     생년월일
                 </div>
-                <div>
+                <div style="width:200px;">
                     전화번호
                 </div>
                 <div>
@@ -36,55 +36,48 @@
                     가입일자
                 </div>
             </div>
-            @{
-                int count = 0;
-            }
-            @foreach (var item in SlideData)
+            @foreach (var item in items)
             {
-                count++;
-                if (count > 20) break;
                 <div>
                     <div style="text-align: center;">
-                        @item.Number
+                        @item.Id
+                    </div>
+                    <div>
+                        <a href="#">@item.Name</a>
+                    </div>
+                    <div>
+                        <a href="#">@item.Birthday</a>
+                    </div>
+                    <div>
+                        <a href="#">@item.Phone</a>
+                    </div>
+                    <div>
+                        <a href="#">@item.Email</a>
+                    </div>
+                    <div>
+                        <a href="#">@item.Gender</a>
                     </div>
                     <div style="text-align: center;">
-                        1988-05-25
-                    </div>
-                    <div style="text-align: center;">
-                        010-1234-1234
-                    </div>
-                    <div style="text-align: center;">
-                        sampleMail@email.com
-                    </div>
-                    <div style="text-align: center;">
-                        여 성
-                    </div>
-                    <div style="text-align: center;">
-                        @item.UploadTime
+                        @item.CreateTime.ToString("yyyy-MM-dd")
                     </div>
                 </div>
             }
         </div>
-        @{
-            if (SlideData != null)
-            {
-                <div class="splitLine"></div>
-            }
-            if (SlideData.Count > 15)
-            {
-                var pageCount = SlideData.Count % 15;
-                <div class="pageBtn">
-                    <a>&lt&lt</a>
-                    <a>&lt</a>
-                    @for (int i = 0; i < pageCount; i++)
-                    {
-                        <a>@(i + 1)</a>
-                    }
-                    <a>&gt</a>
-                    <a>&gt&gt</a>
-
-                </div>
-            }
-        }
+        <div class="pager">
+            <div class="paging">
+                @if (pager.PrevPage > 0)
+                {
+                    <a href="@Url.Action("Index", new { page = pager.PrevPage })">&lt;</a>
+                }
+                @for (int i = pager.StartPage; i <= pager.EndPage; i++)
+                {
+                    <a href="@Url.Action("Index", new { page = i })" class="@(i == pager.CurrentPage ? "active" : null)">@i.ToString("#,##0")</a>
+                }
+                @if (pager.NextPage > 0)
+                {
+                    <a href="@Url.Action("Index", new { page = pager.NextPage })">&gt;</a>
+                }
+            </div>
+        </div>
     </div>
 </div>
