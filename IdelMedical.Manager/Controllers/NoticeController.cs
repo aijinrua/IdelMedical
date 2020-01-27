@@ -113,7 +113,7 @@ namespace IdelMedical.Manager.Controllers
                         "images",
                         "upload", 
                         "notice", 
-                        DateTime.Now.ToString("yyMMddHHmmss_") + new FileInfo(thumb_pc.FileName).Name));
+                        DateTime.Now.ToString("yyyyMMddHHmmss_") + new FileInfo(thumb_pc.FileName).Name));
 
                     var url = savefile.FullName.Replace(Env.WebRootPath, $"http://{Request.Host.ToString()}").Replace("\\", "/");
 
@@ -135,7 +135,7 @@ namespace IdelMedical.Manager.Controllers
                         "images",
                         "upload",
                         "notice",
-                        DateTime.Now.ToString("yyMMddHHmmss_") + new FileInfo(img_pc.FileName).Name));
+                        DateTime.Now.ToString("yyyyMMddHHmmss_") + new FileInfo(img_pc.FileName).Name));
 
                     var url = savefile.FullName.Replace(Env.WebRootPath, $"http://{Request.Host.ToString()}").Replace("\\", "/");
 
@@ -157,7 +157,7 @@ namespace IdelMedical.Manager.Controllers
                         "images",
                         "upload",
                         "notice",
-                        DateTime.Now.ToString("yyMMddHHmmss_") + new FileInfo(thumb_mb.FileName).Name));
+                        DateTime.Now.ToString("yyyyMMddHHmmss_") + new FileInfo(thumb_mb.FileName).Name));
 
                     var url = savefile.FullName.Replace(Env.WebRootPath, $"http://{Request.Host.ToString()}").Replace("\\", "/");
 
@@ -179,7 +179,7 @@ namespace IdelMedical.Manager.Controllers
                         "images",
                         "upload",
                         "notice",
-                        DateTime.Now.ToString("yyMMddHHmmss_") + new FileInfo(img_mb.FileName).Name));
+                        DateTime.Now.ToString("yyyyMMddHHmmss_") + new FileInfo(img_mb.FileName).Name));
 
                     var url = savefile.FullName.Replace(Env.WebRootPath, $"http://{Request.Host.ToString()}").Replace("\\", "/");
 
