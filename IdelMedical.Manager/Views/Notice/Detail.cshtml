@@ -6,129 +6,111 @@
     <link href="~/css/community.css" rel="stylesheet" />
 }
 <div class="communityDetail">
+    <div class="title">
+        <span>공지사항</span>
+        @if (Model.Id <= 0)
+        {
+            <span> > 등록</span>
+        }
+        else
+        {
+            <span> > 수정</span>
+        }
+    </div>
     <div class="contentArea">
         <form onsubmit="return false;">
             <input name="Id" type="hidden" value="@Model.Id" />
 
-            <div class="splitLine"></div>
-            <div class="itemLine">
+            <br />
+            <span class="label">1.기본 정보</span>
+            <div class="spliter1"></div>
+            <input name="subject" value="@Model.Subject" placeholder="(필수) 제목을 입력하세요" style="width: 100%;" />
+            <input name="link" value="@Model.Link" placeholder="선택시 이동될 링크를 입력하세요(ex - http://example.com)" style="width: 100%;" />
+            <select name="linktarget" style="width: 100%;">
+                <option value="" selected="@(string.IsNullOrWhiteSpace(Model.LinkTarget) ? "selected" : null)">링크 이동 타입을 선택하세요</option>
+                <option value="_blank" selected="@(Model.LinkTarget == "_blank" ? "selected" : null)">새창으로 연결</option>
+                <option value="_self" selected="@(Model.LinkTarget == "_self" ? "selected" : null)">현재창에서 이동</option>
+            </select>
+            <div class="spliter2"></div>
+
+            <br />
+            <br />
+            <span class="label">2.이미지 정보</span>
+            <div class="spliter1"></div>
+            <div class="item-container">
                 <div>
-                    <span>제 목</span>
+                    <div>PC용 섬네일 이미지</div>
+                    <input name="thumb_pc" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                    @if (string.IsNullOrWhiteSpace(Model.ThumbnailPC))
+                    {
+                        <div class="thumb" onclick="$(this).prev().click();">
+                            No Image
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="thumb" style="background-image: url(@Model.ThumbnailPC);" onclick="$(this).prev().click();">
+                        </div>
+                    }
                 </div>
                 <div>
-                    <div class="textData">
-                        <input name="Subject" type="text" value="@Model.Subject" />
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                </div>
-                <div>
-                    <div class="thumbnailArea">
-                        <span>썸네일</span>
-                    </div>
-                    <div class="originArea">
-                        <span>내용 이미지</span>
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                    <span>P C</span>
+                    <div>PC용 내용 이미지</div>
+                    <input name="img_pc" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                    @if (string.IsNullOrWhiteSpace(Model.ContentPC))
+                    {
+                        <div class="thumb" onclick="$(this).prev().click();">
+                            No Image
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="thumb" style="background-image: url(@Model.ContentPC);" onclick="$(this).prev().click();">
+                        </div>
+                    }
                 </div>
                 <div>
-                    <div class="thumbnailArea">
-                        <input id="thumb_pc" name="thumb_pc" type="file" style="display: none;" onchange="updateImage.call(this);" />
-                        <label for="thumb_pc" style="display: inline-block; margin: 0 auto;">
-                            @if (string.IsNullOrWhiteSpace(Model.ThumbnailPC))
-                            {
-                                <div class="thumb">
-                                    No Image
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="thumb" style="background-image: url(@Model.ThumbnailPC);">
-                                </div>
-                            }
-                        </label>
-                    </div>
-                    <div class="originArea">
-                        <input id="img_pc" name="img_pc" type="file" style="display: none;" onchange="updateImage.call(this);" />
-                        <label for="img_pc" style="display: inline-block; margin: 0 auto;">
-                            @if (string.IsNullOrWhiteSpace(Model.ContentPC))
-                            {
-                                <div class="thumb">
-                                    No Image
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="thumb" style="background-image: url(@Model.ContentPC);">
-                                </div>
-                            }
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                    <span>Mobile</span>
+                    <div>Mobile용 섬네일 이미지</div>
+                    <input name="thumb_mb" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                    @if (string.IsNullOrWhiteSpace(Model.ThumbnailMobile))
+                    {
+                        <div class="thumb" onclick="$(this).prev().click();">
+                            No Image
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="thumb" style="background-image: url(@Model.ThumbnailMobile);" onclick="$(this).prev().click();">
+                        </div>
+                    }
                 </div>
                 <div>
-                    <div class="thumbnailArea">
-                        <input id="thumb_mb" name="thumb_mb" type="file" style="display: none;" onchange="updateImage.call(this);" />
-                        <label for="thumb_mb" style="display: inline-block; margin: 0 auto;">
-                            @if (string.IsNullOrWhiteSpace(Model.ThumbnailMobile))
-                            {
-                                <div class="thumb">
-                                    No Image
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="thumb" style="background-image: url(@Model.ThumbnailMobile);">
-                                </div>
-                            }
-                        </label>
-                    </div>
-                    <div class="originArea">
-                        <input id="img_mb" name="img_mb" type="file" style="display: none;" onchange="updateImage.call(this);" />
-                        <label for="img_mb" style="display: inline-block; margin: 0 auto;">
-                            @if (string.IsNullOrWhiteSpace(Model.ContentMobile))
-                            {
-                                <div class="thumb">
-                                    No Image
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="thumb" style="background-image: url(@Model.ContentMobile);">
-                                </div>
-                            }
-                        </label>
-                    </div>
+                    <div>Mobile용 내용 이미지</div>
+                    <input name="img_mb" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                    @if (string.IsNullOrWhiteSpace(Model.ContentMobile))
+                    {
+                        <div class="thumb" onclick="$(this).prev().click();">
+                            No Image
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="thumb" style="background-image: url(@Model.ContentMobile);" onclick="$(this).prev().click();">
+                        </div>
+                    }
                 </div>
             </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                    <div>
-                        <span>페이지 링크</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="textData">
-                        <input name="Link" type="text" value="@Model.Link" />
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine" style="text-align: center;">
+            <div class="spliter2"></div>
+
+            <br />
+            <br />
+            <span class="label">3.Youtube 영상 정보</span>
+            <div class="spliter1"></div>
+            <input name="video" placeholder="공유 태그를 입력하세요 (ex - <iframe> ~ </iframe>)" style="width: 100%;" />
+            <div class="spliter2"></div>
+
+            <br />
+            <br />
+            <div class="control-pannel">
                 @if (Model.Id <= 0)
                 {
                     <button class="btn-default" type="button" style="margin-right: 10px;" onclick="location.href = document.referrer;">목록</button>
@@ -152,7 +134,7 @@
                 var file = $(this).prop('files')[0];
                 var localurl = URL.createObjectURL(file);
 
-                var thumb = $(this).next().find('.thumb');
+                var thumb = $(this).next();
                 thumb.css('background-image', 'url(' + localurl + ')');
                 thumb.text('');
             }

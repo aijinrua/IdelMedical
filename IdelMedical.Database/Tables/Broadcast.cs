@@ -16,7 +16,9 @@ namespace IdelMedical.Database.Tables
         [Required, MaxLength(150)]
         public string Subject { get; set; }
         [Required]
-        public string Thumbnail { get; set; }
+        public string ThumbnailPC { get; set; }
+        [Required]
+        public string ThumbnailMobile { get; set; }
         public string ContentPC { get; set; }
         public string ContentMobile { get; set; }
         public string Link { get; set; }

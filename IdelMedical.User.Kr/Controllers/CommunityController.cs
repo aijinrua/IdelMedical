@@ -224,6 +224,10 @@ namespace IdelMedical.User.Kr.Controllers
                 return NotFound();
             }
 
+            item.ReadCount += 1;
+
+            await this.Db.SaveChangesAsync();
+
             ViewBag.Item = item;
 
             return View();

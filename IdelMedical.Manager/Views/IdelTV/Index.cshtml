@@ -1,21 +1,24 @@
 ﻿@{
     var pager = (PageHandler)ViewBag.Pager;
     var items = (IdelMedical.Database.Tables.IdelTV[])ViewBag.Items;
-
 }
+
 @section Styles {
-    <environment include="Development">
-        <link href="~/css/community.css" rel="stylesheet" />
-    </environment>
+    <link href="~/css/community.css" rel="stylesheet" />
 }
 <div class="communityList">
+    <div class="title">
+        <span>아이델TV</span>
+        <span> > 목록</span>
+    </div>
     <div class="topBar">
         <div>
-            <button onclick="location.href='/IdelTV/Detail'">
-                <span>신규 등록</span>
+            <button class="btn-primary" onclick="location.href='/IdelTV/Detail'">
+                신규등록
             </button>
         </div>
     </div>
+    <div class="spliter1"></div>
     <div class="itemList">
         <div class="splitLine"></div>
 
@@ -34,13 +37,13 @@
             @foreach (var item in items)
             {
                 <div>
-                    <div style="text-align: center;">
+                    <div>
                         @item.Id
                     </div>
-                    <div>
-                        <a href="Detail?id=@item.Id">@item.Subject</a>
+                    <div style="text-align: left; font-weight: bold;">
+                        <a href="/IdelTV/Detail?id=@item.Id">@item.Subject</a>
                     </div>
-                    <div style="text-align: center;">
+                    <div>
                         @item.CreateTime.ToString("yyyy-MM-dd")
                     </div>
                 </div>

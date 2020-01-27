@@ -75,21 +75,26 @@ namespace IdelMedical.Manager.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(int id, string subject, IFormFile thumb_pc, IFormFile img_pc, IFormFile thumb_mb, IFormFile img_mb, string link)
+        public async Task<IActionResult> Update(int id, string subject, string link, string linktarget, string video, IFormFile thumb_pc, IFormFile img_pc, IFormFile thumb_mb, IFormFile img_mb)
         {
             try
             {
                 if (string.IsNullOrWhiteSpace(subject))
                     throw new Exception("제목을 입력하세요");
+                if (!string.IsNullOrWhiteSpace(link) && string.IsNullOrWhiteSpace(linktarget))
+                    throw new Exception("링크를 입력시 링크 이동 타입을 선택해야 합니다.");
 
-                var item = default(Notice);
+                var item = default(Broadcast);
 
                 if (id <= 0)
                 {
-                    if (thumb_pc == null || img_pc == null || thumb_mb == null || img_mb == null)
-                        throw new Exception("이미지 파일을 모두 선택해야 합니다");
+                    if (thumb_pc == null || thumb_mb == null)
+                        throw new Exception("섬네일은 필수로 선택해야 합니다.");
 
-                    item = new Notice
+                    if (img_pc == null && img_mb == null && string.IsNullOrWhiteSpace(video))
+                        throw new Exception("내용 이미지 혹은 Youtube 영상정보를 입력해야 합니다.");
+
+                    item = new Broadcast
                     {
                         CreateTime = DateTime.Now
                     };
@@ -97,13 +102,14 @@ namespace IdelMedical.Manager.Controllers
                 }
                 else
                 {
-                    item = await this.Db.Notices
+                    item = await this.Db.Broadcasts
                         .FirstOrDefaultAsync(x => x.Id == id);
                 }
 
                 item.Subject = subject;
                 item.Link = link;
-                item.LinkTarget = "_blank";
+                item.LinkTarget = linktarget;
+                item.VideoLink = video;
 
                 if (thumb_pc != null)
                 {
@@ -192,6 +198,9 @@ namespace IdelMedical.Manager.Controllers
 
                     item.ContentMobile = url;
                 }
+
+                if (string.IsNullOrWhiteSpace(item.ContentPC) && string.IsNullOrWhiteSpace(item.ContentMobile) && string.IsNullOrWhiteSpace(item.VideoLink))
+                    throw new Exception("내용 이미지 혹은 Youtube 영상정보를 입력해야 합니다.");
 
                 await this.Db.SaveChangesAsync();
 

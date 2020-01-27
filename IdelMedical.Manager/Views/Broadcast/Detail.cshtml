@@ -1,119 +1,127 @@
-﻿@{
-    ViewData["Title"] = "Broadcast Detail Page";
-
+﻿@model IdelMedical.Database.Tables.Broadcast
+@{
 }
 
 @section Styles {
-    <environment include="Development">
-        <link href="~/css/community.css" rel="stylesheet" />
-    </environment>
+    <link href="~/css/community.css" rel="stylesheet" />
 }
 <div class="communityDetail">
+    <div class="title">
+        <span>방송출연</span>
+        @if (Model.Id <= 0)
+        {
+            <span> > 등록</span>
+        }
+        else
+        {
+            <span> > 수정</span>
+        }
+    </div>
     <div class="contentArea">
-        <form>
-            <div class="splitLine"></div>
-            <div class="itemLine">
+        <form onsubmit="return false;">
+            <input name="Id" type="hidden" value="@Model.Id" />
+
+            <br />
+            <span class="label">1.기본 정보</span>
+            <div class="spliter1"></div>
+            <input name="subject" value="@Model.Subject" placeholder="(필수) 제목을 입력하세요" style="width: 100%;" />
+            <input name="link" value="@Model.Link" placeholder="선택시 이동될 링크를 입력하세요(ex - http://example.com)" style="width: 100%;" />
+            <select name="linktarget" style="width: 100%;">
+                <option value="" selected="@(string.IsNullOrWhiteSpace(Model.LinkTarget) ? "selected" : null)">링크 이동 타입을 선택하세요</option>
+                <option value="_blank" selected="@(Model.LinkTarget == "_blank" ? "selected" : null)">새창으로 연결</option>
+                <option value="_self" selected="@(Model.LinkTarget == "_self" ? "selected" : null)">현재창에서 이동</option>
+            </select>
+            <div class="spliter2"></div>
+
+            <br />
+            <br />
+            <span class="label">2.이미지 정보</span>
+            <div class="spliter1"></div>
+            <div class="item-container">
                 <div>
-                    <span>제 목</span>
+                    <div>PC용 섬네일 이미지</div>
+                    <input name="thumb_pc" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                    @if (string.IsNullOrWhiteSpace(Model.ThumbnailPC))
+                    {
+                        <div class="thumb" onclick="$(this).prev().click();">
+                            No Image
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="thumb" style="background-image: url(@Model.ThumbnailPC);" onclick="$(this).prev().click();">
+                        </div>
+                    }
                 </div>
                 <div>
-                    <div class="textData">
-                        <input type="text" value="" />
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                </div>
-                <div>
-                    <div class="thumbnailArea">
-                        <span>썸네일</span>
-                    </div>
-                    <div class="originArea">
-                        <span>내용 이미지</span>
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                    <span>P C</span>
+                    <div>PC용 내용 이미지</div>
+                    <input name="img_pc" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                    @if (string.IsNullOrWhiteSpace(Model.ContentPC))
+                    {
+                        <div class="thumb" onclick="$(this).prev().click();">
+                            No Image
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="thumb" style="background-image: url(@Model.ContentPC);" onclick="$(this).prev().click();">
+                        </div>
+                    }
                 </div>
                 <div>
-                    <div class="thumbnailArea">
-                        <input id="thumb_pc" name="thumb_pc" type="file" style="display: none;" onchange="updateImage.call(this);" />
-                        <label for="thumb_pc" style="display: inline-block; margin: 0 auto;">
-                            <div class="thumb">
-                                No Image
-                            </div>
-                        </label>
-                    </div>
-                    <div class="originArea">
-                        <input id="img_pc" name="img_pc" type="file" style="display: none;" onchange="updateImage.call(this);" />
-                        <label for="img_pc" style="display: inline-block; margin: 0 auto;">
-                            <div class="thumb">
-                                No Image
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                    <span>Mobile</span>
+                    <div>Mobile용 섬네일 이미지</div>
+                    <input name="thumb_mb" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                    @if (string.IsNullOrWhiteSpace(Model.ThumbnailMobile))
+                    {
+                        <div class="thumb" onclick="$(this).prev().click();">
+                            No Image
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="thumb" style="background-image: url(@Model.ThumbnailMobile);" onclick="$(this).prev().click();">
+                        </div>
+                    }
                 </div>
                 <div>
-                    <div class="thumbnailArea">
-                        <input id="thumb_mb" name="thumb_mb" type="file" style="display: none;" onchange="updateImage.call(this);" />
-                        <label for="thumb_mb" style="display: inline-block; margin: 0 auto;">
-                            <div class="thumb">
-                                No Image
-                            </div>
-                        </label>
-                    </div>
-                    <div class="originArea">
-                        <input id="img_mb" name="img_mb" type="file" style="display: none;" onchange="updateImage.call(this);" />
-                        <label for="img_mb" style="display: inline-block; margin: 0 auto;">
-                            <div class="thumb">
-                                No Image
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                    <div>
-                        <span>페이지 링크</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="textData">
-                        <input type="text" />
-                    </div>
+                    <div>Mobile용 내용 이미지</div>
+                    <input name="img_mb" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                    @if (string.IsNullOrWhiteSpace(Model.ContentMobile))
+                    {
+                        <div class="thumb" onclick="$(this).prev().click();">
+                            No Image
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="thumb" style="background-image: url(@Model.ContentMobile);" onclick="$(this).prev().click();">
+                        </div>
+                    }
                 </div>
             </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                    <div>
-                        <span>동영상 링크</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="textData">
-                        <input type="text" />
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine" style="text-align: center;">
-                <button class="btn-delete" type="button" style="margin-right: 10px;">삭제</button>
-                <button class="btn-default" type="button" style="margin-right: 10px;" onclick="history.back();">목록</button>
-                <button class="btn-primary" type="submit">등록</button>
+            <div class="spliter2"></div>
+
+            <br />
+            <br />
+            <span class="label">3.Youtube 영상 정보</span>
+            <div class="spliter1"></div>
+            <input name="video" value="@Model.VideoLink" placeholder="공유 태그를 입력하세요 (ex - <iframe> ~ </iframe>)" style="width: 100%;" />
+            <div class="spliter2"></div>
+
+            <br />
+            <br />
+            <div class="control-pannel">
+                @if (Model.Id <= 0)
+                {
+                    <button class="btn-default" type="button" style="margin-right: 10px;" onclick="location.href = document.referrer;">목록</button>
+                    <button class="btn-primary" type="button" onclick="updateItem.call(this);">등록</button>
+                }
+                else
+                {
+                    <button class="btn-delete" type="button" style="margin-right: 10px;" onclick="removeItem.call(this);">삭제</button>
+                    <button class="btn-default" type="button" style="margin-right: 10px;" onclick="location.href = document.referrer;">목록</button>
+                    <button class="btn-primary" type="button" onclick="updateItem.call(this);">적용</button>
+                }
             </div>
         </form>
     </div>
@@ -126,9 +134,70 @@
                 var file = $(this).prop('files')[0];
                 var localurl = URL.createObjectURL(file);
 
-                var thumb = $(this).next().find('.thumb');
+                var thumb = $(this).next();
                 thumb.css('background-image', 'url(' + localurl + ')');
                 thumb.text('');
+            }
+        }
+
+        function updateItem() {
+            try {
+                var form = $(this).parents('form')[0];
+
+                $.ajax({
+                    url: '/Broadcast/Update',
+                    method: 'post',
+                    processData: false,
+                    contentType: false,
+                    data: new FormData(form)
+                }).always(function (data, status, xhr) {
+                    if (status !== 'success') {
+                        alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                    }
+                    else if (!data.status) {
+                        alert(data.message);
+                    }
+                    else {
+                        alert('적용되었습니다.');
+                        location.href = document.referrer;
+                    }
+                });
+            } catch (e) {
+                alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                console.log(e);
+            }
+        }
+
+        function removeItem() {
+            try {
+
+                if (!confirm('현재 항목을 삭제하시겠습니까?')) {
+                    return;
+                }
+
+                var form = $(this).parents('form')[0];
+
+                $.ajax({
+                    url: '/Broadcast/Remove',
+                    method: 'post',
+                    processData: false,
+                    contentType: false,
+                    data: new FormData(form)
+                }).always(function (data, status, xhr) {
+                    if (status !== 'success') {
+                        alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                    }
+                    else if (!data.status) {
+                        alert(data.message);
+                    }
+                    else {
+                        alert('삭제되었습니다.');
+                        location.href = document.referrer;
+                    }
+                });
+            } catch (e) {
+                alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                console.log(e);
             }
         }
     </script>

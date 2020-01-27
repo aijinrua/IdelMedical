@@ -18,13 +18,14 @@ namespace IdelMedical.Database.Tables
         [Required, MaxLength(150)]
         public string SubjectComment { get; set; }
         [Required]
-        public string Thumbnail { get; set; }
+        public string ThumbnailPC { get; set; }
         [Required]
+        public string ThumbnailMobile { get; set; }
         public string ContentPC { get; set; }
-        [Required]
         public string ContentMobile { get; set; }
         public string Link { get; set; }
         public string LinkTarget { get; set; }
+        public string VideoLink { get; set; }
         [Required]
         public DateTime CreateTime { get; set; }
 

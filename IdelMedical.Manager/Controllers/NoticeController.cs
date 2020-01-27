@@ -76,12 +76,14 @@ namespace IdelMedical.Manager.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(int id, string subject, IFormFile thumb_pc, IFormFile img_pc, IFormFile thumb_mb, IFormFile img_mb, string link)
+        public async Task<IActionResult> Update(int id, string link, string linktarget, string subject, IFormFile thumb_pc, IFormFile img_pc, IFormFile thumb_mb, IFormFile img_mb)
         {
             try
             {
                 if (string.IsNullOrWhiteSpace(subject))
                     throw new Exception("제목을 입력하세요");
+                if (!string.IsNullOrWhiteSpace(link) && string.IsNullOrWhiteSpace(linktarget))
+                    throw new Exception("링크를 입력시 링크 이동 타입을 선택해야 합니다.");
 
                 var item = default(Notice);
 
@@ -104,7 +106,7 @@ namespace IdelMedical.Manager.Controllers
 
                 item.Subject = subject;
                 item.Link = link;
-                item.LinkTarget = "_blank";
+                item.LinkTarget = linktarget;
 
                 if (thumb_pc != null)
                 {
