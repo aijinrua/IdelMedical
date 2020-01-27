@@ -202,6 +202,7 @@
                     display: table-cell;
                     vertical-align: middle;
                     height: 50px;
+                    text-align:center;
                 }
 
                     .counselingList .itemList .table > div > div a {
@@ -211,7 +212,7 @@
                     }
 
                 .counselingList .itemList .table > div:nth-of-type(n+2) > div:nth-of-type(2) {
-                    text-align: left;
+                    text-align: center;
                 }
 
             .counselingList .itemList .table > *:nth-child(2n+1) {
