@@ -1,9 +1,6 @@
 ﻿@{
-    ViewData["Title"] = "Broadcast Index Page";
-
-    var SlideData = (List<SlideModel>)ViewBag.SlideData;
-    var Pager = (PageHandler)ViewBag.Pager;
-    var Search = (string)ViewBag.Search;
+    var pager = (PageHandler)ViewBag.Pager;
+    var items = (IdelMedical.Database.Tables.Broadcast[])ViewBag.Items;
 
 }
 
@@ -31,50 +28,40 @@
                 <div>
                     제 목
                 </div>
-                <div style="width:120px;">
+                <div style="width:200px;">
                     등록일자
                 </div>
             </div>
-            @{
-                int count = 0;
-            }
-            @foreach (var item in SlideData)
+            @foreach (var item in items)
             {
-                count++;
-                if (count > 15) break;
                 <div>
                     <div style="text-align: center;">
-                        @item.Number
+                        @item.Id
+                    </div>
+                    <div>
+                        <a href="Detail?id=@item.Id">@item.Subject</a>
                     </div>
                     <div style="text-align: center;">
-                        @item.Title
-                    </div>
-                    <div style="text-align: center;">
-                        @item.UploadTime
+                        @item.CreateTime.ToString("yyyy-MM-dd")
                     </div>
                 </div>
             }
         </div>
-        @{
-            if (SlideData != null)
-            {
-                <div class="splitLine"></div>
-            }
-            if (SlideData.Count > 15)
-            {
-                var pageCount = SlideData.Count % 15;
-                <div class="pageBtn">
-                    <a>&lt&lt</a>
-                    <a>&lt</a>
-                    @for (int i = 0; i < pageCount; i++)
-                    {
-                        <a>@(i + 1)</a>
-                    }
-                    <a>&gt</a>
-                    <a>&gt&gt</a>
-
-                </div>
-            }
-        }
+        <div class="pager">
+            <div class="paging">
+                @if (pager.PrevPage > 0)
+                {
+                    <a href="@Url.Action("Index", new { page = pager.PrevPage })">&lt;</a>
+                }
+                @for (int i = pager.StartPage; i <= pager.EndPage; i++)
+                {
+                    <a href="@Url.Action("Index", new { page = i })" class="@(i == pager.CurrentPage ? "active" : null)">@i.ToString("#,##0")</a>
+                }
+                @if (pager.NextPage > 0)
+                {
+                    <a href="@Url.Action("Index", new { page = pager.NextPage })">&gt;</a>
+                }
+            </div>
+        </div>
     </div>
 </div>
