@@ -1,26 +1,26 @@
-﻿.notice * {
+﻿.communityList * {
     cursor: default;
     font-family: 'Noto Sans KR', sans-serif;
 }
-.notice input {
+.communityList input {
     cursor: text;
 }
-.notice button:hover {
+.communityList button:hover {
     cursor:pointer;
 }
-.notice button > *:hover {
+.communityList button > *:hover {
     cursor: pointer;
 }
-.notice button::-moz-focus-inner {
+.communityList button::-moz-focus-inner {
     outline: 0;
     color: transparent;
 }
-.notice button.launch:hover {
+.communityList button.launch:hover {
 cursor: pointer;
 background-color: #FABD44;
 }
 
-.notice button.change {
+.communityList button.change {
 background-color: #F88F00;
 border: none;
 height: 40px;
@@ -32,26 +32,26 @@ margin-top: 10px;
 margin-right: 10px;
 }
 
-.notice button.change:hover {
+.communityList button.change:hover {
 cursor: pointer;
 background-color: #F89900;
 }
-.notice button:hover {
+.communityList button:hover {
     cursor:pointer;
 }
-.notice button:active {
+.communityList button:active {
 outline: none;
 border: none;
 }
 
-.notice button:focus {outline:0;}
+.communityList button:focus {outline:0;}
 
 
-.notice {
+.communityList {
     width: 1440px;
     height: 810px;
 }
-.topBar {
+.communityList .topBar {
     width:calc(100% - 200px);
     height:10%;
     display:flex;
@@ -59,19 +59,19 @@ border: none;
     padding-right:100px;
     align-items:center;
 }
-.topBar > div {
+.communityList .topBar > div {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
 }
-.topBar > div > button {
+.communityList .topBar > div > button {
     font-size: 20px;
-    width:200px;
-    height:40px;
+    width: 200px;
+    height: 40px;
 }
-.notice .splitLine {
+.communityList .splitLine {
     height: 1px;
     width: calc(100% - 10px);
     border-top: 1px solid #82d9d0;
@@ -83,17 +83,17 @@ border: none;
     height:1px;
 }
 
-.notice .itemList {
+.communityList .itemList {
     height: 90%;
 }
-.notice .itemList .table {
+.communityList .itemList .table {
     padding: 10px;
     font-size:16px;
     box-sizing:border-box;
     display:table;
     width:100%;
 }
-.notice .itemList .table .header {
+.communityList .itemList .table .header {
     background-color:#000;
     color:#FFF;
     text-align:center;
@@ -101,27 +101,27 @@ border: none;
     height:35px;
     cursor:default;
 }
-.notice .itemList .table .header > div {
+.communityList .itemList .table .header > div {
     display:table-cell;
     vertical-align:middle;
 }
-.notice .itemList .table > div {
+.communityList .itemList .table > div {
     height:35px;
     display:table-row;
     font-size: 16px;
 }
-.notice .itemList .table > div:hover {
+.communityList .itemList .table > div:hover {
     color: #82d9d0;
 }
-.notice .itemList .table > div > div {
+.communityList .itemList .table > div > div {
     display:table-cell;
     vertical-align:middle;
     cursor:pointer;
 }
-.notice .itemList .table > *:nth-child(2n+1) {
+.communityList .itemList .table > *:nth-child(2n+1) {
     background-color:#eee;
 }
-.notice .itemList .table .header {
+.communityList .itemList .table .header {
     background-color:#000;
     color:#FFF;
     text-align:center;
@@ -129,24 +129,24 @@ border: none;
     height:35px;
     cursor:default;
 }
-.notice .itemList .table .header:hover {
+.communityList .itemList .table .header:hover {
     color:#FFF;
 }
-.notice .itemList .pageBtn {
+.communityList .itemList .pageBtn {
     width: 100%;
     height: 30px;
     display:inline-flex;
     justify-content:center;
     align-items:center;
 }
-.notice .itemList .pageBtn > a {
+.communityList .itemList .pageBtn > a {
     width: 50px;
     color: #787878;
     text-align:center;
     margin-left:2px;
     margin-right:2px;
 }
-.notice .itemList .pageBtn > a:hover {
+.communityList .itemList .pageBtn > a:hover {
     color: #0836e8;
     font-weight: bold;
     font-size: 18px;
@@ -154,34 +154,34 @@ border: none;
 }
 
 
-.detail * {
+.communityDetail * {
     cursor: default;
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-.detail input {
+.communityDetail input {
     cursor: text;
 }
 
-.detail button:hover {
+.communityDetail button:hover {
     cursor: pointer;
 }
 
-.detail button > *:hover {
+.communityDetail button > *:hover {
     cursor: pointer;
 }
 
-.detail button::-moz-focus-inner {
+.communityDetail button::-moz-focus-inner {
     outline: 0;
     color: transparent;
 }
 
-.detail button.launch:hover {
+.communityDetail button.launch:hover {
     cursor: pointer;
     background-color: #FABD44;
 }
 
-.detail button.change {
+.communityDetail button.change {
     background-color: #F88F00;
     border: none;
     height: 40px;
@@ -193,43 +193,43 @@ border: none;
     margin-right: 10px;
 }
 
-.detail button.change:hover {
+.communityDetail button.change:hover {
     cursor: pointer;
     background-color: #F89900;
 }
 
-.detail button:hover {
+.communityDetail button:hover {
     cursor: pointer;
 }
 
-.detail button:active {
+.communityDetail button:active {
     outline: none;
     border: none;
 }
 
-.detail .submit:focus {
+.communityDetail .submit:focus {
     outline: 0;
 }
 
-.detail .submit:hover {
+.communityDetail .submit:hover {
     cursor: pointer;
 }
 
-.detail .submit > *:hover {
+.communityDetail .submit > *:hover {
     cursor: pointer;
 }
 
-.detail .submit::-moz-focus-inner {
+.communityDetail .submit::-moz-focus-inner {
     outline: 0;
     color: transparent;
 }
 
-.detail .submit.launch:hover {
+.communityDetail .submit.launch:hover {
     cursor: pointer;
     background-color: #FABD44;
 }
 
-.detail .submit.change {
+.communityDetail .submit.change {
     background-color: #F88F00;
     border: none;
     height: 40px;
@@ -241,37 +241,37 @@ border: none;
     margin-right: 10px;
 }
 
-.detail .submit.change:hover {
+.communityDetail .submit.change:hover {
     cursor: pointer;
     background-color: #F89900;
 }
 
-.detail .submit:hover {
+.communityDetail .submit:hover {
     cursor: pointer;
 }
 
-.detail .submit:active {
+.communityDetail .submit:active {
     outline: none;
     border: none;
 }
 
-.detail .submit:focus {
+.communityDetail .submit:focus {
     outline: 0;
 }
 
 
-.detail {
+.communityDetail {
     width: 1440px;
     height: 810px;
 }
-.detail .contentArea {
+.communityDetail .contentArea {
     width:calc(100% - 320px);
     padding-left:120px;
     padding-right:200px;
     padding-top:10px;
     height:100%;
 }
-.detail .splitLine {
+.communityDetail .splitLine {
     width: calc(100% - 10px);
     margin: auto;
     height: 1px;
@@ -279,63 +279,61 @@ border: none;
     margin-top:10px;
     margin-bottom:10px;
 }
-.detail .itemLine {
+.communityDetail .itemLine {
     display:flex;
     width:100%;
     align-items:center;
 }
-.detail .itemLine > div:nth-of-type(1) {
+.communityDetail .itemLine > div:nth-of-type(1) {
     display:flex;
     width:160px;
     font-size:20px;
     align-content:center;
     justify-content:center;
 }
-.detail .itemLine > div:nth-of-type(1) > span {
+.communityDetail .itemLine > div:nth-of-type(1) > span {
     display:flex;
     height:30px;
 }
-.detail .itemLine > div:nth-of-type(2) {
+.communityDetail .itemLine > div:nth-of-type(2) {
     display:flex;
     width:calc(100% - 160px);
 }
-.detail .itemLine .textData {
+.communityDetail .itemLine .textData {
     width:100%;
     height:30px;
 }
-.detail .itemLine .textData input {
+.communityDetail .itemLine .textData input {
     width:90%;
     font-size:16px;
     height:24px;
     text-align:center;
 }
-.detail .itemLine .thumbnailArea{
+.communityDetail .itemLine .thumbnailArea{
     width: 200px;
     margin-left:auto;
     margin-right:auto;
     text-align:center;
     font-size:20px;
 }
-.detail .itemLine .originArea{
+.communityDetail .itemLine .originArea{
     text-align:center;
     width: 300px;
     margin-left:auto;
     margin-right:auto;
     font-size:20px;
 }
-.detail .itemLine .thumbnailArea > span {
+.communityDetail .itemLine .thumbnailArea > span {
     color:#787878;
     height:30px;
     display:block;
-    background-color:rgba(130, 217, 208, 0.20);
 }
-.detail .itemLine .originArea > span {
+.communityDetail .itemLine .originArea > span {
     color:#787878;
     height:30px;
     display:block;
-    background-color:rgba(130, 217, 208, 0.20);
 }
-.detail .itemLine .thumbnailArea > img {
+.communityDetail .itemLine .thumbnailArea > img {
     color: #787878;
     display: flex;
     border: 2px solid #fff;
@@ -345,7 +343,7 @@ border: none;
     height: 198px;
     width: 198px;
 }
-.detail .itemLine .originArea > img {
+.communityDetail .itemLine .originArea > img {
     color: #787878;
     display: flex;
     border: 2px solid #fff;
@@ -356,35 +354,40 @@ border: none;
     height: 198px;
     width:298px;
 }
-.detail .itemLine .thumbnailArea > button {
+.communityDetail .itemLine .thumbnailArea > button {
     height: 30px;
     width:200px;
     font-size:16px;
     margin-top:2px;
 
 }
-.detail .itemLine .originArea > button {
+.communityDetail .itemLine .originArea > button {
     height: 30px;
     width: 300px;
     font-size:16px;
     margin-top:2px;
 }
-.detail .itemLine:nth-of-type(4) {
+.communityDetail .itemLine:nth-of-type(3) {
     background-color:rgba(130, 217, 208, 0.20);
     padding-top:5px;
-    padding-bottom:5px;
 }
-.detail .itemLine:nth-of-type(5) {
-    margin-top:5px;
+.communityDetail .itemLine:nth-of-type(4) {
+    margin-top:2px;
     background-color:rgba(130, 217, 208, 0.20);
-    padding-top:5px;
-    padding-bottom:5px;
+    padding-top:10px;
+    padding-bottom:10px;
 }
-.detail .itemLine:nth-last-of-type(1) {
+.communityDetail .itemLine:nth-of-type(5) {
+    margin-top:2px;
+    background-color:rgba(130, 217, 208, 0.20);
+    padding-top:10px;
+    padding-bottom:10px;
+}
+.communityDetail .itemLine:nth-last-of-type(1) {
     height:80px;
     justify-content:flex-end;
 }
-.detail .itemLine:nth-last-of-type(1) .submit {
+.communityDetail .itemLine:nth-last-of-type(1) .submit {
     height:40px;
     width: 200px;
     margin-left:30px;

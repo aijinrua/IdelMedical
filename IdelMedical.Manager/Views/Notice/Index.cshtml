@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Notice Page";
+    ViewData["Title"] = "Notice Index Page";
 
     var SlideData = (List<SlideModel>)ViewBag.SlideData;
     var Pager = (PageHandler)ViewBag.Pager;
@@ -9,13 +9,13 @@
 
 @section Styles {
     <environment include="Development">
-        <link href="~/css/notice.css" rel="stylesheet" />
+        <link href="~/css/community.css" rel="stylesheet" />
     </environment>
 }
-<div class="notice">
+<div class="communityList">
     <div class="topBar">
         <div>
-            <button class="addBtn">
+            <button onclick="location.href='/Notice/Detail'">
                 <span>신규 등록</span>
             </button>
         </div>

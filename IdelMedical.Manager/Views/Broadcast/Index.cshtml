@@ -1,6 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Community Page";
-  
+    ViewData["Title"] = "Broadcast Index Page";
+
+    var SlideData = (List<SlideModel>)ViewBag.SlideData;
+    var Pager = (PageHandler)ViewBag.Pager;
+    var Search = (string)ViewBag.Search;
 
 }
 
@@ -9,6 +12,69 @@
         <link href="~/css/community.css" rel="stylesheet" />
     </environment>
 }
-<div class="body">
+<div class="communityList">
+    <div class="topBar">
+        <div>
+            <button onclick="location.href='/Broadcast/Detail'">
+                <span>신규 등록</span>
+            </button>
+        </div>
+    </div>
+    <div class="itemList">
+        <div class="splitLine"></div>
 
+        <div class="table">
+            <div class="header">
+                <div style="width:120px;">
+                    No.
+                </div>
+                <div>
+                    제 목
+                </div>
+                <div style="width:120px;">
+                    등록일자
+                </div>
+            </div>
+            @{
+                int count = 0;
+            }
+            @foreach (var item in SlideData)
+            {
+                count++;
+                if (count > 15) break;
+                <div>
+                    <div style="text-align: center;">
+                        @item.Number
+                    </div>
+                    <div style="text-align: center;">
+                        @item.Title
+                    </div>
+                    <div style="text-align: center;">
+                        @item.UploadTime
+                    </div>
+                </div>
+            }
+        </div>
+        @{
+            if (SlideData != null)
+            {
+                <div class="splitLine"></div>
+            }
+            if (SlideData.Count > 15)
+            {
+                var pageCount = SlideData.Count % 15;
+                <div class="pageBtn">
+                    <a>&lt&lt</a>
+                    <a>&lt</a>
+                    @for (int i = 0; i < pageCount; i++)
+                    {
+                        <a>@(i + 1)</a>
+                    }
+                    <a>&gt</a>
+                    <a>&gt&gt</a>
+
+                </div>
+            }
+        }
+    </div>
 </div>
