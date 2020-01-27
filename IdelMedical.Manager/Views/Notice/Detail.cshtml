@@ -7,7 +7,7 @@
 }
 <div class="communityDetail">
     <div class="contentArea">
-        <form>
+        <form onsubmit="return false;">
             <input name="Id" type="hidden" value="@Model.Id" />
 
             <div class="splitLine"></div>
@@ -43,17 +43,33 @@
                     <div class="thumbnailArea">
                         <input id="thumb_pc" name="thumb_pc" type="file" style="display: none;" onchange="updateImage.call(this);" />
                         <label for="thumb_pc" style="display: inline-block; margin: 0 auto;">
-                            <div class="thumb">
-                                No Image
-                            </div>
+                            @if (string.IsNullOrWhiteSpace(Model.ThumbnailPC))
+                            {
+                                <div class="thumb">
+                                    No Image
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="thumb" style="background-image: url(@Model.ThumbnailPC);">
+                                </div>
+                            }
                         </label>
                     </div>
                     <div class="originArea">
                         <input id="img_pc" name="img_pc" type="file" style="display: none;" onchange="updateImage.call(this);" />
                         <label for="img_pc" style="display: inline-block; margin: 0 auto;">
-                            <div class="thumb">
-                                No Image
-                            </div>
+                            @if (string.IsNullOrWhiteSpace(Model.ContentPC))
+                            {
+                                <div class="thumb">
+                                    No Image
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="thumb" style="background-image: url(@Model.ContentPC);">
+                                </div>
+                            }
                         </label>
                     </div>
                 </div>
@@ -67,17 +83,33 @@
                     <div class="thumbnailArea">
                         <input id="thumb_mb" name="thumb_mb" type="file" style="display: none;" onchange="updateImage.call(this);" />
                         <label for="thumb_mb" style="display: inline-block; margin: 0 auto;">
-                            <div class="thumb">
-                                No Image
-                            </div>
+                            @if (string.IsNullOrWhiteSpace(Model.ThumbnailMobile))
+                            {
+                                <div class="thumb">
+                                    No Image
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="thumb" style="background-image: url(@Model.ThumbnailMobile);">
+                                </div>
+                            }
                         </label>
                     </div>
                     <div class="originArea">
                         <input id="img_mb" name="img_mb" type="file" style="display: none;" onchange="updateImage.call(this);" />
                         <label for="img_mb" style="display: inline-block; margin: 0 auto;">
-                            <div class="thumb">
-                                No Image
-                            </div>
+                            @if (string.IsNullOrWhiteSpace(Model.ContentMobile))
+                            {
+                                <div class="thumb">
+                                    No Image
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="thumb" style="background-image: url(@Model.ContentMobile);">
+                                </div>
+                            }
                         </label>
                     </div>
                 </div>
@@ -97,9 +129,9 @@
             </div>
             <div class="splitLine"></div>
             <div class="itemLine" style="text-align: center;">
-                <button class="btn-delete" type="button" style="margin-right: 10px;">삭제</button>
+                <button class="btn-delete" type="button" style="margin-right: 10px;" onclick="removeItem.call(this);">삭제</button>
                 <button class="btn-default" type="button" style="margin-right: 10px;" onclick="history.back();">목록</button>
-                <button class="btn-primary" type="submit">등록</button>
+                <button class="btn-primary" type="button" onclick="updateItem.call(this);">적용</button>
             </div>
         </form>
     </div>
@@ -115,6 +147,67 @@
                 var thumb = $(this).next().find('.thumb');
                 thumb.css('background-image', 'url(' + localurl + ')');
                 thumb.text('');
+            }
+        }
+
+        function updateItem() {
+            try {
+                var form = $(this).parents('form')[0];
+
+                $.ajax({
+                    url: '/Notice/Update',
+                    method: 'post',
+                    processData: false,
+                    contentType: false,
+                    data: new FormData(form)
+                }).always(function (data, status, xhr) {
+                    if (status !== 'success') {
+                        alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                    }
+                    else if (!data.status) {
+                        alert(data.message);
+                    }
+                    else {
+                        alert('적용되었습니다.');
+                        location.href = document.referrer;
+                    }
+                });
+            } catch (e) {
+                alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                console.log(e);
+            }
+        }
+
+        function removeItem() {
+            try {
+
+                if (!confirm('현재 항목을 삭제하시겠습니까?')) {
+                    return;
+                }
+
+                var form = $(this).parents('form')[0];
+
+                $.ajax({
+                    url: '/Notice/Remove',
+                    method: 'post',
+                    processData: false,
+                    contentType: false,
+                    data: new FormData(form)
+                }).always(function (data, status, xhr) {
+                    if (status !== 'success') {
+                        alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                    }
+                    else if (!data.status) {
+                        alert(data.message);
+                    }
+                    else {
+                        alert('삭제되었습니다.');
+                        location.href = document.referrer;
+                    }
+                });
+            } catch (e) {
+                alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                console.log(e);
             }
         }
     </script>

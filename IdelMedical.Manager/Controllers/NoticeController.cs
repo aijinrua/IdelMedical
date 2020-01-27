@@ -66,7 +66,7 @@ namespace IdelMedical.Manager.Controllers
             else
             {
                 item = await this.Db.Notices
-                    .FirstOrDefaultAsync(x => x.Id == id);
+                    .FirstOrDefaultAsync(x => x.Id == id.Value);
             }
 
             if (item == null)
@@ -104,6 +104,7 @@ namespace IdelMedical.Manager.Controllers
 
                 item.Subject = subject;
                 item.Link = link;
+                item.LinkTarget = "_blank";
 
                 if (thumb_pc != null)
                 {
@@ -116,14 +117,99 @@ namespace IdelMedical.Manager.Controllers
 
                     var url = savefile.FullName.Replace(Env.WebRootPath, $"http://{Request.Host.ToString()}").Replace("\\", "/");
 
+                    if (!savefile.Directory.Exists)
+                        savefile.Directory.Create();
+
                     using (var fileStream = new FileStream(savefile.FullName, FileMode.Create))
                     {
                         await thumb_pc.OpenReadStream().CopyToAsync(fileStream);
                     }
 
-                    item.Thumbnail = url;
+                    item.ThumbnailPC = url;
                 }
 
+                if (img_pc != null)
+                {
+                    var savefile = new FileInfo(Path.Combine(
+                        Env.WebRootPath,
+                        "images",
+                        "upload",
+                        "notice",
+                        DateTime.Now.ToString("yyMMddHHmmss_") + new FileInfo(img_pc.FileName).Name));
+
+                    var url = savefile.FullName.Replace(Env.WebRootPath, $"http://{Request.Host.ToString()}").Replace("\\", "/");
+
+                    if (!savefile.Directory.Exists)
+                        savefile.Directory.Create();
+
+                    using (var fileStream = new FileStream(savefile.FullName, FileMode.Create))
+                    {
+                        await img_pc.OpenReadStream().CopyToAsync(fileStream);
+                    }
+
+                    item.ContentPC = url;
+                }
+
+                if (thumb_mb != null)
+                {
+                    var savefile = new FileInfo(Path.Combine(
+                        Env.WebRootPath,
+                        "images",
+                        "upload",
+                        "notice",
+                        DateTime.Now.ToString("yyMMddHHmmss_") + new FileInfo(thumb_mb.FileName).Name));
+
+                    var url = savefile.FullName.Replace(Env.WebRootPath, $"http://{Request.Host.ToString()}").Replace("\\", "/");
+
+                    if (!savefile.Directory.Exists)
+                        savefile.Directory.Create();
+
+                    using (var fileStream = new FileStream(savefile.FullName, FileMode.Create))
+                    {
+                        await thumb_mb.OpenReadStream().CopyToAsync(fileStream);
+                    }
+
+                    item.ThumbnailMobile = url;
+                }
+
+                if (img_mb != null)
+                {
+                    var savefile = new FileInfo(Path.Combine(
+                        Env.WebRootPath,
+                        "images",
+                        "upload",
+                        "notice",
+                        DateTime.Now.ToString("yyMMddHHmmss_") + new FileInfo(img_mb.FileName).Name));
+
+                    var url = savefile.FullName.Replace(Env.WebRootPath, $"http://{Request.Host.ToString()}").Replace("\\", "/");
+
+                    if (!savefile.Directory.Exists)
+                        savefile.Directory.Create();
+
+                    using (var fileStream = new FileStream(savefile.FullName, FileMode.Create))
+                    {
+                        await img_mb.OpenReadStream().CopyToAsync(fileStream);
+                    }
+
+                    item.ContentMobile = url;
+                }
+
+                await this.Db.SaveChangesAsync();
+
+                return Json(new { status = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = false, message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Remove(int id)
+        {
+            try
+            {
+                this.Db.Notices.Remove(new Notice { Id = id });
                 await this.Db.SaveChangesAsync();
 
                 return Json(new { status = true });
