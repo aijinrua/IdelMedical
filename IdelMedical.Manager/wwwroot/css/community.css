@@ -472,3 +472,33 @@ border: none;
     color: #fff;
     cursor: pointer;
 }
+
+.btn-delete {
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background-color: #ff3434;
+    color: #fff;
+}
+
+.btn-default {
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background-color: #989898;
+    color: #fff;
+}
+
+.btn-primary {
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background-color: #76c5bd;
+    color: #fff;
+}
