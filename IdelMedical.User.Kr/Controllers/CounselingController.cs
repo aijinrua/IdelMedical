@@ -18,11 +18,42 @@ namespace IdelMedical.User.Kr.Controllers
             this.Db = db;
         }
 
+        [HttpGet]
         public IActionResult Reservation()
         {
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Reservation(string category, DateTime datetime, string name, string phone, bool usecall, bool isfirst, string channel, string content)
+        {
+            try
+            {
+                var newItem = new Database.Tables.Reservation
+                {
+                    Category = category,
+                    Channel = channel,
+                    Content = content,
+                    CreateTime = DateTime.Now,
+                    IsFirst = isfirst,
+                    Name = name,
+                    Phone = phone,
+                    ReservationTime = datetime,
+                    UseCall = usecall
+                };
+                await this.Db.Reservations.AddAsync(newItem);
+
+                await this.Db.SaveChangesAsync();
+
+                return Json(new { status = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = false, message = ex.Message });
+            }
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Counseling(string category, int page = 1)
         {
             page = Math.Max(page, 1);

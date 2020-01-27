@@ -1,0 +1,121 @@
+﻿
+@section Styles {
+    <link href="~/css/pc_find.css" rel="stylesheet" />
+}
+
+<div class="find">
+    <div class="title">
+        <span>아이디/비밀번호 찾기</span><br />
+        <span>IDEL PLASTIC SURGERY & AESTHETIC</span>
+    </div>
+    <div class="content">
+        <div class="noti">
+            이름과 이메일을 입력하세요.<br />
+            입력하신 이메일 주소로 정보를 보내드립니다 :)
+        </div>
+        <div class="tab-menu">
+            <div class="active" onclick="switchFindId();">
+                아이디 찾기
+            </div>
+            <div onclick="switchFindPw();">
+                비밀번호 찾기
+            </div>
+        </div>
+        <form id="form1" class="data" onsubmit="return onFindId.call(this);">
+            <div>
+                <img src="~/images/pc/auth/icon_find_name.png" />
+                <input name="name" placeholder="이름" />
+            </div>
+            <div>
+                <img src="~/images/pc/auth/icon_find_email.png" />
+                <input name="email" placeholder="이메일" />
+            </div>
+            <button>확인</button>
+        </form>
+        <form id="form2" class="data" style="display: none;" onsubmit="return onFindPw.call(this);">
+            <div>
+                <img src="~/images/pc/auth/icon_find_name.png" />
+                <input name="name" placeholder="이름" />
+            </div>
+            <div>
+                <img src="~/images/pc/auth/icon_find_id.png" />
+                <input name="userid" placeholder="아이디" />
+            </div>
+            <div>
+                <img src="~/images/pc/auth/icon_find_email.png" />
+                <input name="email" placeholder="이메일" />
+            </div>
+            <button>확인</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function switchFindId() {
+            $('.tab-menu > div').removeClass('active');
+            $('.tab-menu > div:first-child').addClass('active');
+            $('#form1').css('display', 'block');
+            $('#form2').css('display', 'none');
+        }
+
+        function switchFindPw() {
+            $('.tab-menu > div').removeClass('active');
+            $('.tab-menu > div:last-child').addClass('active');
+            $('#form1').css('display', 'none');
+            $('#form2').css('display', 'block');
+        }
+
+        function onFindId() {
+            try {
+                $.ajax({
+                    url: '/auth/findid',
+                    method: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: new FormData(this)
+                }).always(function (data, status, xhr) {
+                    if (status !== 'success') {
+                        alert('잠시 후에 다시 시도해 주세요');
+                    }
+                    else if (!data.status) {
+                        alert(data.message);
+                    }
+                    else {
+                        alert('이메일이 발송되었습니다.\n메일을 확인해 주세요');
+                    }
+                });
+            } catch (e) {
+                console.log(e);
+            }
+
+            return false;
+        }
+
+        function onFindPw() {
+            try {
+                $.ajax({
+                    url: '/auth/findpw',
+                    method: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: new FormData(this)
+                }).always(function (data, status, xhr) {
+                    if (status !== 'success') {
+                        alert('잠시 후에 다시 시도해 주세요');
+                    }
+                    else if (!data.status) {
+                        alert(data.message);
+                    }
+                    else {
+                        alert('이메일이 발송되었습니다.\n메일을 확인해 주세요');
+                    }
+                });
+            } catch (e) {
+                console.log(e);
+            }
+
+            return false;
+        }
+    </script>
+}

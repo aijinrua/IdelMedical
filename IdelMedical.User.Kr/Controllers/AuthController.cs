@@ -1,12 +1,16 @@
 ﻿using IdelMedical.Database;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -288,6 +292,136 @@ namespace IdelMedical.User.Kr.Controllers
                 this.Db.SaveChanges();
 
                 HttpContext.Session.SetString("UserKey", user.UserKey);
+
+                return Json(new { status = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = false, message = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Find()
+        {
+            //var client = new SmtpClient
+            //{
+            //    Host = "idelmedi.com",
+            //    UseDefaultCredentials = true,
+            //    DeliveryMethod = SmtpDeliveryMethod.Network
+            //};
+
+            //var mail = new MailMessage
+            //{
+            //    From = new MailAddress("admin@idelmedi.com", "아이델 성형외과"),
+            //    SubjectEncoding = Encoding.UTF8,
+            //    Subject = "[테스트] 아이델",
+            //    Body = "<a href='https://idelmedi.com'>아이델</a>",
+            //    IsBodyHtml = true
+            //};
+
+            //mail.To.Add("aijinrua@naver.com");
+
+            //client.Send(mail);
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> FindId(string name, string email)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(name))
+                    throw new Exception("이름을 입력해 주세요");
+                if (string.IsNullOrWhiteSpace(email))
+                    throw new Exception("이메일을 입력해 주세요");
+                if (!Regex.IsMatch(email, "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$"))
+                    throw new Exception("이메일 형식이 잘못되었습니다");
+
+                var user = await this.Db.Users
+                    .Where(x => x.AccountType == AccountTypes.Idel && x.Name == name && x.Email == email)
+                    .Select(x => new
+                    {
+                        x.UserId
+                    })
+                    .FirstOrDefaultAsync();
+
+                if (user == null)
+                    throw new Exception("일치하는 정보가 없습니다.\n간편가입 계정은 확인되지 않습니다.");
+
+                var client = new SmtpClient
+                {
+                    Host = "idelmedi.com",
+                    UseDefaultCredentials = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network
+                };
+
+                var mail = new MailMessage
+                {
+                    From = new MailAddress("admin@idelmedi.com", "아이델 성형외과"),
+                    SubjectEncoding = Encoding.UTF8,
+                    Subject = "[발신전용] 아이델 아이디 찾기 결과",
+                    Body = $"본 메일은 발신 전용 메일입니다.<br /><br />회원님의 아이디는 <strong>{user.UserId}</strong> 입니다.",
+                    IsBodyHtml = true
+                };
+
+                mail.To.Add(email);
+
+                client.Send(mail);
+
+                return Json(new { status = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = false, message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> FindPw(string name, string userid, string email)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(name))
+                    throw new Exception("이름을 입력해 주세요");
+                if (string.IsNullOrWhiteSpace(userid))
+                    throw new Exception("아이디를 입력해 주세요");
+                if (string.IsNullOrWhiteSpace(email))
+                    throw new Exception("이메일을 입력해 주세요");
+                if (!Regex.IsMatch(email, "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$"))
+                    throw new Exception("이메일 형식이 잘못되었습니다");
+
+                var user = await this.Db.Users
+                    .Where(x => x.AccountType == AccountTypes.Idel && x.Name == name && x.UserId == userid && x.Email == email)
+                    .Select(x => new
+                    {
+                        x.Passwd
+                    })
+                    .FirstOrDefaultAsync();
+
+                if (user == null)
+                    throw new Exception("일치하는 정보가 없습니다.\n간편가입 계정은 확인되지 않습니다.");
+
+                var client = new SmtpClient
+                {
+                    Host = "idelmedi.com",
+                    UseDefaultCredentials = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network
+                };
+
+                var mail = new MailMessage
+                {
+                    From = new MailAddress("admin@idelmedi.com", "아이델 성형외과"),
+                    SubjectEncoding = Encoding.UTF8,
+                    Subject = "[발신전용] 아이델 비밀번호 찾기 결과",
+                    Body = $"본 메일은 발신 전용 메일입니다.<br /><br />회원님의 비밀번호는 <strong>{user.Passwd}</strong> 입니다.",
+                    IsBodyHtml = true
+                };
+
+                mail.To.Add(email);
+
+                client.Send(mail);
 
                 return Json(new { status = true });
             }

@@ -1,0 +1,295 @@
+﻿img {
+    vertical-align: middle;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.reservation {
+    background-color: #ffffff;
+    color: #000000;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.reservation .title {
+    margin: 0 auto;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.reservation .title span:first-child {
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.reservation .title span:last-child {
+    font-size: 25px;
+}
+
+.reservation .spliter1 {
+    width: 100%;
+    height: 0;
+    border-top: 3px solid #84888c;
+}
+
+.reservation .spliter2 {
+    width: 100%;
+    height: 0;
+    border-top: 1px solid #84888c;
+}
+
+.reservation .label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.reservation .content-category {
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+.reservation .content-category span {
+    display: inline-block;
+    width: 150px;
+    text-align: center;
+}
+
+.reservation .content-category select {
+    height: 30px;
+}
+
+.reservation .content-calender {
+    padding: 20px 0;
+    overflow: auto;
+}
+
+.reservation .content-calender .calender {
+    float: left;
+    width: 700px;
+}
+
+.reservation .content-calender .calender .header {
+    background-color: #454545;
+    height: 50px;
+    display: table;
+    width: 100%;
+}
+
+.reservation .content-calender .calender .header > div {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.reservation .content-calender .calender .header > div:first-child,
+.reservation .content-calender .calender .header > div:last-child {
+    width: 70px;
+}
+
+.reservation .content-calender .calender .header .month {
+    color: #fff;
+}
+
+.reservation .content-calender .calender .header img {
+    cursor: pointer;
+}
+
+.reservation .content-calender .calender .week {
+    overflow: auto;
+}
+
+.reservation .content-calender .calender .week > div {
+    float: left;
+    width: 14.285%;
+    height: 40px;
+    background-color: #f9f9f9;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.reservation .content-calender .calender .week > div:first-child {
+    color: red;
+}
+
+.reservation .content-calender .calender .week > div:last-child {
+    color: blue;
+}
+
+.reservation .content-calender .calender .day {
+    overflow: auto;
+}
+
+.reservation .content-calender .calender .day > div {
+    float: left;
+    width: 14.285%;
+    height: 70px;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.reservation .content-calender .calender .day > div.free {
+    background-color: #f7f6f0;
+}
+
+.reservation .content-calender .calender .day > div .active {
+    display: inline-flex;
+    width: 36px;
+    height: 36px;
+    background-color: #81d8d0;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    border-radius: 18px;
+    color: white;
+}
+
+.reservation .content-calender .calender .info {
+    overflow: auto;
+    padding: 20px 0;
+}
+
+.reservation .content-calender .calender .info > div:first-child {
+    float: left;
+}
+
+.reservation .content-calender .calender .info > div:first-child span {
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+    background-color: #f7f6f0;
+}
+
+.reservation .content-calender .calender .info > div:last-child {
+    float: right;
+}
+
+.reservation .content-calender .calender .call {
+    padding-top: 30px;
+    text-align: center;
+}
+
+.reservation .content-calender .time {
+    float: left;
+    width: 200px;
+    margin-left: 20px;
+}
+
+.reservation .content-calender .time .header {
+    height: 50px;
+    background-color: #a4a4a4;
+    color: #fff;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.reservation .content-calender .time .items > div {
+    display: flex;
+    -webkit-justify-content: start;
+    justify-content: start;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 50px;
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.reservation .content-calender .time .items > div.active {
+    background-color: #e8e8e8;
+}
+
+.reservation .content-user {
+    display: table;
+    width: 100%;
+    color: #666666;
+}
+
+.reservation .content-user > div {
+    display: table-row;
+}
+
+.reservation .content-user > div > div {
+    display: table-cell;
+    vertical-align: middle;
+    border-bottom: 1px solid #84888c;
+    padding: 20px 0;
+}
+
+.reservation .content-user > div > div:first-child {
+    width: 160px;
+    text-align: center;
+}
+
+.reservation .content-user input[type=text] {
+    height: 34px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+.reservation .content-user input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+}
+
+.reservation .content-user input[type=radio] {
+    width: 15px;
+    height: 15px;
+}
+
+.reservation .content-user select {
+    height: 34px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+.reservation .content-user textarea {
+    width: 100%;
+    height: 300px;
+    resize: vertical;
+    padding: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.reservation .content-control {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 80px;
+}
+
+.reservation .content-control button {
+    background-color: #cccccc;
+    color: #ffffff;
+    border: none;
+    padding: 14px 20px;
+    min-width: 140px;
+    font-size: 16px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.reservation .content-control button[type=submit] {
+    background-color: #333333;
+}
