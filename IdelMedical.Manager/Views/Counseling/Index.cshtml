@@ -10,7 +10,11 @@
 }
 
 <div class="counselingList">
-    <div class="topBar">
+    <div class="title">
+        <span>상담요청</span>
+        <span> > 목록</span>
+    </div>
+    <form class="topBar">
         <div class="categoly">
             <div>
                 <span>카테고리 선택</span>
@@ -35,12 +39,13 @@
                     <option value="답변미완료제외">답변미처리제외</option>
                 </select>
                 <input type="text" />
-                <button class="findBtn">
-                    <span>검색</span>
+                <button class="btn-primary">
+                    검색
                 </button>
             </div>
         </div>
-    </div>
+    </form>
+    <div class="spliter1"></div>
     <div class="itemList">
         <div class="splitLine"></div>
 
@@ -67,26 +72,26 @@
             </div>
             @foreach (var item in items)
             {
-        <div>
-            <div style="text-align: center;">
-                @item.Id
-            </div>
-            <div>
-                <a href="Detail?id=@item.Id">@item.Category</a>
-            </div>
-            <div style="text-align:left;">
-                <a href="Detail?id=@item.Id">@item.Subject</a>
-            </div>
-            <div>
-                <a href="Detail?id=@item.Id">@(string.IsNullOrEmpty(item.Answer) ? "답변대기":"답변완료")</a>
-            </div>
-            <div>
-                <a href="Detail?id=@item.Id">@item.UserName</a>
-            </div>
-            <div style="text-align: center;">
-                @item.CreateTime.ToString("yyyy-MM-dd")
-            </div>
-        </div>
+                <div>
+                    <div style="text-align: center;">
+                        @item.Id
+                    </div>
+                    <div>
+                        <a href="Detail?id=@item.Id">@item.Category</a>
+                    </div>
+                    <div style="text-align:left;">
+                        <a href="Detail?id=@item.Id">@item.Subject</a>
+                    </div>
+                    <div>
+                        <a href="Detail?id=@item.Id">@(string.IsNullOrEmpty(item.Answer) ? "답변대기" : "답변완료")</a>
+                    </div>
+                    <div>
+                        <a href="Detail?id=@item.Id">@item.UserName</a>
+                    </div>
+                    <div style="text-align: center;">
+                        @item.CreateTime.ToString("yyyy-MM-dd")
+                    </div>
+                </div>
             }
         </div>
         <div class="pager">
