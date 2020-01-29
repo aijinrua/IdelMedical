@@ -22,5 +22,20 @@ namespace IdelMedical.User.Kr.Controllers
         {
             return View();
         }
+
+        public IActionResult Expansion()
+        {
+            return View();
+        }
+
+        public IActionResult Elastic()
+        {
+            return View();
+        }
+
+        public IActionResult Point()
+        {
+            return View();
+        }
     }
 }

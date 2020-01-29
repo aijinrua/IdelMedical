@@ -1,0 +1,38 @@
+﻿@{
+}
+
+@section Styles {
+    <style type="text/css">
+        .body {
+            overflow: auto;
+            min-width: 1200px;
+        }
+
+        .body > div {
+            text-align: center;
+        }
+
+        .body img {
+            vertical-align: middle;
+            width: 1200px;
+        }
+    </style>
+}
+
+<div class="body">
+    <div>
+        <img src="~/images/pc/body/body01.jpg" style="width: 100%;" />
+    </div>
+    <div>
+        <img src="~/images/pc/body/body02.jpg" />
+    </div>
+    <div style="background-image: url(/images/pc/body/body03_bg.jpg); background-repeat: repeat-x; background-size: contain;">
+        <img src="~/images/pc/body/body03.jpg" />
+    </div>
+    <div style="background-color: #f9f9f9;">
+        <img src="~/images/pc/body/body04.jpg" />
+    </div>
+    <div style="background-color: #e4f7fd;">
+        <img src="~/images/pc/body/body05.jpg" />
+    </div>
+</div>

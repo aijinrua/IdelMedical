@@ -22,5 +22,20 @@ namespace IdelMedical.User.Kr.Controllers
         {
             return View();
         }
+
+        public IActionResult Scalp()
+        {
+            return View();
+        }
+
+        public IActionResult Idellifting()
+        {
+            return View();
+        }
+
+        public IActionResult InnerTerafi()
+        {
+            return View();
+        }
     }
 }

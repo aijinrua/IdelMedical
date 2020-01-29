@@ -17,5 +17,40 @@ namespace IdelMedical.User.Kr.Controllers
         {
             return View();
         }
+
+        public IActionResult Scalp()
+        {
+            return View();
+        }
+
+        public IActionResult Lifting()
+        {
+            return View();
+        }
+
+        public IActionResult Putty()
+        {
+            return View();
+        }
+
+        public IActionResult White()
+        {
+            return View();
+        }
+
+        public IActionResult InnerTerafi()
+        {
+            return View();
+        }
+
+        public IActionResult Recovery()
+        {
+            return View();
+        }
+
+        public IActionResult Obesityinject()
+        {
+            return View();
+        }
     }
 }

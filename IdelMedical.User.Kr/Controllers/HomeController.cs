@@ -39,6 +39,8 @@ namespace IdelMedical.User.Kr.Controllers
         [HttpGet]
         public IActionResult Main()
         {
+            
+
             if (this.IsMobile())
             {
                 return View("MainMobile");
