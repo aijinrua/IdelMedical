@@ -1,6 +1,5 @@
-﻿@{
-    ViewData["Title"] = "Counseling Detail Page";
-
+﻿@model IdelMedical.Database.Tables.Counseling
+@{
 }
 
 @section Styles {
@@ -9,120 +8,83 @@
     </environment>
 }
 <div class="counselingDetail">
+
+    <div class="title">
+        <span>상담요청</span>
+        <span> > @Model.Category</span>
+    </div>
     <div class="contentArea">
-        <form>
-            <div class="itemLine">
-                <div>
-                    <span>제 목</span>
-                </div>
-                <div>
-                    <div class="textData">
-                        <input type="text" value="" />
-                    </div>
-                </div>
+        <form onsubmit="return false">
+            <input name="Id" type="hidden" value="@Model.Id" />
+            <br />
+            <span class="label" style="padding-left:14px;">제 목</span>
+            <div class="spliter1"></div>
+            <span class="textLine">@Model.Subject</span>
+            <div class="spliter2"></div>
+            <br />
+            <span class="label" style="padding-left:14px;">작성자 정보</span>
+            <div class="spliter1"></div>
+            <div class="writerInfo">
+                <span>작성자:&nbsp;&nbsp;&nbsp;@Model.User.Name</span>
+                <span>연락처:&nbsp;&nbsp;&nbsp;@Model.User.Phone</span>
+                <span>이메일:&nbsp;&nbsp;&nbsp;@Model.User.Email</span>
             </div>
-            <div class="splitLine"></div>
-            <div class="itemLine categoly">
-                <div>
-                    <span>카테고리 선택</span>
-                </div>
-                <div>
-                    <select name="categolyItems" onchange="">
-                        <option value="가슴성형">가슴성형</option>
-                        <option value="동안성형">동안성형</option>
-                        <option value="체형성형">체형성형</option>
-                        <option value="눈성형">눈성형</option>
-                        <option value="코성형">코성형</option>
-                        <option value="안면윤곽">안면윤곽</option>
-                        <option value="피부과">피부과</option>
-                    </select>
-                </div>
-                <div>
-                    <span>코멘트</span>
-                </div>
-                <div>
-                    <div class="textData">
-                        <input type="text" value="" />
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                </div>
-                <div>
-                    <div class="front">
-                        <span>정면</span>
-                    </div>
-                    <div class="degrees45">
-                        <span>45도</span>
-                    </div>
-                    <div class="side">
-                        <span>측면</span>
-                    </div>
-                </div>
-            </div>
-            <div class="itemLine">
-                <div>
-                    <span>P C</span>
-                </div>
-                <div>
-                    <div class="front">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value="" />
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                    <div class="degrees45">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value="" />
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                    <div class="side">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value="" />
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="itemLine">
-                <div>
-                    <span>Mobile</span>
-                </div>
-                <div>
-                    <div class="front">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value="" />
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                    <div class="degrees45">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value="" />
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                    <div class="side">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value="" />
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <input class="submit" type="submit" value="삭 제" />
-                <input class="submit" type="submit" value="등 록" />
+            <div class="spliter2"></div>
+            <br />
+            <span class="label" style="padding-left:14px;">문의 내용</span>
+            <div class="spliter1"></div>
+            <span class="questionArea">@Model.Substance</span>
+            <div class="spliter2"></div>
+            <br />
+            <span class="label" style="padding-left:14px;">답 변</span>
+            <div class="spliter1"></div>
+            <textarea name="answer" class="replyArea" rows="5">@Model.Answer</textarea>
+            <div class="spliter2"></div>
+            <br />
+            <span class="label" style="padding-left:14px;">메 모</span>
+            <div class="spliter1"></div>
+            <textarea name="answer" class="memoArea" rows="5">@Model.Subject</textarea>
+            <div class="spliter2"></div>
+            <br />
+            <br />
+            <div class="control-pannel">
+                <button class="btn-default" type="button" style="margin-right: 10px;" onclick="location.href = document.referrer;">목록</button>
+                <button class="btn-primary" type="button" onclick="updateItem.call(this);">적용</button>
             </div>
         </form>
     </div>
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function updateItem() {
+            try {
+                var form = $(this).parents('form')[0];
+
+                $.ajax({
+                    url: '/Counseling/Update',
+                    method: 'post',
+                    processData: false,
+                    contentType: false,
+                    data: new FormData(form)
+                }).always(function (data, status, xhr) {
+                    if (status !== 'success') {
+                        alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                    }
+                    else if (!data.status) {
+                        alert(data.message);
+                    }
+                    else {
+                        alert('적용되었습니다.');
+                        location.href = document.referrer;
+                    }
+                });
+            } catch (e) {
+                alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                console.log(e);
+            }
+        }
+
+    </script>
+}

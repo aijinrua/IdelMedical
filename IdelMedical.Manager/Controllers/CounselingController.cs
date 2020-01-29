@@ -1,4 +1,5 @@
 ﻿using IdelMedical.Database;
+using IdelMedical.Database.Tables;
 using IdelMedical.Manager.DataModels;
 using IdelMedical.Manager.Handlers;
 using Microsoft.AspNetCore.Mvc;
@@ -49,42 +50,59 @@ namespace IdelMedical.Manager.Controllers
             return View();
         }
 
-        public IActionResult Detail(string Search, int Page = 1)
+        [HttpGet]
+        public async Task<IActionResult> Detail(int? id)
         {
-            var slideTest = new List<SlideModel>();
-
-
-            int testItemCount = 50;
-
-
-
-            //if (!string.IsNullOrWhiteSpace(Search))
-            //{
-            //    list = list
-            //        .Where(x => x.NickName.IndexOf(Search) >= 0 ||
-            //                    x.UserId.IndexOf(Search) >= 0 ||
-            //                    x.TelegramId.IndexOf(Search) >= 0);
-            //}
-
-
-
-            for (int i = 0; i < testItemCount; i++)
+            var item = default(Counseling);
+            if (id == null)
             {
-                var item = i + 1;
-                slideTest.Add(new SlideModel()
+                item = new Counseling
                 {
-                    Number = item,
-                    Title = "SlideTitle_" + (item < 10 ? ("0" + item.ToString()) : item.ToString()),
-                    UploadTime = DateTime.Now.ToString("yyyy-MM-dd")
-                });
+                    Id = -1
+                };
+            }
+            else
+            {
+                item = await this.Db.Counselings
+                    .FirstOrDefaultAsync(x => x.Id == id.Value);
             }
 
-            //var pager = new PageHandler(Page, totalItemCount, 20);
-            var pager = new PageHandler(Page, testItemCount, 15);
+            if (item == null)
+                return NotFound();
 
-            ViewBag.Pager = pager;
-            ViewBag.SlideData = slideTest;
-            return View();
+            var targetWriter = default(User);
+            targetWriter = await this.Db.Users.FirstOrDefaultAsync(x => x.Id == item.UserId);
+            item.User = targetWriter;
+
+
+            return View(item);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(int id, string answer, string memo)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(answer))
+                    throw new Exception("답변을 입력하세요");
+
+                var item = default(Counseling);
+
+                item = await this.Db.Counselings
+                    .FirstOrDefaultAsync(x => x.Id == id);
+
+                item.Answer = answer;
+
+
+                await this.Db.SaveChangesAsync();
+
+                return Json(new { status = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = false, message = ex.Message });
+            }
+        }
+
     }
 }
