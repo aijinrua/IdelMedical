@@ -37,16 +37,29 @@ namespace IdelMedical.User.Kr.Controllers
         }
 
         [HttpGet]
-        public IActionResult Main()
+        public async Task<IActionResult> Main()
         {
-            
-
             if (this.IsMobile())
             {
+                ViewBag.SlideItems = await this.Db.MainSlides
+                    .Where(x => x.IsMobile)
+                    .OrderBy(x => x.OrderIdx)
+                    .ToArrayAsync();
+
                 return View("MainMobile");
             }
             else
             {
+                ViewBag.SlideItems = await this.Db.MainSlides
+                    .Where(x => !x.IsMobile)
+                    .OrderBy(x => x.OrderIdx)
+                    .ToArrayAsync();
+
+                ViewBag.YoutubeItems = await this.Db.IdelTVs
+                    .OrderByDescending(x => x.CreateTime)
+                    .Take(3)
+                    .ToArrayAsync();
+
                 return View("Main");
             }
         }

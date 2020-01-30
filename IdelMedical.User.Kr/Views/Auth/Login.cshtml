@@ -1,6 +1,7 @@
 ﻿@section Styles {
     <link href="~/css/pc_login.css" rel="stylesheet" />
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 }
 
 <div class="login">
@@ -25,16 +26,22 @@
     <div class="oauths">
         <div>
             <div id="naverIdLogin"></div>
-            @*<button>네이버 로그인</button>*@
         </div>
         <div>
-            <button>카카오 로그인</button>
+            <a id="kakao-login-btn"></a>
         </div>
         <div>
-            <button>페이스북 로그인</button>
+            <div class="facebook-login-button" onclick="facebookLogin();">
+                <div>
+                    <img src="~/images/icon_facebook_login.png" />
+                </div>
+                <div>
+                    Facebook으로 로그인
+                </div>
+            </div>
         </div>
         <div>
-            <button>구글 로그인</button>
+            <button onclick="alert('준비중입니다.');">구글 로그인</button>
         </div>
     </div>
 </div>
@@ -44,6 +51,8 @@
 
         $(window).on('load', function () {
             naverInit();
+            facebookInit();
+            kakaoInit();
         });
 
         function naverInit() {
@@ -57,6 +66,37 @@
 	        );
             naverLogin.init();
             $('#naverIdLogin img').css('width', '100%');
+        }
+
+        function kakaoInit() {
+            Kakao.init('@ViewBag.KakaoJavascriptKey');
+            Kakao.Auth.createLoginButton({
+                container: '#kakao-login-btn',
+                success: function (authObj) {
+                    location.href = '/auth/kakaologin?access_token=' + authObj.access_token;
+                },
+                fail: function (err) {
+                    console.log(err);
+                }
+            });
+        }
+
+        function facebookInit() {
+            FB.init({
+                appId: '@ViewBag.FacebookAppId',
+                cookie: true,
+                xfbml: true,
+                version: '@ViewBag.FacebookApiVersion'
+            });
+        }
+
+        function facebookLogin() {
+            FB.login(function (response) {
+                if (response.status === 'connected') {
+                    var accessToken = encodeURI(response.authResponse.accessToken);
+                    location.href = '/auth/facebooklogin?access_token=' + accessToken;
+                }
+            }, {scope: 'public_profile,email'});
         }
 
         function doSubmit() {
@@ -85,5 +125,13 @@
 
             return false;
         }
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
 }

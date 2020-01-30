@@ -31,6 +31,10 @@ namespace IdelMedical.User.Kr.Controllers
         {
             ViewBag.NaverClientId = this.Configuration["OauthNaver:ClientId"];
             ViewBag.NaverRedirectUrl = this.Configuration["OauthNaver:RedirectUrl"];
+            ViewBag.KakaoJavascriptKey = this.Configuration["OauthKakao:JavascriptKey"];
+            ViewBag.FacebookAppId = this.Configuration["OauthFacebook:AppId"];
+            ViewBag.FacebookApiVersion = this.Configuration["OauthFacebook:ApiVersion"];
+
 
             return View();
         }
@@ -46,13 +50,10 @@ namespace IdelMedical.User.Kr.Controllers
                     throw new Exception("비밀번호를 입력하세요");
 
                 var user = this.Db.Users
-                        .Where(x => x.UserId == userid)
+                        .Where(x => x.AccountType == AccountTypes.Idel && x.UserId == userid && x.Passwd == passwd)
                         .FirstOrDefault();
 
                 if (user == null)
-                    throw new Exception("아이디 또는 비밀번호가 일치하지 않습니다.");
-
-                if (user.Passwd != passwd)
                     throw new Exception("아이디 또는 비밀번호가 일치하지 않습니다.");
 
                 HttpContext.Session.SetString("UserKey", user.UserKey);
@@ -64,7 +65,6 @@ namespace IdelMedical.User.Kr.Controllers
                 return Json(new { status = false, message = ex.Message });
             }
         }
-
 
         [HttpGet]
         public async Task<IActionResult> NaverLogin(string access_token)
@@ -127,51 +127,177 @@ namespace IdelMedical.User.Kr.Controllers
             }
         }
 
-        public async Task<IActionResult> Logout()
+        [HttpGet]
+        public async Task<IActionResult> KakaoLogin(string access_token)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(access_token))
+                {
+                    throw new Exception();
+                }
+                else
+                {
+                    using (var http = new HttpClient())
+                    {
+                        http.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", $"Bearer {access_token}");
+                        using (var response = await http.GetAsync($"https://kapi.kakao.com/v2/user/me"))
+                        {
+                            var content = await response.Content.ReadAsStringAsync();
+                            content = Regex.Unescape(content);
+                            var data = JsonConvert.DeserializeAnonymousType(content, new
+                            {
+                                id = default(int),
+                                kakao_account = new
+                                {
+                                    profile = new
+                                    {
+                                        nickname = default(string)
+                                    },
+                                    email = default(string)
+                                }
+                            });
+
+                            HttpContext.Session.SetString("AccountType", "Kakao");
+                            HttpContext.Session.SetString("AccessToken", access_token);
+
+                            if (this.Db.Users.Any(x => x.UserKey == $"kakao_{data.id}"))
+                            {
+                                HttpContext.Session.SetString("UserKey", $"kakao_{data.id}");
+                                return Redirect("/");
+                            }
+                            else
+                            {
+                                HttpContext.Session.SetString("Id", data.id.ToString());
+                                HttpContext.Session.SetString("Name", data.kakao_account.profile.nickname ?? "");
+                                HttpContext.Session.SetString("Email", data.kakao_account.email ?? "");
+
+                                return Redirect("/Auth/Join?accountType=kakao");
+                            }
+                        }
+                    }
+                }
+
+                throw new Exception();
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> FacebookLogin(string access_token)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(access_token))
+                {
+                    throw new Exception();
+                }
+                else
+                {
+                    using (var http = new HttpClient())
+                    {
+                        using (var response = await http.GetAsync($"https://graph.facebook.com/me?fields=name,email&access_token={access_token}"))
+                        {
+                            var content = await response.Content.ReadAsStringAsync();
+                            content = Regex.Unescape(content);
+                            var data = JsonConvert.DeserializeAnonymousType(content, new
+                            {
+                                name = default(string),
+                                id = default(string),
+                                email = default(string)
+                            });
+
+                            HttpContext.Session.SetString("AccountType", "Facebook");
+                            HttpContext.Session.SetString("AccessToken", access_token);
+
+                            if (this.Db.Users.Any(x => x.UserKey == $"facebook_{data.id}"))
+                            {
+                                HttpContext.Session.SetString("UserKey", $"facebook_{data.id}");
+                                return Redirect("/");
+                            }
+                            else
+                            {
+                                HttpContext.Session.SetString("Id", data.id);
+                                HttpContext.Session.SetString("Name", data.name ?? "");
+                                HttpContext.Session.SetString("Email", data.email ?? "");
+
+                                return Redirect("/Auth/Join?accountType=facebook");
+                            }
+                        }
+                    }
+                }
+
+                throw new Exception();
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Logout()
         {
             HttpContext.Session.Remove("UserKey");
 
             var accountType = HttpContext.Session.GetString("AccountType");
 
-            if (accountType == "Naver")
+            switch (accountType)
             {
-                var accessToken = HttpContext.Session.GetString("AccessToken");
-                var clientId = this.Configuration["OauthNaver:ClientId"];
-                var clientSecret = this.Configuration["OauthNaver:ClientSecret"];
-                using (var http = new HttpClient())
-                {
-                    await http.GetAsync($"https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id={clientId}&client_secret={clientSecret}&access_token={accessToken}&service_provider=NAVER");
-                }
+                case "Naver":
+                    {
+                        
+                    }
+                    break;
+                case "Facebook":
+                    {
 
-                HttpContext.Session.Remove("AccountType");
-                HttpContext.Session.Remove("AccessToken");
+                    }
+                    break;
+                default:
+                    break;
             }
 
             return Redirect("/");
         }
 
+        [HttpGet]
         public IActionResult Join(string accountType)
         {
-            if (accountType == "naver")
+            switch (accountType)
             {
-                HttpContext.Session.SetString("AccountType", "Naver");
+                case "naver":
+                    HttpContext.Session.SetString("AccountType", "Naver");
 
-                ViewBag.AccountType = "Naver";
-                ViewBag.Id = HttpContext.Session.GetString("Id");
-                ViewBag.Name = HttpContext.Session.GetString("Name");
-                ViewBag.Email = HttpContext.Session.GetString("Email");
-                ViewBag.Gender = HttpContext.Session.GetString("Gender");
-            }
-            else
-            {
-                HttpContext.Session.SetString("AccountType", "Idel");
-
-                HttpContext.Session.Remove("Id");
-                HttpContext.Session.Remove("Name");
-                HttpContext.Session.Remove("Email");
-                HttpContext.Session.Remove("Gender");
-
-                ViewBag.AccountType = "Idel";
+                    ViewBag.AccountType = "Naver";
+                    ViewBag.Id = HttpContext.Session.GetString("Id");
+                    ViewBag.Name = HttpContext.Session.GetString("Name");
+                    ViewBag.Email = HttpContext.Session.GetString("Email");
+                    ViewBag.Gender = HttpContext.Session.GetString("Gender");
+                    break;
+                case "kakao":
+                    ViewBag.AccountType = "Kakao";
+                    ViewBag.Id = HttpContext.Session.GetString("Id");
+                    ViewBag.Name = HttpContext.Session.GetString("Name");
+                    ViewBag.Email = HttpContext.Session.GetString("Email");
+                    break;
+                case "facebook":
+                    ViewBag.AccountType = "Facebook";
+                    ViewBag.Id = HttpContext.Session.GetString("Id");
+                    ViewBag.Name = HttpContext.Session.GetString("Name");
+                    ViewBag.Email = HttpContext.Session.GetString("Email");
+                    break;
+                default:
+                    ViewBag.AccountType = "Idel";
+                    HttpContext.Session.SetString("AccountType", "Idel");
+                    HttpContext.Session.Remove("Id");
+                    HttpContext.Session.Remove("Name");
+                    HttpContext.Session.Remove("Email");
+                    HttpContext.Session.Remove("Gender");
+                    break;
             }
 
             return View();
@@ -213,15 +339,35 @@ namespace IdelMedical.User.Kr.Controllers
                 switch (HttpContext.Session.GetString("AccountType"))
                 {
                     case "Naver":
-                        accountType = AccountTypes.Naver;
+                        {
+                            accountType = AccountTypes.Naver;
 
-                        var id = HttpContext.Session.GetString("Id");
-                        userkey = $"naver_{id}";
+                            var id = HttpContext.Session.GetString("Id");
+                            userkey = $"naver_{id}";
+                        }
+                        break;
+                    case "Kakao":
+                        {
+                            accountType = AccountTypes.Kakao;
+
+                            var id = HttpContext.Session.GetString("Id");
+                            userkey = $"kakao_{id}";
+                        }
+                        break;
+                    case "Facebook":
+                        {
+                            accountType = AccountTypes.Facebook;
+
+                            var id = HttpContext.Session.GetString("Id");
+                            userkey = $"facebook_{id}";
+                        }
                         break;
                     case "Idel":
                     default:
-                        accountType = AccountTypes.Idel;
-                        userkey = Guid.NewGuid().ToString().ToLower().Replace("-", "");
+                        {
+                            accountType = AccountTypes.Idel;
+                            userkey = Guid.NewGuid().ToString().ToLower().Replace("-", "");
+                        }
                         break;
                 }
 
@@ -245,7 +391,7 @@ namespace IdelMedical.User.Kr.Controllers
                     if (passwd != passwdRe)
                         throw new Exception("비밀번호가 확인용 비밀번호와 일치하지 않습니다.");
                 }
-                else if (accountType == AccountTypes.Naver)
+                else
                 {
                     var id = HttpContext.Session.GetString("Id");
                     userid = userkey;
@@ -304,26 +450,6 @@ namespace IdelMedical.User.Kr.Controllers
         [HttpGet]
         public IActionResult Find()
         {
-            //var client = new SmtpClient
-            //{
-            //    Host = "idelmedi.com",
-            //    UseDefaultCredentials = true,
-            //    DeliveryMethod = SmtpDeliveryMethod.Network
-            //};
-
-            //var mail = new MailMessage
-            //{
-            //    From = new MailAddress("admin@idelmedi.com", "아이델 성형외과"),
-            //    SubjectEncoding = Encoding.UTF8,
-            //    Subject = "[테스트] 아이델",
-            //    Body = "<a href='https://idelmedi.com'>아이델</a>",
-            //    IsBodyHtml = true
-            //};
-
-            //mail.To.Add("aijinrua@naver.com");
-
-            //client.Send(mail);
-
             return View();
         }
 
