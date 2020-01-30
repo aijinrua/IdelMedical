@@ -13,6 +13,9 @@ namespace IdelMedical.Database.Tables
         [Key]
         public int Id { get; set; }
 
+        [Required]
+        public int UserId { get; set; }
+
         [MaxLength(100)]
         public string Category { get; set; }
 
@@ -36,12 +39,20 @@ namespace IdelMedical.Database.Tables
 
         public DateTime CreateTime { get; set; }
 
+        public User User { get; set; }
+
         public static void Build(ModelBuilder modelBuilder)
         {
             var entity = modelBuilder.Entity<Reservation>();
             entity.HasIndex(x => x.Category);
             entity.HasIndex(x => x.Name);
             entity.HasIndex(x => x.Phone);
+
+            entity.HasOne(x => x.User)
+                .WithMany(x => x.Reservations)
+                .HasPrincipalKey(x => x.Id)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

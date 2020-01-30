@@ -48,6 +48,10 @@ namespace IdelMedical.Database.Tables
         [Required]
         public DateTime CreateTime { get; set; }
 
+        public IEnumerable<Reservation> Reservations { get; set; }
+
+        public IEnumerable<Counseling> Counselings { get; set; }
+
         public static void Build(ModelBuilder modelBuilder)
         {
             var entity = modelBuilder.Entity<User>();
