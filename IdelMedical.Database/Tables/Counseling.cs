@@ -35,7 +35,7 @@ namespace IdelMedical.Database.Tables
 
             entity
                 .HasOne(x => x.User)
-                .WithMany()
+                .WithMany(x => x.Counselings)
                 .HasPrincipalKey(x => x.Id)
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.SetNull);
