@@ -1,6 +1,9 @@
 ﻿@{
     var pager = (PageHandler)ViewBag.Pager;
     var items = (IdelMedical.Database.Tables.Counseling[])ViewBag.Items;
+    var search = (string)ViewBag.Search;
+    var categoryFilter = (string)ViewBag.CategoryFilter;
+    var applyFilter = (string)ViewBag.Applyfilter;
 
 }
 @section Styles {
@@ -18,28 +21,28 @@
         <div class="category">
             <div>
                 <span>카테고리 선택</span>
-                <select name="categoryFilter" onchange="">
-                    <option value="전체">전체</option>
-                    <option value="가슴성형">가슴성형</option>
-                    <option value="동안성형">동안성형</option>
-                    <option value="체형성형">체형성형</option>
-                    <option value="눈성형">눈성형</option>
-                    <option value="코성형">코성형</option>
-                    <option value="안면윤곽">안면윤곽</option>
-                    <option value="피부과">피부과</option>
+                <select name="categoryFilter">
+                    <option value="전체" selected="@(string.IsNullOrWhiteSpace(categoryFilter) ? "selected" : null)">전체</option>
+                    <option value="가슴성형" selected="@(categoryFilter == "가슴성형" ? "selected" : null)">가슴성형</option>
+                    <option value="동안성형" selected="@(categoryFilter == "동안성형" ? "selected" : null)">동안성형</option>
+                    <option value="체형성형" selected="@(categoryFilter == "체형성형" ? "selected" : null)">체형성형</option>
+                    <option value="눈성형" selected="@(categoryFilter == "눈성형" ? "selected" : null)">눈성형</option>
+                    <option value="코성형" selected="@(categoryFilter == "코성형" ? "selected" : null)">코성형</option>
+                    <option value="안면윤곽" selected="@(categoryFilter == "안면윤곽" ? "selected" : null)">안면윤곽</option>
+                    <option value="피부과" selected="@(categoryFilter == "피부과" ? "selected" : null)">피부과</option>
                 </select>
 
                 <span>상태</span>
-                <select name="resultFilter" onchange="">
-                    <option value="전체">전체</option>
-                    <option value="처리완료">처리완료</option>
-                    <option value="미처리">미처리</option>
+                <select name="applyFilter">
+                    <option value="전체" selected="@(string.IsNullOrWhiteSpace(applyFilter) ? "selected" : null)">전체</option>
+                    <option value="처리완료" selected="@(applyFilter == "처리완료" ? "selected" : null)">처리완료</option>
+                    <option value="미처리" selected="@(applyFilter == "미처리" ? "selected" : null)">미처리</option>
                 </select>
             </div>
         </div>
         <div class="findArea">
             <div>
-                <input type="text" />
+                <input name="search" type="text" value="@search" />
                 <button class="btn-primary" onclick="filterApply.call(this)">
                     검색
                 </button>
@@ -99,15 +102,15 @@
             <div class="paging">
                 @if (pager.PrevPage > 0)
                 {
-                    <a href="@Url.Action("Index", new { page = pager.PrevPage })">&lt;</a>
+                    <a onclick="PrevPage.call(this)" href="@Url.Action("Index", new { page = pager.PrevPage, search, categoryFilter, applyFilter })">&lt;</a>
                 }
                 @for (int i = pager.StartPage; i <= pager.EndPage; i++)
                 {
-                    <a href="@Url.Action("Index", new { page = i })" class="@(i == pager.CurrentPage ? "active" : null)">@i.ToString("#,##0")</a>
+                    <a href="@Url.Action("Index", new { page = i, search, categoryFilter, applyFilter })" class="@(i == pager.CurrentPage ? "active" : null)">@i.ToString("#,##0")</a>
                 }
                 @if (pager.NextPage > 0)
                 {
-                    <a href="@Url.Action("Index", new { page = pager.NextPage })">&gt;</a>
+                    <a href="@Url.Action("Index", new { page = pager.NextPage, search, categoryFilter, applyFilter })">&gt;</a>
                 }
             </div>
         </div>
@@ -121,24 +124,6 @@
             try {
                 var form = $(this).parents('form')[0];
 
-                //$.ajax({
-                //    url: '/Counseling',
-                //    method: 'post',
-                //    processData: false,
-                //    contentType: false,
-                //    data: new FormData(form)
-                //}).always(function (data, status, xhr) {
-                //    if (status !== 'success') {
-                //        alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
-                //    }
-                //    else if (!data.status) {
-                //        alert(data.message);
-                //    }
-                //    else {
-                //        //alert('적용되었습니다.');
-                //        location.href = document.referrer;
-                //    }
-                //});
                 location.href = document.referrer;
             } catch (e) {
                 alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
@@ -146,5 +131,25 @@
             }
         }
 
+        function PrevPage() {
+            try {
+                var form = $(this).parents('form')[0];
+
+                location.href = document.referrer;
+            } catch (e) {
+                alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                console.log(e);
+            }
+        }
+        function NextPage() {
+            try {
+                var form = $(this).parents('form')[0];
+                page = pager.NextPage
+                location.href = document.referrer;
+            } catch (e) {
+                alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                console.log(e);
+            }
+        }
     </script>
 }
