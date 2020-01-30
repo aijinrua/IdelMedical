@@ -1,7 +1,5 @@
-﻿@{
-    ViewData["Title"] = "Reservation Detail Page";
-
-
+﻿@model IdelMedical.Database.Tables.Reservation
+@{
 }
 
 @section Styles {
@@ -10,103 +8,48 @@
     </environment>
 }
 <div class="detail">
+    <div class="title">
+        <span>예약요청</span>
+        <span> > 상세정보</span>
+    </div>
     <div class="contentArea">
-        <form>
-            <div class="itemLine">
+        <form onsubmit="return false">
+            <input name="Id" type="hidden" value="@Model.Id" />
+            <br />
+            <span class="label" style="padding-left:14px;">제 목</span>
+            <div class="spliter1"></div>
+            <span class="onlyText">@Model.Id</span>
+            <div class="spliter2"></div>
+            <br />
+            <span class="label" style="padding-left:14px;">작성자 정보</span>
+            <div class="spliter1"></div>
+            <div class="writerInfo">
                 <div>
-                    <span>제 목</span>
+                    <span>작성자 :</span><span>@Model.Id</span>
                 </div>
                 <div>
-                    <div class="textData">
-                        <input type="text" value="" />
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
+                    <span>연락처 :</span><span>@Model.Id</span>
                 </div>
                 <div>
-                    <div class="thumbnailArea">
-                        <span>썸네일</span>
-                    </div>
-                    <div class="originArea">
-                        <span>내용 이미지</span>
-                    </div>
+                    <span>이메일 :</span><span>@Model.Id</span>
                 </div>
             </div>
-            <div class="itemLine">
-                <div>
-                    <span>P C</span>
-                </div>
-                <div>
-                    <div class="thumbnailArea">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                    <div class="originArea">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="itemLine">
-                <div>
-                    <span>Mobile</span>
-                </div>
-                <div>
-                    <div class="thumbnailArea">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                    <div class="originArea">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                    <div>
-                        <span>페이지 링크</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="textData">
-                        <input type="text" />
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                    <div>
-                        <span>동영상 링크</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="textData">
-                        <input type="text" />
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <input class="submit" type="submit" value="삭 제" />
-                <input class="submit" type="submit" value="등 록" />
+            <div class="spliter2"></div>
+            <br />
+            <span class="label" style="padding-left:14px;">문의 내용</span>
+            <div class="spliter1"></div>
+            <pre class="questionArea">@Model.Id</pre>
+            <div class="spliter2"></div>
+            <br />
+            <span class="label" style="padding-left:14px;">답 변</span>
+            <div class="spliter1"></div>
+            <textarea name="answer" class="replyArea" rows="12">@Model.Id</textarea>
+            <div class="spliter2"></div>
+            <br />
+            <br />
+            <div class="control-pannel">
+                <button class="btn-default" type="button" style="margin-right: 10px;" onclick="location.href = document.referrer;">목록</button>
+                <button class="btn-primary" type="button" onclick="updateItem.call(this);">적용</button>
             </div>
         </form>
     </div>

@@ -65,10 +65,10 @@
                         <a href="/Reservation/Detail?id=@item.Id">@item.Phone</a>
                     </div>
                     <div style="text-align: center;">
-                        <a href="/Reservation/Detail?id=@item.Id">@(item.UseCall == true ? "true" : "false")</a>
+                        <a href="/Reservation/Detail?id=@item.Id">@(item.UseCall == true ? "승인" : "미승인")</a>
                     </div>
                     <div style="text-align: center;">
-                        <a href="/Reservation/Detail?id=@item.Id">@item.ReservationTime.ToString("yyyy-MM-dd tt hh:mm")</a>
+                        <a href="/Reservation/Detail?id=@item.Id">@item.ReservationTime.ToString("yyyy-MM-dd")</a>
                     </div>
                 </div>
             }
