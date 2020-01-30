@@ -1,6 +1,216 @@
 ﻿@{
+    var page = (int)ViewBag.Page;
+    var startPage = (int)ViewBag.StartPage;
+    var endPage = (int)ViewBag.EndPage;
+    var prevPage = (int)ViewBag.PrevPage;
+    var nextPage = (int)ViewBag.NextPage;
+
+    var category = (string)ViewBag.Category;
+
+    var items = (IdelMedical.Database.Tables.BeforeAfter[])ViewBag.Items;
+
+    var isLogin = !string.IsNullOrWhiteSpace(Context.Session.GetString("UserKey"));
 }
 
-<div>
 
+@section Styles {
+    <link href="~/css/pc_beforeafter.css" rel="stylesheet" />
+}
+
+<div class="beforeafter">
+    <div class="title">
+        <span>전후사진</span><br />
+        <span>IDEL PLASTIC SURGERY & AESTHETIC</span>
+    </div>
+    <div class="content">
+        <div class="tab-menu">
+            <a href="/serviceresult/beforeafter" class="@(string.IsNullOrWhiteSpace(category) ? "active" : null)">전체</a>
+            <a href="/serviceresult/beforeafter?category=가슴성형" class="@(category == "가슴성형" ? "active" : null)">가슴성형</a>
+            <a href="/serviceresult/beforeafter?category=동안성형" class="@(category == "동안성형" ? "active" : null)">동안성형</a>
+            <a href="/serviceresult/beforeafter?category=체형성형" class="@(category == "체형성형" ? "active" : null)">체형성형</a>
+            <a href="/serviceresult/beforeafter?category=눈성형" class="@(category == "눈성형" ? "active" : null)">눈성형</a>
+            <a href="/serviceresult/beforeafter?category=코성형" class="@(category == "코성형" ? "active" : null)">코성형</a>
+            <a href="/serviceresult/beforeafter?category=안면윤곽" class="@(category == "안면윤곽" ? "active" : null)">안면윤곽</a>
+            <a href="/serviceresult/beforeafter?category=피부과" class="@(category == "피부과" ? "active" : null)">피부과</a>
+        </div>
+
+        @if (items == null || items.Length == 0)
+        {
+            <div class="no-item">
+                검색 결과가 없습니다.
+            </div>
+        }
+        else
+        {
+            var firstItem = items[0];
+
+            if (!isLogin)
+            {
+                <div class="login-pannel">
+                    <img src="~/images/pc/logo_default.png" />
+
+                    <div class="box">
+                        아이델성형외과는 의료법을 준수합니다.<br />
+                        로그인 시 전후사진을 확인하실 수 있습니다.
+                    </div>
+
+                    <a href="/auth/login">
+                        회원 로그인
+                        <img src="~/images/pc/icon_gologin.png" />
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="comment">
+                    @firstItem.Comment
+                </div>
+                <div class="detail-image">
+                    <div>
+                        <div class="item-image" style="background-image: url(@firstItem.BeforeFront);" onclick="showDetailImage.call(this);">
+                            <div>
+                                BEFORE
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="item-image" style="background-image: url(@firstItem.AfterFront);" onclick="showDetailImage.call(this);">
+                            <div>
+                                AFTER
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-image" style="display: none;">
+                    <div>
+                        <div class="item-image" style="background-image: url(@firstItem.BeforeHalf);" onclick="showDetailImage.call(this);">
+                            <div>
+                                BEFORE
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="item-image" style="background-image: url(@firstItem.AfterHalf);" onclick="showDetailImage.call(this);">
+                            <div>
+                                AFTER
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-image" style="display: none;">
+                    <div>
+                        <div class="item-image" style="background-image: url(@firstItem.BeforeSide);" onclick="showDetailImage.call(this);">
+                            <div>
+                                BEFORE
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="item-image" style="background-image: url(@firstItem.AfterSide);" onclick="showDetailImage.call(this);">
+                            <div>
+                                AFTER
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="tab-pannel">
+                <button class="active" onclick="switchView.call(this, 0);">정면</button>&nbsp;
+                <button onclick="switchView.call(this, 1);">45도</button>&nbsp;
+                <button onclick="switchView.call(this, 2);">측면</button>
+            </div>
+
+            <div class="list-pannel">
+                @for (int i = 0; i < items.Length; i++)
+                {
+                    var item = items[i];
+
+                    if (isLogin)
+                    {
+                        <div class="item @(i == 0 ? "active" : null)" onclick="switchItem.call(this, @Newtonsoft.Json.JsonConvert.SerializeObject(item));">
+                            <div>
+                                <div class="item-image" style="background-image: url(@item.BeforeFront);">
+                                    <div>
+                                        BEFORE
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="item-image" style="background-image: url(@item.AfterFront);">
+                                    <div>
+                                        AFTER
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="item" style="text-align: center; background-color: #f7f7f7; padding: 80px 0; margin-bottom: 50px;">
+                            <img src="~/images/pc/logo_simple.png" />
+                        </div>
+                    }
+                }
+            </div>
+        }
+
+        <div class="pager">
+            <div class="paging">
+                @if (prevPage > 0)
+                {
+                    <a href="@Url.Action("beforeafter", new { category, page = prevPage })">&lt;</a>
+                }
+                @for (int i = startPage; i <= endPage; i++)
+                {
+                    <a href="@Url.Action("beforeafter", new { category, page = i })" class="@(i == page ? "active" : null)">@i.ToString("#,##0")</a>
+                }
+                @if (nextPage > 0)
+                {
+                    <a href="@Url.Action("beforeafter", new { category, page = nextPage })">&gt;</a>
+                }
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function switchView(type) {
+            $('.detail-image').css('display', 'none');
+            $($('.detail-image')[type]).css('display', 'block');
+
+            $('.tab-pannel button').removeClass('active');
+            $(this).addClass('active');
+        }
+
+        function switchItem(data) {
+            $('.comment').text(data.Comment);
+
+            $($('.detail-image')[0]).find(' > div:first-child .item-image').css('background-image', 'url(' + data.BeforeFront + ')');
+            $($('.detail-image')[0]).find(' > div:last-child .item-image').css('background-image', 'url(' + data.AfterFront + ')');
+            $($('.detail-image')[0]).css('display', 'block');
+            
+            $($('.detail-image')[1]).find(' > div:first-child .item-image').css('background-image', 'url(' + data.BeforeHalf + ')');
+            $($('.detail-image')[1]).find(' > div:last-child .item-image').css('background-image', 'url(' + data.AfterHalf + ')');
+            $($('.detail-image')[1]).css('display', 'none');
+
+            $($('.detail-image')[2]).find(' > div:first-child .item-image').css('background-image', 'url(' + data.BeforeSide + ')');
+            $($('.detail-image')[2]).find(' > div:last-child .item-image').css('background-image', 'url(' + data.AfterSide + ')');
+            $($('.detail-image')[2]).css('display', 'none');
+
+            $('.tab-pannel button').removeClass('active');
+            $('.tab-pannel button:first-child').addClass('active');
+
+            $('.list-pannel .item').removeClass('active');
+            $(this).addClass('active');
+        }
+
+        function showDetailImage() {
+            var bg = $(this).css('background-image');
+            bg = bg.replace('url("', '').replace('")', '');
+
+            window.open(bg);
+        }
+    </script>
+}

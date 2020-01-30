@@ -37,6 +37,8 @@ namespace IdelMedical.Database
             User.Build(modelBuilder);
             Counseling.Build(modelBuilder);
             Reservation.Build(modelBuilder);
+            BeforeAfter.Build(modelBuilder);
+            Manager.Build(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
 
@@ -49,7 +51,18 @@ namespace IdelMedical.Database
         {
             using (var db = new DatabaseContext(configuration))
             {
-                db.Database.EnsureCreated();
+                if (db.Database.EnsureCreated())
+                {
+                    db.Managers.Add(new Manager
+                    {
+                        CreateTime = DateTime.Now,
+                        Passwd = "manager",
+                        Type = ManagerTypes.Root,
+                        UserId = "rootmanager"
+                    });
+
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -62,5 +75,7 @@ namespace IdelMedical.Database
         public DbSet<User> Users { get; set; }
         public DbSet<Counseling> Counselings { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<BeforeAfter> BeforeAfters { get; set; }
+        public DbSet<Manager> Managers { get; set; }
     }
 }

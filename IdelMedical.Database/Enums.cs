@@ -18,4 +18,11 @@ namespace IdelMedical.Database
         Facebook = 3,
         Google = 4
     }
+
+    public enum ManagerTypes
+    {
+        Root = 0,
+        Counseler = 1,
+        Marketer = 2
+    }
 }

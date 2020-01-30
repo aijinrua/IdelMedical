@@ -8,7 +8,16 @@
 <div class="top-bar">
     <div class="action-bar">
         <div>
-            &nbsp;
+            <div class="flags">
+                <a href="/"><img src="~/images/flag01.png" /></a>
+                <a href="javascript:alert('준비중입니다.');"><img src="~/images/flag02.png" /></a>
+                <a href="javascript:alert('준비중입니다.');"><img src="~/images/flag03.png" /></a>
+                <a href="javascript:alert('준비중입니다.');"><img src="~/images/flag04.png" /></a>
+                <a href="javascript:alert('준비중입니다.');"><img src="~/images/flag05.png" /></a>
+                <a href="javascript:alert('준비중입니다.');"><img src="~/images/flag06.png" /></a>
+                <a href="javascript:alert('준비중입니다.');"><img src="~/images/flag07.png" /></a>
+                <a href="javascript:alert('준비중입니다.');"><img src="~/images/flag08.png" /></a>
+            </div>
         </div>
         <div>
             <a href="/">
@@ -26,7 +35,7 @@
                 <a href="/auth/join">회원가입</a> <span></span>
             }
             <a href="/information/map">오시는길</a> <span></span>
-            <a href="/serviceresult/bna">전후사진</a> <span></span>
+            <a href="/serviceresult/beforeafter">전후사진</a> <span></span>
             <a href="/counseling/counseling">온라인상담</a>
         </div>
     </div>
@@ -40,7 +49,7 @@
         <a menuindex="5" href="/nose/bridge" class="@(controller == "Nose" ? "active" : null)">코성형</a>
         <a menuindex="6" href="/faceline/idel" class="@(controller == "Faceline" ? "active" : null)">안면윤곽</a>
         <a menuindex="7" href="/skin/recovery" class="@(controller == "Skin" ? "active" : null)">피부과</a>
-        <a menuindex="8" href="/serviceresult/bna" class="@(controller == "ServiceResult" ? "active" : null)">전후사진</a>
+        <a menuindex="8" href="/serviceresult/beforeafter" class="@(controller == "ServiceResult" ? "active" : null)">전후사진</a>
         <a menuindex="9" href="/counseling/reservation" class="@(controller == "Counseling" ? "active" : null)">상담</a>
         <a menuindex="10" href="/community/noticelist" class="@(controller == "Community" ? "active" : null)">커뮤니티</a>
     </div>
@@ -101,7 +110,7 @@
                 <a href="/skin/obesityinject">비만</a>
             </div>
             <div>
-                <a href="/serviceresult/bna">전/후사진</a>
+                <a href="/serviceresult/beforeafter">전/후사진</a>
                 <a href="/serviceresult/realstory">리얼스토리</a>
             </div>
             <div>
@@ -117,5 +126,38 @@
                 <a href="/community/ideleventlist">이벤트</a>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="sidemenu">
+    <a href="/auth/login" style="margin-bottom: 10px;">로그인</a>
+    <div class="spliter" style="margin-bottom: 10px;"></div>
+    <a href="/auth/login" style="margin-bottom: 20px;">회원가입</a>
+    <a href="#"><img src="~/images/pc/icon_sidemenu_kakao.png" /></a>
+    <a href="#" style="margin-bottom: 10px;">카톡상담</a>
+    <a href="/counseling/counseling"><img src="~/images/pc/icon_sidemenu_counseling.png" /></a>
+    <a href="/counseling/counseling" style="margin-bottom: 20px;">온라인상담</a>
+    <a href="/counseling/reservation"><img src="~/images/pc/icon_sidemenu_reservation.png" /></a>
+    <a href="/counseling/reservation" style="margin-bottom: 20px;">온라인예약</a>
+    <a href="/information/map"><img src="~/images/pc/icon_sidemenu_map.png" /></a>
+    <a href="/information/map" style="margin-bottom: 20px;">오시는길</a>
+    <div class="row">
+        <img src="~/images/pc/icon_sidemenu_phone.png" style="vertical-align: bottom;" /> 상담문의
+    </div>
+    <div class="row" style="margin-bottom: 10px; font-size: 16px; font-weight: bold;">
+        02.3442.5900
+    </div>
+    <div class="spliter" style="margin-bottom: 10px;"></div>
+    <div class="row">
+        평일
+    </div>
+    <div class="row">
+        10:00 ~ 19:00
+    </div>
+    <div class="row">
+        토요일
+    </div>
+    <div class="row">
+        10:00 ~ 17:00
     </div>
 </div>

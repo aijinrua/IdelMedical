@@ -1,0 +1,279 @@
+﻿img {
+    vertical-align: middle;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.beforeafter {
+    background-color: #ffffff;
+    color: #000000;
+    min-width: 1200px;
+}
+
+.beforeafter .title {
+    margin: 0 auto;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.beforeafter .title span:first-child {
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.beforeafter .title span:last-child {
+    font-size: 25px;
+}
+
+.beforeafter .content {
+    width: 1200px;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.beforeafter .tab-menu {
+    overflow: auto;
+    margin-bottom: 40px;
+}
+
+.beforeafter .tab-menu > a {
+    display: flex;
+    float: left;
+    width: 12.5%;
+    height: 60px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #555555;
+    border-right: none;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.beforeafter .tab-menu > a:last-child {
+    border-right: 1px solid #555555;
+}
+
+.beforeafter .tab-menu > a.active {
+    background-color: #81d8d0;
+}
+
+.beforeafter .no-item {
+    text-align: center;
+    font-size: 30px;
+    padding-top: 50px;
+    padding-bottom: 110px;
+}
+
+.beforeafter .comment {
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 16px;
+    margin-bottom: 30px;
+}
+
+.beforeafter .detail-image {
+    overflow: auto;
+    margin: 0 auto;
+    width: 850px;
+}
+
+.beforeafter .detail-image > div {
+    float: left;
+    width: 50%;
+    padding: 0 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.beforeafter .detail-image .item-image {
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    height: 550px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.beforeafter .detail-image .item-image > div {
+    background-color: rgba(0, 0, 0, 0.70);
+    color: #ffffff;
+    font-size: 30px;
+    padding: 20px 0;
+    width: 100%;
+    text-align: center;
+    letter-spacing: 10px;
+}
+
+.beforeafter .tab-pannel {
+    padding: 30px 0;
+    text-align: center;
+}
+
+.beforeafter .tab-pannel button {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 5px 10px;
+    min-width: 80px;
+    min-height: 40px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.beforeafter .tab-pannel button.active {
+    background-color: #81d8d0;
+}
+
+.beforeafter .list-pannel {
+    overflow: auto;
+}
+
+.beforeafter .list-pannel .item {
+    float: left;
+    width: calc(33.333% - 20px);
+    margin: 10px;
+    border: 5px solid transparent;
+    box-sizing: border-box;
+    overflow: auto;
+    cursor: pointer;
+}
+
+.beforeafter .list-pannel .item.active {
+    border: 5px solid #81d8d0;
+}
+
+.beforeafter .list-pannel .item > div {
+    padding: 5px;
+    float: left;
+    width: 50%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.beforeafter .list-pannel .item .item-image {
+    height: 230px;
+    display: flex;
+    align-items: flex-end;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.beforeafter .list-pannel .item .item-image > div {
+    background-color: rgba(0, 0, 0, 0.70);
+    color: #ffffff;
+    font-size: 16px;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    letter-spacing: 4px;
+}
+
+.beforeafter .login-pannel {
+    width: 800px;
+    margin: 0 auto;
+    background-color: #f7f7f7;
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: center;
+    align-items: center;
+    padding: 100px 20px;
+}
+
+.beforeafter .login-pannel .box {
+    border: 1px solid #666666;
+    padding: 10px 30px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.beforeafter .login-pannel a {
+    display: inline-flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    background-color: #81d8d0;
+    padding: 7px 20px;
+}
+
+
+
+
+.pager {
+    background-color: #fff;
+    padding-bottom: 60px;
+    color: black;
+    text-align: center;
+}
+
+.pager .paging {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pager .paging a {
+    display: inline-block;
+    border: 1px solid #131313;
+    min-width: 30px;
+    font-size: 20px;
+    margin: 0 2px;
+    padding: 0 7px;
+    box-sizing: border-box;
+}
+
+.pager .paging a.active {
+    background-color: #131313;
+    color: white;
+}
+
+.pager .search {
+    display: inline-flex;
+    overflow: auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.pager .search select,
+.pager .search input,
+.pager .search button {
+    font-size: 18px;
+    height: 34px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.pager .search select {
+    margin-right: 5px;
+}
+
+.pager .search input {
+    width: 200px;
+    padding: 0 7px;
+}
+
+.pager .search button {
+    width: 70px;
+    background-color: #a6a6a6;
+    color: white;
+    border: none;
+    outline: none;
+}

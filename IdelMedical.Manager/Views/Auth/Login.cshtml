@@ -1,0 +1,41 @@
+﻿
+@section Styles {
+    <link href="~/css/auth.css" rel="stylesheet" />
+}
+
+<form class="login">
+    <div class="header">Idel Medical Manager Console</div>
+    <input placeholder="Manager ID" />
+    <input placeholder="Password" type="password" />
+    <button type="button">로그인</button>
+</form>
+
+@section Scripts {
+    <script type="text/javascript">
+        function doLogin() {
+            try {
+                var form = $(this).parents('form')[0];
+
+                $.ajax({
+                    url: '/auth/login',
+                    method: 'post',
+                    processData: false,
+                    contentType: false,
+                    data: new FormData(form)
+                }).always(function (data, status, xhr) {
+                    if (status !== 'success') {
+                        alert('담당자에게 문의해 주세요');
+                    }
+                    else if (!data.status) {
+                        alert(data.message);
+                    }
+                    else {
+                        location.href = '/member';
+                    }
+                });
+            } catch (e) {
+                console.log(e);
+            }
+        }
+    </script>
+}

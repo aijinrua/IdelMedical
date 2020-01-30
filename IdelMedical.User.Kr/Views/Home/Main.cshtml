@@ -4,7 +4,6 @@
     <link href="/lib/owl-carousel/owl.theme.min.css" rel="stylesheet" />
 }
 
-
 <div class="main-slide">
     <div>
         <img src="~/images/pc/mainslide/image01.jpg" />
@@ -206,7 +205,7 @@
                 지하철 3호선 압구정역 2번 출구 성수대교 남단(압구정 로데오) 사거리 방면<br />
                 지하철 분당선 압구정로데오역 6번 출구 성수대교 남단(압구정) 방면
             </div>
-            <div>02.3342.5900</div>
+            <div>02.3442.5900</div>
         </div>
         <div class="right">
             <img src="~/images/pc/map.jpg" />
@@ -214,24 +213,36 @@
     </div>
 </div>
 
-
-
 @section Scripts {
     <script src="/lib/owl-carousel/owl.carousel.min.js"></script>
+    <script src='https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js'></script>
 
     <script type="text/javascript">
         $(document).ready(initPage);
 
         function initPage() {
             $('.main-slide').owlCarousel({
-                items: 1,
+                singleItem: true,
                 autoPlay: 3000,
                 stopOnHover: true,
             });
 
-            var title = encodeURI('휴진안내');
-            var img = encodeURI('/images/popup/2020011601.jpg');
-            window.open('/Home/Popup?title=' + title + '&img=' + img, 'popup01', 'left=0,top=0,width=450,height=450');
+            //var title = encodeURI('휴진안내');
+            //var img = encodeURI('/images/popup/2020011601.jpg');
+            //window.open('/Home/Popup?title=' + title + '&img=' + img, 'popup01', 'left=0,top=0,width=450,height=450');
+
+            initSnowFlakes();
+        }
+
+        function initSnowFlakes() {
+            var sf = new Snowflakes({
+                color: '#ffffff',
+                count: 200,
+                speed: 1,
+                minSize: 5,
+                maxSize: 18,
+                wind: false
+            });
         }
 
         function sendQuestionForm() {
