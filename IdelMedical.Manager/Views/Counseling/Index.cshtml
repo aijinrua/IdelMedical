@@ -15,10 +15,10 @@
         <span> > 목록</span>
     </div>
     <form class="topBar">
-        <div class="categoly">
+        <div class="category">
             <div>
                 <span>카테고리 선택</span>
-                <select name="categolyItems" onchange="">
+                <select name="categoryFilter" onchange="">
                     <option value="전체">전체</option>
                     <option value="가슴성형">가슴성형</option>
                     <option value="동안성형">동안성형</option>
@@ -30,7 +30,7 @@
                 </select>
 
                 <span>상태</span>
-                <select name="categolyItems" onchange="">
+                <select name="resultFilter" onchange="">
                     <option value="전체">전체</option>
                     <option value="처리완료">처리완료</option>
                     <option value="미처리">미처리</option>
@@ -40,7 +40,7 @@
         <div class="findArea">
             <div>
                 <input type="text" />
-                <button class="btn-primary">
+                <button class="btn-primary" onclick="filterApply.call(this)">
                     검색
                 </button>
             </div>
@@ -113,3 +113,38 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function filterApply() {
+            try {
+                var form = $(this).parents('form')[0];
+
+                //$.ajax({
+                //    url: '/Counseling',
+                //    method: 'post',
+                //    processData: false,
+                //    contentType: false,
+                //    data: new FormData(form)
+                //}).always(function (data, status, xhr) {
+                //    if (status !== 'success') {
+                //        alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                //    }
+                //    else if (!data.status) {
+                //        alert(data.message);
+                //    }
+                //    else {
+                //        //alert('적용되었습니다.');
+                //        location.href = document.referrer;
+                //    }
+                //});
+                location.href = document.referrer;
+            } catch (e) {
+                alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                console.log(e);
+            }
+        }
+
+    </script>
+}

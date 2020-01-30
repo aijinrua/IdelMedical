@@ -26,9 +26,28 @@ namespace IdelMedical.Manager.Controllers
             this.Db = db;
         }
 
-        public async Task<IActionResult> Index(int Page = 1)
+        public async Task<IActionResult> Index(int Page = 1, string categoryFilter = null, string resultFilter = null)
         {
             var query = this.Db.Counselings.AsQueryable();
+
+            if (!string.IsNullOrEmpty(categoryFilter) && categoryFilter != "전체")
+                query = query.Where(x => x.Category == categoryFilter);
+
+            if (!string.IsNullOrEmpty(resultFilter) && resultFilter != "전체")
+            {
+                switch (resultFilter)
+                {
+                    case "처리완료":
+                        query = query.Where(x => !string.IsNullOrEmpty(x.Answer.Replace(" ", "")));
+                        break;
+                    case "미처리":
+                        query = query.Where(x => string.IsNullOrEmpty(x.Answer.Replace(" ", "")));
+                        break;
+                    default:
+                        break;
+                }
+            }
+
 
             var pager = new PageHandler(Page, await query.CountAsync(), 15);
             var items = await query

@@ -96,22 +96,22 @@ a {
     width:100%;
 }
 
-.topBar .categoly {
+.topBar .category {
     text-align: left;
     padding-bottom: 5px;
     width:50%;
 }
-.topBar .categoly > div {
+.topBar .category > div {
     display:inline-flex;
     align-items:center;
 }
-.topBar .categoly span {
+.topBar .category span {
     padding-right:10px;
 }
-.topBar .categoly span:nth-of-type(2) {
+.topBar .category span:nth-of-type(2) {
     margin-left:26px;
 }
-.topBar .categoly select {
+.topBar .category select {
     height:38px;
     margin:1px 0px 0px 0px;
 }

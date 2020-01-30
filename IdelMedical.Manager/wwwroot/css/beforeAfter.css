@@ -14,23 +14,23 @@
     padding-left: 100px;
     padding-right: 100px;
 }
-.beforeAfterList .topBar .categoly {
+.beforeAfterList .topBar .category {
     display:flex;
     font-size:22px;
     width:100%;
 }
-.beforeAfterList .topBar .categoly > div:nth-of-type(1) {
+.beforeAfterList .topBar .category > div:nth-of-type(1) {
     display: flex;
     width:50%;
 }
-.beforeAfterList .topBar .categoly > div > span {
+.beforeAfterList .topBar .category > div > span {
     display:inline-flex;
     height:40px;
     width: 130px;
     font-family: 'Noto Sans KR', sans-serif;
     align-items:center;
 }
-.beforeAfterList .topBar .categoly > div > select {
+.beforeAfterList .topBar .category > div > select {
     margin-left:8px;
     width: 150px;
     height:40px;
@@ -40,17 +40,17 @@
     align-items:center; 
     cursor:pointer;
 }
-.beforeAfterList .topBar .categoly > div > select::-moz-focus-inner {
+.beforeAfterList .topBar .category > div > select::-moz-focus-inner {
     border:none;
 }
-.beforeAfterList .topBar .categoly > div > select:-moz-focusring {
+.beforeAfterList .topBar .category > div > select:-moz-focusring {
     color:transparent;
     text-shadow: 0 0 0 #000;
 }
-.beforeAfterList .topBar .categoly div:nth-of-type(2) {
+.beforeAfterList .topBar .category div:nth-of-type(2) {
     width:50%;
 }
-.beforeAfterList .topBar .categoly .addBtn {
+.beforeAfterList .topBar .category .addBtn {
     width:200px;
     height:100%;
     font-size:20px;
@@ -59,18 +59,18 @@
     margin-right:20px;
     background-color:#F0F0F0;
 }
-.beforeAfterList .topBar .categoly .addBtn span {
+.beforeAfterList .topBar .category .addBtn span {
     cursor:pointer;
 
 }
-.beforeAfterList .topBar .categoly .addBtn.active {
+.beforeAfterList .topBar .category .addBtn.active {
     background-color: #F1F1F1;
 }
-.beforeAfterList .topBar .categoly .addBtn::-moz-focus-inner {
+.beforeAfterList .topBar .category .addBtn::-moz-focus-inner {
     outline:0;
     color:transparent;
 }
-.beforeAfterList .topBar .categoly .addBtn.launch {
+.beforeAfterList .topBar .category .addBtn.launch {
     border: none;
     height: 40px;
     padding: 5px 15px;
@@ -261,7 +261,7 @@
     cursor: text;
 }
 
-.beforeAfterDetail .categoly > div > select {
+.beforeAfterDetail .category > div > select {
     width: 150px;
     height: 40px;
     font-size: 20px;
@@ -270,32 +270,32 @@
     align-items: center;
     cursor: pointer;
 }
-.beforeAfterDetail .itemLine.categoly > div:nth-of-type(2) {
+.beforeAfterDetail .itemLine.category > div:nth-of-type(2) {
     width:150px;
     margin-right:40px;
 }
-.beforeAfterDetail .itemLine.categoly > div:nth-of-type(3) {
+.beforeAfterDetail .itemLine.category > div:nth-of-type(3) {
     font-size: 20px;
     font-family: 'Noto Sans KR', sans-serif;
     align-items:center;
     justify-content:center;
     height: 30px;
 }
-    .beforeAfterDetail .itemLine.categoly > div:nth-of-type(3) > span {
+    .beforeAfterDetail .itemLine.category > div:nth-of-type(3) > span {
         height: 100%;
         margin-right: 20px;
         display: block;
     }
-.beforeAfterDetail .itemLine.categoly .textData input {
+.beforeAfterDetail .itemLine.category .textData input {
     width: 599px;
     font-size: 16px;
     height: 24px;
     text-align: center;
 }
-.beforeAfterDetail .categoly > div > select::-moz-focus-inner {
+.beforeAfterDetail .category > div > select::-moz-focus-inner {
     border:none;
 }
-.beforeAfterDetail .categoly > div > select:-moz-focusring {
+.beforeAfterDetail .category > div > select:-moz-focusring {
     color:transparent;
     text-shadow: 0 0 0 #000;
 }

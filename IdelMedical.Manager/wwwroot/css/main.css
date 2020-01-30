@@ -15,23 +15,23 @@
     padding-left: 100px;
     padding-right: 100px;
 }
-.main .topBar .categoly {
+.main .topBar .category {
     display:flex;
     font-size:22px;
     width:100%;
 }
-.main .topBar .categoly > div:nth-of-type(1) {
+.main .topBar .category > div:nth-of-type(1) {
     display: flex;
     width:50%;
 }
-.main .topBar .categoly > div > span {
+.main .topBar .category > div > span {
     display:inline-flex;
     height:40px;
     width: 130px;
     font-family: 'Noto Sans KR', sans-serif;
     align-items:center;
 }
-.main .topBar .categoly > div > select {
+.main .topBar .category > div > select {
     margin-left:8px;
     width: 150px;
     height:40px;
@@ -41,17 +41,17 @@
     align-items:center; 
     cursor:pointer;
 }
-.main .topBar .categoly > div > select::-moz-focus-inner {
+.main .topBar .category > div > select::-moz-focus-inner {
     border:none;
 }
-.main .topBar .categoly > div > select:-moz-focusring {
+.main .topBar .category > div > select:-moz-focusring {
     color:transparent;
     text-shadow: 0 0 0 #000;
 }
-.main .topBar .categoly div:nth-of-type(2) {
+.main .topBar .category div:nth-of-type(2) {
     width:50%;
 }
-.main .topBar .categoly .addBtn {
+.main .topBar .category .addBtn {
     width:200px;
     height:100%;
     font-size:20px;
@@ -60,18 +60,18 @@
     margin-right:20px;
     background-color:#F0F0F0;
 }
-.main .topBar .categoly .addBtn span {
+.main .topBar .category .addBtn span {
     cursor:pointer;
 
 }
-.main .topBar .categoly .addBtn.active {
+.main .topBar .category .addBtn.active {
     background-color: #F1F1F1;
 }
-.main .topBar .categoly .addBtn::-moz-focus-inner {
+.main .topBar .category .addBtn::-moz-focus-inner {
     outline:0;
     color:transparent;
 }
-.main .topBar .categoly .addBtn.launch {
+.main .topBar .category .addBtn.launch {
     border: none;
     height: 40px;
     padding: 5px 15px;
@@ -313,18 +313,18 @@ button:focus {outline:0;}
     margin-left: 10px;
     width: 840px;
 }
-.targetCategoly {
+.targetcategory {
     text-align: center;
     padding-top: 5px;
     margin-left: 5px;
     margin-right: 5px;
 }
-.targetCategoly span {
+.targetcategory span {
     width: 100px;
     display:inline-flex;
     justify-content:center;
 }
-.targetCategoly input {
+.targetcategory input {
     height: 30px;
     text-align: center;
     font-size: 16px;
@@ -458,20 +458,20 @@ button:focus {outline:0;}
         width: 50%;
     }
 
-.youTubeCategoly {
+.youTubecategory {
     text-align: center;
     padding-top: 5px;
     margin-left: 5px;
     margin-right: 5px;
 }
 
-    .youTubeCategoly span {
+    .youTubecategory span {
         width: 60px;
         display: inline-flex;
         justify-content: center;
     }
 
-    .youTubeCategoly input {
+    .youTubecategory input {
         height: 30px;
         text-align: center;
         font-size: 16px;
@@ -522,20 +522,20 @@ button:focus {outline:0;}
 
 
 
-.youTubeCategoly {
+.youTubecategory {
     text-align: center;
     padding-top: 5px;
     margin-left: 5px;
     margin-right: 5px;
 }
 
-.youTubeCategoly span {
+.youTubecategory span {
     width: 60px;
     display: inline-flex;
     justify-content: center;
 }
 
-.youTubeCategoly input {
+.youTubecategory input {
     height: 30px;
     text-align: center;
     font-size: 16px;
