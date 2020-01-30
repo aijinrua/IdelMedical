@@ -1,5 +1,6 @@
 ﻿using IdelMedical.Database;
 using IdelMedical.Database.Tables;
+using IdelMedical.Manager.Attributes;
 using IdelMedical.Manager.DataModels;
 using IdelMedical.Manager.Handlers;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,7 @@ namespace IdelMedical.Manager.Controllers
     /// <summary>
     /// 방송출연
     /// </summary>
+    [Auth]
     public class BroadcastController : Controller
     {
         public DatabaseContext Db { get; }

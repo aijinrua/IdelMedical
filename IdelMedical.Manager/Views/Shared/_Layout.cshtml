@@ -2,7 +2,7 @@
 @{
     var controller = (string)ViewContext.RouteData.Values["controller"];
     var action = (string)ViewContext.RouteData.Values["action"];
-    var userkey = Context.Session.GetString("UserKey");
+    var loginmanager = Context.Session.GetString("LoginManager");
 }
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@
                 <img src="~/images/logo_main.png" />
             </td>
             <td class="top-area">
-                @if (string.IsNullOrWhiteSpace(userkey))
+                @if (string.IsNullOrWhiteSpace(loginmanager))
                 {
                     <a href="/Auth/Login">로그인</a>
                 }

@@ -11,12 +11,14 @@ using Microsoft.AspNetCore.Hosting;
 using IdelMedical.Database.Tables;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using IdelMedical.Manager.Attributes;
 
 namespace IdelMedical.Manager.Controllers
 {
     /// <summary>
     /// 아이델TV
     /// </summary>
+    [Auth]
     public class IdelTVController : Controller
     {
         public DatabaseContext Db { get; }

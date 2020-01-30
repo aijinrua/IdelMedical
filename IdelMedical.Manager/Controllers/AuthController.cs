@@ -46,5 +46,13 @@ namespace IdelMedical.Manager.Controllers
                 return Json(new { status = false, message = ex.Message });
             }
         }
+
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("LoginManager");
+
+            return Redirect("/Auth/Login");
+        }
     }
 }

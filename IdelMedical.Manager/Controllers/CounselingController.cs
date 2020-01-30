@@ -1,5 +1,6 @@
 ﻿using IdelMedical.Database;
 using IdelMedical.Database.Tables;
+using IdelMedical.Manager.Attributes;
 using IdelMedical.Manager.DataModels;
 using IdelMedical.Manager.Handlers;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ namespace IdelMedical.Manager.Controllers
     /// <summary>
     /// 상담요청
     /// </summary>
+    [Auth]
     public class CounselingController : Controller
     {
 

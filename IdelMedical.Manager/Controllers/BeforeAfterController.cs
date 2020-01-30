@@ -1,4 +1,5 @@
-﻿using IdelMedical.Manager.DataModels;
+﻿using IdelMedical.Manager.Attributes;
+using IdelMedical.Manager.DataModels;
 using IdelMedical.Manager.Handlers;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ namespace IdelMedical.Manager.Controllers
     /// <summary>
     /// 전후사진
     /// </summary>
+    [Auth]
     public class BeforeAfterController : Controller
     {
         public IActionResult Index(string Search, int Page = 1)

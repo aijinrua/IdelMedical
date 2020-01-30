@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using IdelMedical.Manager.Attributes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace IdelMedical.Manager.Controllers
 {
+    [Auth]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -19,7 +21,7 @@ namespace IdelMedical.Manager.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return Redirect("/Member");
         }
     }
 }

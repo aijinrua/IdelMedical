@@ -1,5 +1,6 @@
 ﻿using IdelMedical.Database;
 using IdelMedical.Database.Tables;
+using IdelMedical.Manager.Attributes;
 using IdelMedical.Manager.DataModels;
 using IdelMedical.Manager.Handlers;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,7 @@ namespace IdelMedical.Manager.Controllers
     /// <summary>
     /// 언론보도
     /// </summary>
+    [Auth]
     public class PressCoverageController : Controller
     {
         public DatabaseContext Db { get; }

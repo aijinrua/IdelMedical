@@ -5,9 +5,9 @@
 
 <form class="login">
     <div class="header">Idel Medical Manager Console</div>
-    <input placeholder="Manager ID" />
-    <input placeholder="Password" type="password" />
-    <button type="button">로그인</button>
+    <input name="userid" placeholder="Manager ID" />
+    <input name="passwd" placeholder="Password" type="password" />
+    <button type="button" onclick="doLogin.call(this);">로그인</button>
 </form>
 
 @section Scripts {

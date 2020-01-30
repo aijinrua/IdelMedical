@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using IdelMedical.Manager.Attributes;
 using IdelMedical.Manager.DataModels;
 using IdelMedical.Manager.Handlers;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Logging;
 
 namespace IdelMedical.Manager.Controllers
 {
+    [Auth]
     public class MainController : Controller
     {
 

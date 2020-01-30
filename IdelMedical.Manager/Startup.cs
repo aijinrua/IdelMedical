@@ -27,9 +27,6 @@ namespace IdelMedical.Manager
             {
                 option.IdleTimeout = TimeSpan.FromDays(1);
                 option.IOTimeout = TimeSpan.FromDays(1);
-                option.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.Always;
-                option.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
-                option.Cookie.IsEssential = true;
 
             });
             services.AddDbContext<Database.DatabaseContext>();
