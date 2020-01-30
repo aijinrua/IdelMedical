@@ -62,6 +62,26 @@ namespace IdelMedical.Database
                     });
 
                     db.SaveChanges();
+
+                    db.Managers.Add(new Manager
+                    {
+                        CreateTime = DateTime.Now,
+                        Passwd = "counseler",
+                        Type = ManagerTypes.Counseler,
+                        UserId = "counseler"
+                    });
+
+                    db.SaveChanges();
+
+                    db.Managers.Add(new Manager
+                    {
+                        CreateTime = DateTime.Now,
+                        Passwd = "marketer",
+                        Type = ManagerTypes.Marketer,
+                        UserId = "marketer"
+                    });
+
+                    db.SaveChanges();
                 }
             }
         }

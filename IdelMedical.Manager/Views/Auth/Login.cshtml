@@ -6,12 +6,18 @@
 <form class="login">
     <div class="header">Idel Medical Manager Console</div>
     <input name="userid" placeholder="Manager ID" />
-    <input name="passwd" placeholder="Password" type="password" />
+    <input name="passwd" placeholder="Password" type="password" onkeydown="onKeyDown.call(this);" />
     <button type="button" onclick="doLogin.call(this);">로그인</button>
 </form>
 
 @section Scripts {
     <script type="text/javascript">
+        function onKeyDown() {
+            if (event.keyCode === 13) {
+                doLogin.call(this);
+            }
+        }
+
         function doLogin() {
             try {
                 var form = $(this).parents('form')[0];
@@ -30,7 +36,7 @@
                         alert(data.message);
                     }
                     else {
-                        location.href = '/member';
+                        location.href = '/';
                     }
                 });
             } catch (e) {

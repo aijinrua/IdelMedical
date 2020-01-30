@@ -21,6 +21,10 @@ namespace IdelMedical.User.Kr.Controllers
         [HttpGet]
         public IActionResult Reservation()
         {
+            var userkey = HttpContext.Session.GetString("UserKey");
+            if (string.IsNullOrWhiteSpace(userkey))
+                return Redirect("/auth/login");
+
             return View();
         }
 
@@ -29,8 +33,20 @@ namespace IdelMedical.User.Kr.Controllers
         {
             try
             {
+                var userkey = HttpContext.Session.GetString("UserKey");
+                if (string.IsNullOrWhiteSpace(userkey))
+                    throw new Exception("로그인이 필요합니다.");
+
+                var user = await this.Db.Users
+                    .Where(x => x.UserKey == userkey)
+                    .FirstOrDefaultAsync();
+
+                if (user == null)
+                    throw new Exception("잘못된 인증정보 입니다.");
+
                 var newItem = new Database.Tables.Reservation
                 {
+                    UserId = user.Id,
                     Category = category,
                     Channel = channel,
                     Content = content,
