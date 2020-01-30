@@ -26,22 +26,26 @@ namespace IdelMedical.Manager.Controllers
             this.Db = db;
         }
 
-        public async Task<IActionResult> Index(int Page = 1, string categoryFilter = null, string resultFilter = null)
+        public async Task<IActionResult> Index(int Page = 1, string search = null, string categoryFilter = null, string applyFilter = null)
         {
             var query = this.Db.Counselings.AsQueryable();
 
-            if (!string.IsNullOrEmpty(categoryFilter) && categoryFilter != "전체")
+            if (!string.IsNullOrWhiteSpace(search))
+                query = query.Where(x => x.Subject.Contains(search));
+
+            if (!string.IsNullOrWhiteSpace(categoryFilter) && categoryFilter != "전체")
                 query = query.Where(x => x.Category == categoryFilter);
 
-            if (!string.IsNullOrEmpty(resultFilter) && resultFilter != "전체")
+
+            if (!string.IsNullOrWhiteSpace(applyFilter) && applyFilter != "전체")
             {
-                switch (resultFilter)
+                switch (applyFilter)
                 {
                     case "처리완료":
-                        query = query.Where(x => !string.IsNullOrEmpty(x.Answer.Replace(" ", "")));
+                        query = query.Where(x => !string.IsNullOrWhiteSpace(x.Answer));
                         break;
                     case "미처리":
-                        query = query.Where(x => string.IsNullOrEmpty(x.Answer.Replace(" ", "")));
+                        query = query.Where(x => string.IsNullOrWhiteSpace(x.Answer));
                         break;
                     default:
                         break;
@@ -66,8 +70,10 @@ namespace IdelMedical.Manager.Controllers
                 .ToArrayAsync();
 
             ViewBag.Pager = pager;
+            ViewBag.Search = search;
             ViewBag.Items = items;
-
+            ViewBag.CategoryFilter = categoryFilter;
+            ViewBag.ApplyFilter = applyFilter;
             return View();
         }
 
