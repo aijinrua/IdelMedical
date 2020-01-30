@@ -19,7 +19,7 @@
             <div>
                 <span>카테고리 선택</span>
                 <select name="categolyItems" onchange="">
-                    <option value="모두보기">모두보기</option>
+                    <option value="전체">전체</option>
                     <option value="가슴성형">가슴성형</option>
                     <option value="동안성형">동안성형</option>
                     <option value="체형성형">체형성형</option>
@@ -28,16 +28,17 @@
                     <option value="안면윤곽">안면윤곽</option>
                     <option value="피부과">피부과</option>
                 </select>
+
+                <span>상태</span>
+                <select name="categolyItems" onchange="">
+                    <option value="전체">전체</option>
+                    <option value="처리완료">처리완료</option>
+                    <option value="미처리">미처리</option>
+                </select>
             </div>
         </div>
         <div class="findArea">
             <div>
-                <span>검색필터</span>
-                <select name="categolyItems" onchange="">
-                    <option value="모두포함">모두포함</option>
-                    <option value="답변완료제외">답변완료제외</option>
-                    <option value="답변미완료제외">답변미처리제외</option>
-                </select>
                 <input type="text" />
                 <button class="btn-primary">
                     검색

@@ -50,25 +50,25 @@
                 if (count > 15) break;
                 <div>
                     <div style="text-align: center;">
-                        @item.Id
+                        <a href="/Reservation/Detail?id=@item.Id">@item.Id</a>
                     </div>
                     <div style="text-align: center;">
-                        @item.Category
+                        <a href="/Reservation/Detail?id=@item.Id">@item.Category</a>
                     </div>
                     <div style="text-align: center;">
-                        @item.ReservationTime.ToString("yyyy-MM-dd tt hh:mm")
+                        <a href="/Reservation/Detail?id=@item.Id">@item.ReservationTime.ToString("yyyy-MM-dd tt hh:mm")</a>
                     </div>
                     <div style="text-align: center;">
-                        @item.Name
+                        <a href="/Reservation/Detail?id=@item.Id">@item.Name</a>
                     </div>
                     <div style="text-align: center;">
-                        @item.Phone
+                        <a href="/Reservation/Detail?id=@item.Id">@item.Phone</a>
                     </div>
                     <div style="text-align: center;">
-                        @(item.UseCall == true ? "true" : "false")
+                        <a href="/Reservation/Detail?id=@item.Id">@(item.UseCall == true ? "true" : "false")</a>
                     </div>
                     <div style="text-align: center;">
-                        @item.ReservationTime.ToString("yyyy-MM-dd tt hh:mm")
+                        <a href="/Reservation/Detail?id=@item.Id">@item.ReservationTime.ToString("yyyy-MM-dd tt hh:mm")</a>
                     </div>
                 </div>
             }
