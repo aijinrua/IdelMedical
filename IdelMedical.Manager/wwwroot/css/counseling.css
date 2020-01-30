@@ -248,3 +248,74 @@ a {
     border: none;
     outline: none;
 }
+
+/*.counselingDetail .textLine {
+    border: 1px solid #55908a;
+    height: 30px;
+    display: block;
+    width: 100%;
+    margin: 10px 0px;
+}*/
+.counselingDetail .textLine {
+    padding: 0 10px;
+    border: 1px solid #55908a;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 30px;
+    margin: 10px 0;
+    display:flex;
+    align-items:center;
+    font: 400 13.3333px Arial;
+}
+.counselingDetail .writerInfo {
+    padding: 0 10px;
+    border: 1px solid #55908a;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 30px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font: 400 13.3333px Arial;
+}
+    .counselingDetail .writerInfo > span {
+        display: block;
+        width: calc(100% / 3);
+        font: 400 13.3333px Arial;
+        margin-left: auto;
+        margin-right: auto;
+    }
+.counselingDetail .questionArea {
+    padding: 7px 10px;
+    border: 1px solid #55908a;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 5px 0;
+    width: 100%;
+    display:inline-block;
+    font: 400 13.3333px Arial;
+}
+.counselingDetail .replyArea {
+    padding: 7px 10px;
+    border: 1px solid #55908a;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 5px 0;
+    width: 100%;
+    font: 400 13.3333px Arial;
+}
+.counselingDetail .memoArea {
+    padding: 7px 10px;
+    border: 1px solid #55908a;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 5px 0;
+    width: 100%;
+    font: 400 13.3333px Arial;
+}

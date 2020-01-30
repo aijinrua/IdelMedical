@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using IdelMedical.Manager.DataModels;
 using IdelMedical.Manager.Handlers;
+using IdelMedical.Database;
+using Microsoft.EntityFrameworkCore;
+using IdelMedical.Database.Tables;
 
 namespace IdelMedical.Manager.Controllers
 {
@@ -13,80 +16,62 @@ namespace IdelMedical.Manager.Controllers
     /// </summary>
     public class ReservationController : Controller
     {
-        public IActionResult Index(string Search, int Page = 1)
+        public DatabaseContext Db { get; }
+
+        public ReservationController(DatabaseContext db)
         {
-            var slideTest = new List<SlideModel>();
+            this.Db = db;
+        }
 
+        [HttpGet]
+        public async Task<IActionResult> Index(int Page = 1)
+        {
+            var query = this.Db.Reservations.AsQueryable();
 
-            int testItemCount = 50;
-
-
-
-            //if (!string.IsNullOrWhiteSpace(Search))
-            //{
-            //    list = list
-            //        .Where(x => x.NickName.IndexOf(Search) >= 0 ||
-            //                    x.UserId.IndexOf(Search) >= 0 ||
-            //                    x.TelegramId.IndexOf(Search) >= 0);
-            //}
-
-
-
-            for (int i = 0; i < testItemCount; i++)
-            {
-                var item = i + 1;
-                slideTest.Add(new SlideModel()
+            var pager = new PageHandler(Page, await query.CountAsync(), 15);
+            var items = await query
+                .Select(x => new Database.Tables.Reservation
                 {
-                    Number = item,
-                    Title = "SlideTitle_" + (item < 10 ? ("0" + item.ToString()) : item.ToString()),
-                    UploadTime = DateTime.Now.ToString("yyyy-MM-dd")
-                });
-            }
-
-            //var pager = new PageHandler(Page, totalItemCount, 20);
-            var pager = new PageHandler(Page, testItemCount, 15);
+                    Id = x.Id,
+                    Category = x.Category,
+                    ReservationTime = x.ReservationTime,
+                    Name = x.Name,
+                    Phone = x.Phone,
+                    UseCall = x.UseCall,
+                    CreateTime = x.CreateTime
+                })
+                .OrderByDescending(x => x.CreateTime)
+                .Skip((pager.CurrentPage - 1) * pager.TakeItemCount)
+                .Take(pager.TakeItemCount)
+                .ToArrayAsync();
 
             ViewBag.Pager = pager;
-            ViewBag.SlideData = slideTest;
+            ViewBag.Items = items;
+
             return View();
         }
 
-        public IActionResult Detail(string Search, int Page = 1)
+        [HttpGet]
+        public async Task<IActionResult> Detail(int? id)
         {
-            var slideTest = new List<SlideModel>();
-
-
-            int testItemCount = 50;
-
-
-
-            //if (!string.IsNullOrWhiteSpace(Search))
-            //{
-            //    list = list
-            //        .Where(x => x.NickName.IndexOf(Search) >= 0 ||
-            //                    x.UserId.IndexOf(Search) >= 0 ||
-            //                    x.TelegramId.IndexOf(Search) >= 0);
-            //}
-
-
-
-            for (int i = 0; i < testItemCount; i++)
+            var item = default(Reservation);
+            if (id == null)
             {
-                var item = i + 1;
-                slideTest.Add(new SlideModel()
+                item = new Reservation
                 {
-                    Number = item,
-                    Title = "SlideTitle_" + (item < 10 ? ("0" + item.ToString()) : item.ToString()),
-                    UploadTime = DateTime.Now.ToString("yyyy-MM-dd")
-                });
+                    Id = -1
+                };
+            }
+            else
+            {
+                item = await this.Db.Reservations
+                    .FirstOrDefaultAsync(x => x.Id == id.Value);
             }
 
-            //var pager = new PageHandler(Page, totalItemCount, 20);
-            var pager = new PageHandler(Page, testItemCount, 15);
+            if (item == null)
+                return NotFound();
 
-            ViewBag.Pager = pager;
-            ViewBag.SlideData = slideTest;
-            return View();
+            return View(item);
         }
     }
 }

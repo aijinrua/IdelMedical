@@ -1,582 +1,226 @@
-﻿.beforeAfterList * {
-    cursor: default;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-.beforeAfterList input {
-    cursor: text;
-}
-
-.beforeAfterList .topBar {
-    height: 10%;
-    display: flex;
-    align-items: center;
-    padding-left: 100px;
-    padding-right: 100px;
-}
-.beforeAfterList .topBar .categoly {
-    display:flex;
-    font-size:22px;
-    width:100%;
-}
-.beforeAfterList .topBar .categoly > div:nth-of-type(1) {
-    display: flex;
-    width:50%;
-}
-.beforeAfterList .topBar .categoly > div > span {
-    display:inline-flex;
-    height:40px;
-    width: 130px;
-    font-family: 'Noto Sans KR', sans-serif;
-    align-items:center;
-}
-.beforeAfterList .topBar .categoly > div > select {
-    margin-left:8px;
-    width: 150px;
-    height:40px;
-    font-size:20px;
-    font-family: 'Noto Sans KR', sans-serif;
-    display:inline-flex;
-    align-items:center; 
-    cursor:pointer;
-}
-.beforeAfterList .topBar .categoly > div > select::-moz-focus-inner {
-    border:none;
-}
-.beforeAfterList .topBar .categoly > div > select:-moz-focusring {
-    color:transparent;
-    text-shadow: 0 0 0 #000;
-}
-.beforeAfterList .topBar .categoly div:nth-of-type(2) {
-    width:50%;
-}
-.beforeAfterList .topBar .categoly .addBtn {
-    width:200px;
-    height:100%;
-    font-size:20px;
-    height:100%;
-    font-family: 'Noto Sans KR', sans-serif;
-    margin-right:20px;
-    background-color:#F0F0F0;
-}
-.beforeAfterList .topBar .categoly .addBtn span {
-    cursor:pointer;
-
-}
-.beforeAfterList .topBar .categoly .addBtn.active {
-    background-color: #F1F1F1;
-}
-.beforeAfterList .topBar .categoly .addBtn::-moz-focus-inner {
-    outline:0;
-    color:transparent;
-}
-.beforeAfterList .topBar .categoly .addBtn.launch {
-    border: none;
-    height: 40px;
-    padding: 5px 15px;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 300;
-    margin-top: 10px;
-    margin-right: 10px;
-}
-.beforeAfterList button:hover {
-    cursor: pointer;
-}
-
-.beforeAfterList button > *:hover {
-    cursor: pointer;
-}
-
-.beforeAfterList button::-moz-focus-inner {
-    outline: 0;
-    color: transparent;
-}
-
-.beforeAfterList button.launch:hover {
-    cursor: pointer;
-    background-color: #FABD44;
-}
-
-.beforeAfterList button.change {
-    background-color: #F88F00;
-    border: none;
-    height: 40px;
-    padding: 5px 15px;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 300;
-    margin-top: 10px;
-    margin-right: 10px;
-}
-
-    .beforeAfterList button.change:hover {
-        cursor: pointer;
-        background-color: #F89900;
-    }
-
-.beforeAfterList button:hover {
-    cursor: pointer;
-}
-
-.beforeAfterList button:active {
-    outline: none;
-    border: none;
-}
-
-.beforeAfterList button:focus {
-    outline: 0;
-}
-
-
-.beforeAfterList {
-    width: 1440px;
-    height: 810px;
-}
-
-    .beforeAfterList .topBar {
-        width: calc(100% - 200px);
-        height: 10%;
-        display: flex;
-        padding-left: 100px;
-        padding-right: 100px;
-        align-items: center;
-    }
-
-        .beforeAfterList .topBar > div {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-            .beforeAfterList .topBar > div > button {
-                font-size: 20px;
-                width: 200px;
-                height: 40px;
-            }
-
-    .beforeAfterList .splitLine {
-        height: 1px;
-        width: calc(100% - 10px);
-        border-top: 1px solid #82d9d0;
-        border-bottom: 1px solid #82d9d0;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        height: 1px;
-    }
-
-    .beforeAfterList .itemList {
-        height: 90%;
-    }
-
-        .beforeAfterList .itemList .table {
-            padding: 10px;
-            font-size: 16px;
-            box-sizing: border-box;
-            display: table;
-            width: 100%;
-        }
-
-            .beforeAfterList .itemList .table .header {
-                background-color: #000;
-                color: #FFF;
-                text-align: center;
-                display: table-row;
-                height: 35px;
-                cursor: default;
-            }
-
-                .beforeAfterList .itemList .table .header > div {
-                    display: table-cell;
-                    vertical-align: middle;
-                }
-
-            .beforeAfterList .itemList .table > div {
-                height: 35px;
-                display: table-row;
-                font-size: 16px;
-            }
-
-                .beforeAfterList .itemList .table > div:hover {
-                    color: #82d9d0;
-                }
-
-                .beforeAfterList .itemList .table > div > div {
-                    display: table-cell;
-                    vertical-align: middle;
-                    cursor: pointer;
-                }
-
-            .beforeAfterList .itemList .table > *:nth-child(2n+1) {
-                background-color: #eee;
-            }
-
-            .beforeAfterList .itemList .table .header {
-                background-color: #000;
-                color: #FFF;
-                text-align: center;
-                display: table-row;
-                height: 35px;
-                cursor: default;
-            }
-
-                .beforeAfterList .itemList .table .header:hover {
-                    color: #FFF;
-                }
-
-        .beforeAfterList .itemList .pageBtn {
-            width: 100%;
-            height: 30px;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-            .beforeAfterList .itemList .pageBtn > a {
-                width: 50px;
-                color: #787878;
-                text-align: center;
-                margin-left: 2px;
-                margin-right: 2px;
-            }
-
-                .beforeAfterList .itemList .pageBtn > a:hover {
-                    color: #0836e8;
-                    font-weight: bold;
-                    font-size: 18px;
-                    cursor: pointer;
-                }
-
-
-.beforeAfterDetail * {
-    cursor: default;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-.beforeAfterDetail input {
-    cursor: text;
-}
-
-.beforeAfterDetail .categoly > div > select {
-    width: 150px;
-    height: 40px;
-    font-size: 20px;
-    font-family: 'Noto Sans KR', sans-serif;
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-}
-.beforeAfterDetail .itemLine.categoly > div:nth-of-type(2) {
-    width:150px;
-    margin-right:40px;
-}
-.beforeAfterDetail .itemLine.categoly > div:nth-of-type(3) {
-    font-size: 20px;
-    font-family: 'Noto Sans KR', sans-serif;
-    align-items:center;
-    justify-content:center;
+﻿input {
+    padding: 0 10px;
+    border: 1px solid #55908a;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     height: 30px;
+    margin: 5px 0;
 }
-    .beforeAfterDetail .itemLine.categoly > div:nth-of-type(3) > span {
-        height: 100%;
-        margin-right: 20px;
-        display: block;
+
+select {
+    padding: 0 10px;
+    border: 1px solid #55908a;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 30px;
+    margin: 5px 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.title {
+    margin-bottom: 10px;
+}
+
+    .title span:nth-of-type(1) {
+        font-size: 22px;
+        font-weight: bold;
     }
-.beforeAfterDetail .itemLine.categoly .textData input {
-    width: 599px;
+
+    .title span:nth-of-type(2) {
+        font-size: 16px;
+    }
+
+.label {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.spliter1 {
+    border-top: 3px solid #82d9d0;
+    height: 0;
+    margin: 5px 0;
+}
+
+.spliter2 {
+    border-top: 1px solid #82d9d0;
+    height: 0;
+    margin: 5px 0;
+}
+
+.item-container {
+    overflow: auto;
+}
+
+    .item-container > div {
+        float: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        margin: 5px;
+    }
+
+        .item-container > div > div:first-child {
+            padding-bottom: 10px;
+        }
+
+        .item-container > div .thumb {
+            width: 100%;
+            height: 200px;
+            background-color: #55908a;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #55908a;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-position: center;
+            background-size: cover;
+        }
+
+.control-pannel {
+    text-align: center;
+    padding: 0;
+}
+
+.topBar > div {
+    text-align: right;
+    padding-bottom: 5px;
+}
+
+.table {
+    display: table;
+    width: 100%;
+}
+
+    .table > div {
+        display: table-row;
+    }
+
+        .table > div > div {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            height: 40px;
+        }
+
+        .table > div > div {
+            border-bottom: 1px solid #82d9d0;
+        }
+
+        .table > div.header > div {
+            text-align: center;
+            color: #ffffff;
+            background-color: #55908a;
+            font-weight: bold;
+            border-bottom: none;
+        }
+
+
+
+.btn-delete {
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
     font-size: 16px;
-    height: 24px;
+    border: none;
+    background-color: #ff3434;
+    color: #fff;
+}
+
+.btn-default {
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background-color: #989898;
+    color: #fff;
+}
+
+.btn-primary {
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background-color: #76c5bd;
+    color: #fff;
+}
+
+.pager {
+    background-color: #fff;
+    padding: 60px 0;
+    color: black;
     text-align: center;
 }
-.beforeAfterDetail .categoly > div > select::-moz-focus-inner {
-    border:none;
-}
-.beforeAfterDetail .categoly > div > select:-moz-focusring {
-    color:transparent;
-    text-shadow: 0 0 0 #000;
-}
-.beforeAfterDetail button:hover {
-    cursor: pointer;
-}
 
-.beforeAfterDetail button > *:hover {
-    cursor: pointer;
-}
-
-.beforeAfterDetail button::-moz-focus-inner {
-    outline: 0;
-    color: transparent;
-}
-
-.beforeAfterDetail button.launch:hover {
-    cursor: pointer;
-    background-color: #FABD44;
-}
-
-.beforeAfterDetail button.change {
-    background-color: #F88F00;
-    border: none;
-    height: 40px;
-    padding: 5px 15px;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 300;
-    margin-top: 10px;
-    margin-right: 10px;
-}
-
-    .beforeAfterDetail button.change:hover {
+    .pager a {
+        color: inherit;
+        text-decoration: none;
         cursor: pointer;
-        background-color: #F89900;
     }
 
-.beforeAfterDetail button:hover {
-    cursor: pointer;
-}
-
-.beforeAfterDetail button:active {
-    outline: none;
-    border: none;
-}
-
-.beforeAfterDetail .submit:focus {
-    outline: 0;
-}
-
-.beforeAfterDetail .submit:hover {
-    cursor: pointer;
-}
-
-.beforeAfterDetail .submit > *:hover {
-    cursor: pointer;
-}
-
-.beforeAfterDetail .submit::-moz-focus-inner {
-    outline: 0;
-    color: transparent;
-}
-
-.beforeAfterDetail .submit.launch:hover {
-    cursor: pointer;
-    background-color: #FABD44;
-}
-
-.beforeAfterDetail .submit.change {
-    background-color: #F88F00;
-    border: none;
-    height: 40px;
-    padding: 5px 15px;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 300;
-    margin-top: 10px;
-    margin-right: 10px;
-}
-
-    .beforeAfterDetail .submit.change:hover {
-        cursor: pointer;
-        background-color: #F89900;
-    }
-
-.beforeAfterDetail .submit:hover {
-    cursor: pointer;
-}
-
-.beforeAfterDetail .submit:active {
-    outline: none;
-    border: none;
-}
-
-.beforeAfterDetail .submit:focus {
-    outline: 0;
-}
-
-
-.beforeAfterDetail {
-    width: 1440px;
-    height: 810px;
-}
-
-    .beforeAfterDetail .contentArea {
-        width: calc(100% - 320px);
-        padding-left: 120px;
-        padding-right: 200px;
-        padding-top: 10px;
-        height: 100%;
-    }
-
-    .beforeAfterDetail .splitLine {
-        width: calc(100% - 10px);
-        margin: auto;
-        height: 1px;
-        border-bottom: 1px solid #82d9d0;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    .beforeAfterDetail .itemLine {
-        display: flex;
-        width: 100%;
+    .pager .paging {
+        display: inline-flex;
+        justify-content: center;
         align-items: center;
     }
 
-        .beforeAfterDetail .itemLine > div:nth-of-type(1) {
-            display: flex;
-            width: 160px;
+        .pager .paging a {
+            display: inline-block;
+            border: 1px solid #55908a;
+            min-width: 30px;
             font-size: 20px;
-            align-content: center;
-            justify-content: center;
+            margin: 0 2px;
+            padding: 0 7px;
+            box-sizing: border-box;
         }
 
-            .beforeAfterDetail .itemLine > div:nth-of-type(1) > span {
-                display: flex;
-                height: 30px;
+            .pager .paging a.active {
+                background-color: #55908a;
+                color: white;
             }
 
-        .beforeAfterDetail .itemLine > div:nth-of-type(2) {
-            display: flex;
-            width: calc(100% - 160px);
+    .pager .search {
+        display: inline-flex;
+        overflow: auto;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+        .pager .search select,
+        .pager .search input,
+        .pager .search button {
+            font-size: 18px;
+            height: 34px;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .beforeAfterDetail .itemLine .textData {
-            width: 100%;
-            height: 30px;
+        .pager .search select {
+            margin-right: 5px;
         }
 
-            .beforeAfterDetail .itemLine .textData input {
-                width: 90%;
-                font-size: 16px;
-                height: 24px;
-                text-align: center;
-            }
-
-        .beforeAfterDetail .itemLine .front {
+        .pager .search input {
             width: 200px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-            font-size: 20px;
-        }
-        .beforeAfterDetail .itemLine .degrees45 {
-            width: 200px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-            font-size: 20px;
+            padding: 0 7px;
         }
 
-        .beforeAfterDetail .itemLine .side {
-            text-align: center;
-            width: 200px;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 20px;
+        .pager .search button {
+            width: 70px;
+            background-color: #a6a6a6;
+            color: white;
+            border: none;
+            outline: none;
         }
-        
-        .beforeAfterDetail .itemLine .front > span {
-            color: #787878;
-            height: 30px;
-            display: block;
-        }
-
-        .beforeAfterDetail .itemLine .degrees45 > span {
-            color: #787878;
-            height: 30px;
-            display: block;
-        }
-        .beforeAfterDetail .itemLine .side > span {
-            color: #787878;
-            height: 30px;
-            display: block;
-        }
-
-        .beforeAfterDetail .itemLine .front > img {
-            color: #787878;
-            display: flex;
-            border: 2px solid #fff;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            height: 198px;
-            width: 198px;
-        }
-
-        .beforeAfterDetail .itemLine .degrees45 > img {
-            color: #787878;
-            display: flex;
-            border: 2px solid #fff;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            height: 198px;
-            width: 198px;
-        }
-        .beforeAfterDetail .itemLine .side > img {
-            color: #787878;
-            display: flex;
-            border: 2px solid #fff;
-            justify-content: center;
-            align-items: center;
-            font-size: 16px;
-            font-size: 16px;
-            height: 198px;
-            width: 198px;
-        }
-
-        .beforeAfterDetail .itemLine .front > button {
-            height: 30px;
-            width: 200px;
-            font-size: 16px;
-            margin-top: 2px;
-        }
-
-        .beforeAfterDetail .itemLine .degrees45 > button {
-            height: 30px;
-            width: 200px;
-            font-size: 16px;
-            margin-top: 2px;
-        }
-        .beforeAfterDetail .itemLine .side > button {
-            height: 30px;
-            width: 200px;
-            font-size: 16px;
-            margin-top: 2px;
-        }
-
-        .beforeAfterDetail .itemLine:nth-of-type(5) {
-            background-color: rgba(130, 217, 208, 0.20);
-            padding-top: 5px;
-        }
-
-        .beforeAfterDetail .itemLine:nth-of-type(6) {
-            margin-top: 2px;
-            background-color: rgba(130, 217, 208, 0.20);
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-
-        .beforeAfterDetail .itemLine:nth-of-type(7) {
-            margin-top: 2px;
-            background-color: rgba(130, 217, 208, 0.20);
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-
-        .beforeAfterDetail .itemLine:nth-last-of-type(1) {
-            height: 80px;
-            justify-content: flex-end;
-        }
-
-            .beforeAfterDetail .itemLine:nth-last-of-type(1) .submit {
-                height: 40px;
-                width: 200px;
-                margin-left: 30px;
-                margin-right: 30px;
-                font-weight: bold;
-                font-size: 18px;
-                cursor: pointer;
-            }
