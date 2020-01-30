@@ -1,129 +1,241 @@
-﻿@{
-    ViewData["Title"] = "BeforeAfter Detail Page";
-
-
+﻿@model IdelMedical.Database.Tables.BeforeAfter
+@{
 }
 
 @section Styles {
-    <environment include="Development">
-        <link href="~/css/beforeAfter.css" rel="stylesheet" />
-    </environment>
+    <link href="~/css/community.css" rel="stylesheet" />
 }
-<div class="beforeAfterDetail">
+<div class="communityDetail">
+    <div class="title">
+        <span>전후사진</span>
+        @if (Model.Id <= 0)
+        {
+            <span> > 등록</span>
+        }
+        else
+        {
+            <span> > 수정</span>
+        }
+    </div>
     <div class="contentArea">
-        <form>
-            <div class="itemLine">
+        <form onsubmit="return false;">
+            <input name="Id" type="hidden" value="@Model.Id" />
+
+            <br />
+            <span class="label">1.기본 정보</span>
+            <div class="spliter1"></div>
+            <select name="category" style="width: 100%;">
+                <option value="" selected="@(string.IsNullOrWhiteSpace(Model.Category) ? "selected" : null)">==카테고리를 선택하세요==</option>
+                <option value="가슴성형" selected="@(Model.Category == "가슴성형" ? "selected" : null)">가슴성형</option>
+                <option value="동안성형" selected="@(Model.Category == "동안성형" ? "selected" : null)">동안성형</option>
+                <option value="체형성형" selected="@(Model.Category == "체형성형" ? "selected" : null)">체형성형</option>
+                <option value="눈성형" selected="@(Model.Category == "눈성형" ? "selected" : null)">눈성형</option>
+                <option value="코성형" selected="@(Model.Category == "코성형" ? "selected" : null)">코성형</option>
+                <option value="안면윤곽" selected="@(Model.Category == "안면윤곽" ? "selected" : null)">안면윤곽</option>
+                <option value="피부과" selected="@(Model.Category == "피부과" ? "selected" : null)">피부과</option>
+            </select>
+            <input name="title" value="@Model.Title" placeholder="(필수) 제목을 입력하세요. 제목은 관리자 외에는 노출되지 않습니다." style="width: 100%;" />
+            <input name="comment" value="@Model.Comment" placeholder="(필수) 간략소개글을 입력하세요" style="width: 100%;" />
+            <div class="spliter2"></div>
+
+            <br />
+            <br />
+            <span class="label">2.이미지 정보</span>
+            <div class="spliter1"></div>
+            <div class="item-container">
                 <div>
-                    <span>제 목</span>
+                    <div>Before 정면</div>
+                    <input name="beforefront" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                    @if (string.IsNullOrWhiteSpace(Model.BeforeFront))
+                    {
+                        <div class="thumb" onclick="$(this).prev().click();">
+                            No Image
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="thumb" style="background-image: url(@Model.BeforeFront);" onclick="$(this).prev().click();">
+                        </div>
+                    }
                 </div>
                 <div>
-                    <div class="textData">
-                        <input type="text" value="" />
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine category">
-                <div>
-                    <span>카테고리 선택</span>
-                </div>
-                <div>
-                    <select name="categoryItems" onchange="">
-                        <option value="가슴성형">가슴성형</option>
-                        <option value="동안성형">동안성형</option>
-                        <option value="체형성형">체형성형</option>
-                        <option value="눈성형">눈성형</option>
-                        <option value="코성형">코성형</option>
-                        <option value="안면윤곽">안면윤곽</option>
-                        <option value="피부과">피부과</option>
-                    </select>
+                    <div>Before 45</div>
+                    <input name="beforehalf" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                    @if (string.IsNullOrWhiteSpace(Model.BeforeHalf))
+                    {
+                        <div class="thumb" onclick="$(this).prev().click();">
+                            No Image
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="thumb" style="background-image: url(@Model.BeforeHalf);" onclick="$(this).prev().click();">
+                        </div>
+                    }
                 </div>
                 <div>
-                    <span>코멘트</span>
-                </div>
-                <div>
-                    <div class="textData">
-                        <input type="text" value="" />
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                </div>
-                <div>
-                    <div class="front">
-                        <span>정면</span>
-                    </div>
-                    <div class="degrees45">
-                        <span>45도</span>
-                    </div>
-                    <div class="side">
-                        <span>측면</span>
-                    </div>
-                </div>
-            </div>
-            <div class="itemLine">
-                <div>
-                    <span>P C</span>
-                </div>
-                <div>
-                    <div class="front">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value="" />
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                    <div class="degrees45">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value="" />
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                    <div class="side">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value="" />
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
+                    <div>Before 측면</div>
+                    <input name="beforeside" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                    @if (string.IsNullOrWhiteSpace(Model.BeforeSide))
+                    {
+                        <div class="thumb" onclick="$(this).prev().click();">
+                            No Image
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="thumb" style="background-image: url(@Model.BeforeSide);" onclick="$(this).prev().click();">
+                        </div>
+                    }
                 </div>
             </div>
-            <div class="itemLine">
+            <div class="item-container">
                 <div>
-                    <span>Mobile</span>
+                    <div>After 정면</div>
+                    <input name="afterfront" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                    @if (string.IsNullOrWhiteSpace(Model.AfterFront))
+                    {
+                        <div class="thumb" onclick="$(this).prev().click();">
+                            No Image
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="thumb" style="background-image: url(@Model.AfterFront);" onclick="$(this).prev().click();">
+                        </div>
+                    }
                 </div>
                 <div>
-                    <div class="front">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value="" />
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                    <div class="degrees45">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value="" />
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                    <div class="side">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value="" />
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
+                    <div>After 45</div>
+                    <input name="afterhalf" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                    @if (string.IsNullOrWhiteSpace(Model.AfterHalf))
+                    {
+                        <div class="thumb" onclick="$(this).prev().click();">
+                            No Image
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="thumb" style="background-image: url(@Model.AfterHalf);" onclick="$(this).prev().click();">
+                        </div>
+                    }
+                </div>
+                <div>
+                    <div>After 측면</div>
+                    <input name="afterside" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                    @if (string.IsNullOrWhiteSpace(Model.AfterSide))
+                    {
+                        <div class="thumb" onclick="$(this).prev().click();">
+                            No Image
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="thumb" style="background-image: url(@Model.AfterSide);" onclick="$(this).prev().click();">
+                        </div>
+                    }
                 </div>
             </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <input class="submit" type="submit" value="삭 제" />
-                <input class="submit" type="submit" value="등 록" />
+            <div class="spliter2"></div>
+
+            <br />
+            <br />
+            @*<span class="label">3.Youtube 영상 정보</span>
+                <div class="spliter1"></div>
+                <input name="video" value="@Model.VideoLink" placeholder="공유 태그를 입력하세요 (ex - <iframe> ~ </iframe>)" style="width: 100%;" />
+                <div class="spliter2"></div>*@
+
+            <br />
+            <br />
+            <div class="control-pannel">
+                @if (Model.Id <= 0)
+                {
+                    <button class="btn-default" type="button" style="margin-right: 10px;" onclick="location.href = document.referrer;">목록</button>
+                    <button class="btn-primary" type="button" onclick="updateItem.call(this);">등록</button>
+                }
+                else
+                {
+                    <button class="btn-delete" type="button" style="margin-right: 10px;" onclick="removeItem.call(this);">삭제</button>
+                    <button class="btn-default" type="button" style="margin-right: 10px;" onclick="location.href = document.referrer;">목록</button>
+                    <button class="btn-primary" type="button" onclick="updateItem.call(this);">적용</button>
+                }
             </div>
         </form>
     </div>
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function updateImage() {
+            if ($(this).prop('files').length > 0) {
+                var file = $(this).prop('files')[0];
+                var localurl = URL.createObjectURL(file);
+
+                var thumb = $(this).next();
+                thumb.css('background-image', 'url(' + localurl + ')');
+                thumb.text('');
+            }
+        }
+
+        function updateItem() {
+            try {
+                var form = $(this).parents('form')[0];
+
+                $.ajax({
+                    url: '/BeforeAfter/Update',
+                    method: 'post',
+                    processData: false,
+                    contentType: false,
+                    data: new FormData(form)
+                }).always(function (data, status, xhr) {
+                    if (status !== 'success') {
+                        alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                    }
+                    else if (!data.status) {
+                        alert(data.message);
+                    }
+                    else {
+                        alert('적용되었습니다.');
+                        location.href = document.referrer;
+                    }
+                });
+            } catch (e) {
+                alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                console.log(e);
+            }
+        }
+
+        function removeItem() {
+            try {
+
+                if (!confirm('현재 항목을 삭제하시겠습니까?')) {
+                    return;
+                }
+
+                var form = $(this).parents('form')[0];
+
+                $.ajax({
+                    url: '/BeforeAfter/Remove',
+                    method: 'post',
+                    processData: false,
+                    contentType: false,
+                    data: new FormData(form)
+                }).always(function (data, status, xhr) {
+                    if (status !== 'success') {
+                        alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                    }
+                    else if (!data.status) {
+                        alert(data.message);
+                    }
+                    else {
+                        alert('삭제되었습니다.');
+                        location.href = document.referrer;
+                    }
+                });
+            } catch (e) {
+                alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                console.log(e);
+            }
+        }
+    </script>
+}
