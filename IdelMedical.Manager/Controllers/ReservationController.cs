@@ -73,6 +73,11 @@ namespace IdelMedical.Manager.Controllers
             if (item == null)
                 return NotFound();
 
+            var targetWriter = default(User);
+            targetWriter = await this.Db.Users.FirstOrDefaultAsync(x => x.Id == item.UserId);
+            item.User = targetWriter;
+
+
             return View(item);
         }
     }

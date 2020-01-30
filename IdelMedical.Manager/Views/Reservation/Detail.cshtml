@@ -1,112 +1,74 @@
-﻿@{
-    ViewData["Title"] = "Reservation Detail Page";
-
-
+﻿@model IdelMedical.Database.Tables.Reservation
+@{
 }
 
 @section Styles {
     <environment include="Development">
-        <link href="~/css/community.css" rel="stylesheet" />
+        <link href="~/css/reservation.css" rel="stylesheet" />
     </environment>
 }
-<div class="detail">
+<div class="reservationDetail">
+    <div class="title">
+        <span>예약요청</span>
+        <span> > 상세정보</span>
+    </div>
     <div class="contentArea">
-        <form>
-            <div class="itemLine">
-                <div>
-                    <span>제 목</span>
+        <form onsubmit="return false">
+            <input name="Id" type="hidden" value="@Model.Id" />
+            <br />
+            <span class="label" style="padding-left:14px;">예약 정보</span>
+            <div class="spliter1"></div>
+            <div class="infoTable">
+                <div class="infoTable-row">
+                    <span>예약일 :</span>
+                    <span class="onlyText">@Model.ReservationTime.ToString("yyyy-MM-dd")</span>
                 </div>
-                <div>
-                    <div class="textData">
-                        <input type="text" value="" />
-                    </div>
+                <div class="infoTable-row">
+                    <span>시간 :</span>
+                    <span class="onlyText">@Model.ReservationTime.ToString("tt hh:mm")</span>
                 </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                </div>
-                <div>
-                    <div class="thumbnailArea">
-                        <span>썸네일</span>
-                    </div>
-                    <div class="originArea">
-                        <span>내용 이미지</span>
-                    </div>
+                <div class="infoTable-row">
+                    <span>진료과목 :</span>
+                    <span class="onlyText">@Model.Category</span>
                 </div>
             </div>
-            <div class="itemLine">
-                <div>
-                    <span>P C</span>
+            <div class="spliter2"></div>
+            <br />
+            <span class="label" style="padding-left:14px;">신청인 정보</span>
+            <div class="spliter1"></div>
+            <div class="infoTable">
+                <div class="infoTable-row">
+                    <span>이름 :</span>
+                    <span class="onlyText">@Model.Name</span>
                 </div>
-                <div>
-                    <div class="thumbnailArea">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                    <div class="originArea">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
+                <div class="infoTable-row">
+                    <span>휴대폰 :</span>
+                    <span class="onlyText">@Model.Category (@(Model.UseCall == true ? "상담동의" : "상담미동의"))</span>
                 </div>
-            </div>
-            <div class="itemLine">
-                <div>
-                    <span>Mobile</span>
+                <div class="infoTable-row">
+                    <span>초진여부 :</span>
+                    <span class="onlyText">@(Model.IsFirst == true ? "초진" : "재진"))</span>
                 </div>
-                <div>
-                    <div class="thumbnailArea">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
-                    <div class="originArea">
-                        <img alt="썸네일 미리보기" />
-                        <input type="hidden" value=""/>
-                        <button onclick="">
-                            <span>파일선택</span>
-                        </button>
-                    </div>
+                <div class="infoTable-row">
+                    <span>내원경로 :</span>
+                    <span class="onlyText">@Model.Channel</span>
+                </div>
+                <div class="infoTable-row">
+                    <span>신청인 이름 :</span>
+                    <span class="onlyText">@Model.User.Name</span>
                 </div>
             </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                    <div>
-                        <span>페이지 링크</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="textData">
-                        <input type="text" />
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <div>
-                    <div>
-                        <span>동영상 링크</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="textData">
-                        <input type="text" />
-                    </div>
-                </div>
-            </div>
-            <div class="splitLine"></div>
-            <div class="itemLine">
-                <input class="submit" type="submit" value="삭 제" />
-                <input class="submit" type="submit" value="등 록" />
+            <div class="spliter2"></div>
+            <br />
+            <span class="label" style="padding-left:14px;">메 모</span>
+            <div class="spliter1"></div>
+            <textarea class="memoArea">@Model.Memo</textarea>
+            <div class="spliter2"></div>
+            <br />
+            <br />
+            <div class="control-pannel">
+                <button class="btn-default" type="button" style="margin-right: 10px;" onclick="location.href = document.referrer;">목록</button>
+                <button class="btn-primary" type="button" onclick="updateItem.call(this);">적용</button>
             </div>
         </form>
     </div>
