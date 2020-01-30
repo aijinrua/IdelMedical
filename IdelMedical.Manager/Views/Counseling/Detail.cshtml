@@ -11,7 +11,7 @@
 
     <div class="title">
         <span>상담요청</span>
-        <span> > @Model.Category</span>
+        <span> > 상세보기</span>
     </div>
     <div class="contentArea">
         <form onsubmit="return false">
@@ -19,31 +19,32 @@
             <br />
             <span class="label" style="padding-left:14px;">제 목</span>
             <div class="spliter1"></div>
-            <span class="textLine">@Model.Subject</span>
+            <span class="onlyText">@Model.Subject</span>
             <div class="spliter2"></div>
             <br />
             <span class="label" style="padding-left:14px;">작성자 정보</span>
             <div class="spliter1"></div>
             <div class="writerInfo">
-                <span>작성자:&nbsp;&nbsp;&nbsp;@Model.User.Name</span>
-                <span>연락처:&nbsp;&nbsp;&nbsp;@Model.User.Phone</span>
-                <span>이메일:&nbsp;&nbsp;&nbsp;@Model.User.Email</span>
+                <div>
+                    <span>작성자 :</span><span>@Model.User.Name</span>
+                </div>
+                <div>
+                    <span>연락처 :</span><span>@Model.User.Phone</span>
+                </div>
+                <div>
+                    <span>이메일 :</span><span>@Model.User.Email</span>
+                </div>
             </div>
             <div class="spliter2"></div>
             <br />
             <span class="label" style="padding-left:14px;">문의 내용</span>
             <div class="spliter1"></div>
-            <span class="questionArea">@Model.Substance</span>
+            <pre class="questionArea">@Model.Answer</pre>
             <div class="spliter2"></div>
             <br />
             <span class="label" style="padding-left:14px;">답 변</span>
             <div class="spliter1"></div>
-            <textarea name="answer" class="replyArea" rows="5">@Model.Answer</textarea>
-            <div class="spliter2"></div>
-            <br />
-            <span class="label" style="padding-left:14px;">메 모</span>
-            <div class="spliter1"></div>
-            <textarea name="answer" class="memoArea" rows="5">@Model.Subject</textarea>
+            <textarea name="answer" class="replyArea" rows="12">@Model.Answer</textarea>
             <div class="spliter2"></div>
             <br />
             <br />
