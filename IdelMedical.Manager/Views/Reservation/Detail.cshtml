@@ -4,10 +4,10 @@
 
 @section Styles {
     <environment include="Development">
-        <link href="~/css/community.css" rel="stylesheet" />
+        <link href="~/css/reservation.css" rel="stylesheet" />
     </environment>
 }
-<div class="detail">
+<div class="reservationDetail">
     <div class="title">
         <span>예약요청</span>
         <span> > 상세정보</span>
@@ -16,34 +16,53 @@
         <form onsubmit="return false">
             <input name="Id" type="hidden" value="@Model.Id" />
             <br />
-            <span class="label" style="padding-left:14px;">제 목</span>
+            <span class="label" style="padding-left:14px;">예약 정보</span>
             <div class="spliter1"></div>
-            <span class="onlyText">@Model.Id</span>
-            <div class="spliter2"></div>
-            <br />
-            <span class="label" style="padding-left:14px;">작성자 정보</span>
-            <div class="spliter1"></div>
-            <div class="writerInfo">
-                <div>
-                    <span>작성자 :</span><span>@Model.Id</span>
+            <div class="infoTable">
+                <div class="infoTable-row">
+                    <span>예약일 :</span>
+                    <span class="onlyText">@Model.ReservationTime.ToString("yyyy-MM-dd")</span>
                 </div>
-                <div>
-                    <span>연락처 :</span><span>@Model.Id</span>
+                <div class="infoTable-row">
+                    <span>시간 :</span>
+                    <span class="onlyText">@Model.ReservationTime.ToString("tt hh:mm")</span>
                 </div>
-                <div>
-                    <span>이메일 :</span><span>@Model.Id</span>
+                <div class="infoTable-row">
+                    <span>진료과목 :</span>
+                    <span class="onlyText">@Model.Category</span>
                 </div>
             </div>
             <div class="spliter2"></div>
             <br />
-            <span class="label" style="padding-left:14px;">문의 내용</span>
+            <span class="label" style="padding-left:14px;">신청인 정보</span>
             <div class="spliter1"></div>
-            <pre class="questionArea">@Model.Id</pre>
+            <div class="infoTable">
+                <div class="infoTable-row">
+                    <span>이름 :</span>
+                    <span class="onlyText">@Model.Name</span>
+                </div>
+                <div class="infoTable-row">
+                    <span>휴대폰 :</span>
+                    <span class="onlyText">@Model.Category (@(Model.UseCall == true ? "상담동의" : "상담미동의"))</span>
+                </div>
+                <div class="infoTable-row">
+                    <span>초진여부 :</span>
+                    <span class="onlyText">@(Model.IsFirst == true ? "초진" : "재진"))</span>
+                </div>
+                <div class="infoTable-row">
+                    <span>내원경로 :</span>
+                    <span class="onlyText">@Model.Channel</span>
+                </div>
+                <div class="infoTable-row">
+                    <span>신청인 이름 :</span>
+                    <span class="onlyText">@Model.User.Name</span>
+                </div>
+            </div>
             <div class="spliter2"></div>
             <br />
-            <span class="label" style="padding-left:14px;">답 변</span>
+            <span class="label" style="padding-left:14px;">메 모</span>
             <div class="spliter1"></div>
-            <textarea name="answer" class="replyArea" rows="12">@Model.Id</textarea>
+            <textarea class="memoArea">@Model.Memo</textarea>
             <div class="spliter2"></div>
             <br />
             <br />
