@@ -11,12 +11,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using IdelMedical.Database.Tables;
 using System.IO;
+using IdelMedical.Manager.Attributes;
 
 namespace IdelMedical.Manager.Controllers
 {
     /// <summary>
     /// 아이델스타
     /// </summary>
+    [Auth]
     public class IdelStarController : Controller
     {
         public DatabaseContext Db { get; }

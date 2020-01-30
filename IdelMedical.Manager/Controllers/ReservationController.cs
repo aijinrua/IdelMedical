@@ -8,12 +8,14 @@ using IdelMedical.Manager.Handlers;
 using IdelMedical.Database;
 using Microsoft.EntityFrameworkCore;
 using IdelMedical.Database.Tables;
+using IdelMedical.Manager.Attributes;
 
 namespace IdelMedical.Manager.Controllers
 {
     /// <summary>
     /// 예약요청
     /// </summary>
+    [Auth]
     public class ReservationController : Controller
     {
         public DatabaseContext Db { get; }

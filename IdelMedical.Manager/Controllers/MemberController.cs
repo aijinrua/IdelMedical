@@ -7,12 +7,14 @@ using IdelMedical.Manager.DataModels;
 using IdelMedical.Manager.Handlers;
 using IdelMedical.Database;
 using Microsoft.EntityFrameworkCore;
+using IdelMedical.Manager.Attributes;
 
 namespace IdelMedical.Manager.Controllers
 {
     /// <summary>
     /// 회원목록
     /// </summary>
+    [Auth]
     public class MemberController : Controller
     {
         public DatabaseContext Db { get; }
