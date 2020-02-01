@@ -39,6 +39,7 @@ namespace IdelMedical.Database
             Reservation.Build(modelBuilder);
             BeforeAfter.Build(modelBuilder);
             Manager.Build(modelBuilder);
+            MainSlide.Build(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
 
@@ -53,6 +54,11 @@ namespace IdelMedical.Database
             {
                 if (db.Database.EnsureCreated())
                 {
+                    db.Mains.Add(new Main
+                    {
+                        IsShowSnowEffect = false
+                    });
+
                     db.Managers.Add(new Manager
                     {
                         CreateTime = DateTime.Now,
@@ -97,5 +103,7 @@ namespace IdelMedical.Database
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<BeforeAfter> BeforeAfters { get; set; }
         public DbSet<Manager> Managers { get; set; }
+        public DbSet<Main> Mains { get; set; }
+        public DbSet<MainSlide> MainSlides { get; set; }
     }
 }

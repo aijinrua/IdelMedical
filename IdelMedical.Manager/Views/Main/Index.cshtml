@@ -1,90 +1,231 @@
-﻿@{
-    ViewData["Title"] = "Main Page";
-    var SlideData = (List<SlideModel>)ViewBag.SlideData;
-    var Pager = (PageHandler)ViewBag.Pager;
-    var Search = (string)ViewBag.Search;
-
+﻿@model IdelMedical.Database.Tables.Main
+@{
 }
 
 @section Styles {
-    <environment include="Development">
-        <link href="~/css/main.css" rel="stylesheet" />
-    </environment>
+    <link href="~/css/community.css" rel="stylesheet" />
 }
-
-<div class="main">
-    <div class="topBar">
-        <div class="category">
-            <div>
-                <span>카테고리 선택</span>
-                <select name="categoryItems" onchange="">
-                    <option value="Slide">Slide</option>
-                    <option value="YouTube">YouTube</option>
-                    <option value="Instagram">Instagram</option>
-                </select>
-            </div>
-            <div>
-                <button class="addBtn" onclick="location.href='/Main/Slide'">
-                    <span>신규 등록</span>
-                </button>
-            </div>
-        </div>
+<div class="communityDetail">
+    <div class="title">
+        <span>메인관리</span>
+        <span> > 설정</span>
     </div>
-    <div class="content">
-        <div class="splitLine"></div>
+    <div class="contentArea">
+        <div>
+            <br />
+            <span class="label">1.메인 슬라이드</span>
+            <div class="spliter1"></div>
+            <span class="sub-label">PC 슬라이드</span>
+            <div class="slide-items">
 
-        <div class="table">
-            <div class="header">
-                <div style="width:120px;">
-                    No.
-                </div>
-                <div>
-                    제 목
-                </div>
-                <div style="width:120px;">
-                    등록일자
-                </div>
+                @foreach (var item in Model.MainSlides.Where(x => !x.IsMobile).OrderBy(x => x.OrderIdx))
+                {
+                    <form class="item" onsubmit="return false;">
+                        <input name="id" type="hidden" value="@item.Id" />
+                        <input name="image" type="file" style="display: none;" onchange="updateImageSlideItem.call(this);" />
+                        <div class="thumb" style="background-image: url(@item.Url)" onclick="selectPCSlideItem.call(this);">
+                            <div>
+                                <button onclick="movePrevItem.call(this, @item.Id); event.stopPropagation();">&lt;</button>
+                                <button onclick="moveNextItem.call(this, @item.Id); event.stopPropagation();">&gt;</button>
+                            </div>
+                        </div>
+                        <input name="link" placeholder="클릭시 이동 링크" value="@item.Link" />
+                        <select name="linktarget" placeholder="클릭시 이동 링크">
+                            <option value="_blank" selected="@(item.LinkTarget == "_blank" ? "selected" : null)">새창</option>
+                            <option value="_self" selected="@(item.LinkTarget == "_self" ? "selected" : null)">현재창</option>
+                        </select>
+                        <button style="width: 70%;" onclick="updateSlideItem.call(this);">적용</button>
+                        <button style="width: 30%; background-color: #b70000;" onclick="removeSlideItem.call(this);">삭제</button>
+                    </form>
+                }
+
+                <form class="item" onsubmit="return false;">
+                    <input name="image" type="file" style="display: none;" onchange="updateImageSlideItem.call(this);" />
+                    <input name="ismobile" type="hidden" value="False" />
+                    <div class="thumb" onclick="selectPCSlideItem.call(this);">
+                        +
+                    </div>
+                    <input name="link" placeholder="클릭시 이동 링크" />
+                    <select name="linktarget" placeholder="클릭시 이동 링크">
+                        <option value="_blank">새창</option>
+                        <option value="_self">현재창</option>
+                    </select>
+                    <button onclick="appendSlideItem.call(this);">추가</button>
+                </form>
+
             </div>
-            @{ 
-                int count = 0;
-            }
-            @foreach (var item in SlideData)
-            {
-                count++;
-                if (count > 15) break;
-                <div>
-                    <div style="text-align: center;">
-                        @item.Number
-                    </div>
-                    <div style="text-align: center;">
-                        @item.Title
-                    </div>
-                    <div style="text-align: center;">
-                        @item.UploadTime
-                    </div>
-                </div>
-            }
-        </div>
-        @{
-            if (SlideData != null)
-            {
-                <div class="splitLine"></div>
-            }
-            if (SlideData.Count > 15)
-            {
-                var pageCount = SlideData.Count % 15;
-                <div class="pageBtn">
-                    <a>&lt&lt</a>
-                    <a>&lt</a>
-                    @for (int i = 0; i < pageCount; i++)
-                    {
-                        <a>@(i + 1)</a>
-                    }
-                    <a>&gt</a>
-                    <a>&gt&gt</a>
+            <div class="spliter2"></div>
+            <span class="sub-label">Mobile 슬라이드</span>
+            <div class="slide-items">
 
-                </div>
-            }
-        }
+                @foreach (var item in Model.MainSlides.Where(x => x.IsMobile).OrderBy(x => x.OrderIdx))
+                {
+                    <form class="item" onsubmit="return false;">
+                        <input name="id" type="hidden" value="@item.Id" />
+                        <input name="image" type="file" style="display: none;" onchange="updateImageSlideItem.call(this);" />
+                        <div class="thumb" style="background-image: url(@item.Url)" onclick="selectPCSlideItem.call(this);">
+                            <div>
+                                <button onclick="movePrevItem.call(this, @item.Id); event.stopPropagation();">&lt;</button>
+                                <button onclick="moveNextItem.call(this, @item.Id); event.stopPropagation();">&gt;</button>
+                            </div>
+                        </div>
+                        <input name="link" placeholder="클릭시 이동 링크" value="@item.Link" />
+                        <select name="linktarget" placeholder="클릭시 이동 링크">
+                            <option value="_blank" selected="@(item.LinkTarget == "_blank" ? "selected" : null)">새창</option>
+                            <option value="_self" selected="@(item.LinkTarget == "_self" ? "selected" : null)">현재창</option>
+                        </select>
+                        <button style="width: 70%;" onclick="updateSlideItem.call(this);">적용</button>
+                        <button style="width: 30%; background-color: #b70000;" onclick="removeSlideItem.call(this);">삭제</button>
+                    </form>
+                }
+
+                <form class="item" onsubmit="return false;">
+                    <input name="image" type="file" style="display: none;" onchange="updateImageSlideItem.call(this);" />
+                    <input name="ismobile" type="hidden" value="True" />
+                    <div class="thumb" onclick="selectPCSlideItem.call(this);">
+                        +
+                    </div>
+                    <input name="link" placeholder="클릭시 이동 링크" />
+                    <select name="linktarget" placeholder="클릭시 이동 링크">
+                        <option value="_blank">새창</option>
+                        <option value="_self">현재창</option>
+                    </select>
+                    <button onclick="appendSlideItem.call(this);">추가</button>
+                </form>
+
+            </div>
+            <div class="spliter2"></div>
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function selectPCSlideItem() {
+            $(this).parents('form').find('input[name=image]').click();
+        }
+
+        function updateImageSlideItem() {
+            if ($(this).prop('files').length === 0) {
+                return;
+            }
+
+            var url = URL.createObjectURL($(this).prop('files')[0]);
+            var thumb = $(this).parents('form').find('.thumb');
+            if (thumb.text().trim() === '+') {
+                thumb.text('');
+            }
+            thumb.css('background-image', 'url(' + url + ')');
+        }
+
+        function appendSlideItem() {
+            var form = $(this).parents('form')[0];
+
+            $.ajax({
+                url: '/main/appendslideitem',
+                method: 'post',
+                processData: false,
+                contentType: false,
+                data: new FormData(form)
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+
+        function updateSlideItem() {
+            var form = $(this).parents('form')[0];
+
+            $.ajax({
+                url: '/main/updateslideitem',
+                method: 'post',
+                processData: false,
+                contentType: false,
+                data: new FormData(form)
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    alert('적용되었습니다.');
+                }
+            });
+        }
+
+        function removeSlideItem() {
+
+            if (!confirm('해당 항목을 삭제하시겠습니까?'))
+                return;
+
+            var form = $(this).parents('form')[0];
+
+            $.ajax({
+                url: '/main/removeslideitem',
+                method: 'post',
+                processData: false,
+                contentType: false,
+                data: new FormData(form)
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+
+        function movePrevItem(id) {
+            $.ajax({
+                url: '/main/moveprevitem',
+                method: 'post',
+                data: {
+                    id: id
+                }
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+
+        function moveNextItem(id) {
+            $.ajax({
+                url: '/main/movenextitem',
+                method: 'post',
+                data: {
+                    id: id
+                }
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+    </script>
+}

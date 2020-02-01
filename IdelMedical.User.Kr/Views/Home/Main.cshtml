@@ -1,49 +1,75 @@
-﻿@section Styles {
-    @*<link href="/css/site.css" rel="stylesheet" />*@
+﻿@{
+    var userkey = Context.Session.GetString("UserKey");
+    var slideItems = (IdelMedical.Database.Tables.MainSlide[])ViewBag.SlideItems;
+    var youtubeItems = (IdelMedical.Database.Tables.IdelTV[])ViewBag.YoutubeItems;
+}
+
+@section Styles {
     <link href="/lib/owl-carousel/owl.carousel.min.css" rel="stylesheet" />
     <link href="/lib/owl-carousel/owl.theme.min.css" rel="stylesheet" />
 }
 
-<div class="main-slide">
-    <div>
-        <img src="~/images/pc/mainslide/image01.jpg" />
+@if (slideItems != null && slideItems.Length > 0)
+{
+    <div class="main-slide">
+        @foreach (var item in slideItems)
+        {
+            if (string.IsNullOrWhiteSpace(item.Link))
+            {
+                <div>
+                    <img src="@item.Url" />
+                </div>
+            }
+            else
+            {
+                <div>
+                    <a href="@item.Link" target="@item.LinkTarget">
+                        <img src="@item.Url" />
+                    </a>
+                </div>
+            }
+        }
     </div>
-    <div>
-        <img src="~/images/pc/mainslide/image01.jpg" />
-    </div>
-</div>
-<div class="youtube">
-    <div class="logo">
-        <img src="/images/logo_youtube.png" />
-    </div>
-    <div class="video-main">
-        <div class="video">
+}
 
+@if (youtubeItems != null && youtubeItems.Length > 0)
+{
+    var firstItem = youtubeItems[0];
+
+    <div class="youtube">
+        <div class="logo">
+            <img src="/images/logo_youtube.png" />
         </div>
-        <div class="info">
-            <span>IDEL TV</span> <br />
-            <span>아름다움의 시작이 되는 아이델 성형외과</span> <br />
-            <a href="#">VIEW MORE +</a>
+
+        <div class="video-main">
+            <div class="video" onclick="openVideoPannel.call(this);">
+                <input type="hidden" value="@firstItem.VideoLink" />
+                <img src="@firstItem.ThumbnailPC" />
+            </div>
+            <div class="info">
+                <span>@firstItem.SubjectComment</span> <br />
+                <span>@firstItem.Subject</span> <br />
+                <a href="/community/ideltvlist">VIEW MORE +</a>
+            </div>
+        </div>
+        <div class="video-sub">
+            @for (int i = 1; i < youtubeItems.Length; i++)
+            {
+                var item = youtubeItems[i];
+
+                <div class="video" onclick="openVideoPannel.call(this);">
+                    <input type="hidden" value="@item.VideoLink" />
+                    <img src="@item.ThumbnailPC" />
+                </div>
+                <div class="info">
+                    <span>@item.SubjectComment</span> <br />
+                    <span>@item.Subject</span>
+                </div>
+            }
         </div>
     </div>
-    <div class="video-sub">
-        <div class="video">
+}
 
-        </div>
-        <div class="info">
-            <span>Dr. kim FAQ MEDIA</span> <br />
-            <span>김대희원장의 성형수술 FAQ</span>
-        </div>
-
-        <div class="video">
-
-        </div>
-        <div class="info">
-            <span>Before & After</span> <br />
-            <span>김대희원장의 성형수술 FAQ</span>
-        </div>
-    </div>
-</div>
 <div class="instagram">
     <div class="logo">
         <img src="/images/logo_instagram.png" />
@@ -105,6 +131,7 @@
         </div>
     </div>
 </div>
+
 <div class="story">
     <div class="logo">
         <img src="~/images/pc/logo_story.png" />
@@ -113,21 +140,40 @@
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <td rowspan="2">
-                    <img src="~/images/pc/story/image01.jpg" />
+                    <a href="/community/ideleventlist">
+                        <img src="~/images/pc/story/image01.jpg" />
+                    </a>
                 </td>
                 <td colspan="3">
-                    <img src="~/images/pc/story/image02.jpg" />
+                    @if (string.IsNullOrWhiteSpace(userkey))
+                    {
+                        <a href="/auth/login">
+                            <img src="~/images/pc/story/image02.jpg" />
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="/auth/login">
+                            <img src="~/images/pc/story/image02.jpg" />
+                        </a>
+                    }
                 </td>
             </tr>
             <tr>
                 <td>
-                    <img src="~/images/pc/story/image03.jpg" />
+                    <a href="/serviceresult/realstory">
+                        <img src="~/images/pc/story/image03.jpg" />
+                    </a>
                 </td>
                 <td>
-                    <img src="~/images/pc/story/image04.jpg" />
+                    <a href="/counseling/reservation">
+                        <img src="~/images/pc/story/image04.jpg" />
+                    </a>
                 </td>
                 <td>
-                    <img src="~/images/pc/story/image05.jpg" />
+                    <a href="javascript:alert('준비중입니다.');">
+                        <img src="~/images/pc/story/image05.jpg" />
+                    </a>
                 </td>
             </tr>
         </table>
@@ -212,6 +258,16 @@
         </div>
     </div>
 </div>
+<div class="video-pannel">
+    <div>
+        <div class="close">
+            <img src="~/images/icon_close.png" onclick="closeVideoPannel.call(this);" />
+        </div>
+        <div class="video">
+
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     <script src="/lib/owl-carousel/owl.carousel.min.js"></script>
@@ -274,6 +330,17 @@
             }
 
             return false;
+        }
+
+        function openVideoPannel() {
+            var iframe = $(this).find('input').val();
+                $('.video-pannel .video').html(iframe);
+                $('.video-pannel').css('display', 'flex');
+        }
+
+        function closeVideoPannel() {
+            $('.video-pannel .video').html('');
+            $('.video-pannel').css('display', 'none');
         }
     </script>
 }
