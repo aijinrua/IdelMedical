@@ -62,7 +62,7 @@
             <br />
             <span class="label" style="padding-left:14px;">메 모</span>
             <div class="spliter1"></div>
-            <textarea class="memoArea">@Model.Memo</textarea>
+            <textarea name="reservationMemo" class="memoArea">@Model.Memo</textarea>
             <div class="spliter2"></div>
             <br />
             <br />
@@ -73,3 +73,38 @@
         </form>
     </div>
 </div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function updateItem() {
+            try {
+                var form = $(this).parents('form')[0];
+
+                $.ajax({
+                    url: '/Reservation/Update',
+                    method: 'post',
+                    processData: false,
+                    contentType: false,
+                    data: new FormData(form)
+                }).always(function (data, status, xhr) {
+                    if (status !== 'success') {
+                        alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                    }
+                    else if (!data.status) {
+                        alert(data.message);
+                    }
+                    else {
+                        alert('적용되었습니다.');
+                        location.href = document.referrer;
+                    }
+                });
+            } catch (e) {
+                alert('작업에 실패했습니다.\n담당자에게 문의해 주세요.');
+                console.log(e);
+            }
+        }
+
+    </script>
+}

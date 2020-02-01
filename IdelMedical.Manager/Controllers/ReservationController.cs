@@ -80,5 +80,29 @@ namespace IdelMedical.Manager.Controllers
 
             return View(item);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(int id, string reservationMemo)
+        {
+            try
+            {
+
+                var item = default(Reservation);
+
+                item = await this.Db.Reservations
+                    .FirstOrDefaultAsync(x => x.Id == id);
+
+                item.Memo = reservationMemo;
+
+
+                await this.Db.SaveChangesAsync();
+
+                return Json(new { status = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = false, message = ex.Message });
+            }
+        }
     }
 }
