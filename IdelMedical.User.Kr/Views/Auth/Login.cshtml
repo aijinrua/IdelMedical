@@ -2,6 +2,8 @@
     <link href="~/css/pc_login.css" rel="stylesheet" />
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 }
 
 <div class="login">
@@ -41,7 +43,7 @@
             </div>
         </div>
         <div>
-            <button onclick="alert('준비중입니다.');">구글 로그인</button>
+            <div id="google-login-button" onclick="googleLogin();"></div>
         </div>
     </div>
 </div>
@@ -53,6 +55,7 @@
             naverInit();
             facebookInit();
             kakaoInit();
+            googleInit();
         });
 
         function naverInit() {
@@ -90,6 +93,30 @@
             });
         }
 
+        function googleInit() {
+            gapi.load('client:auth2', {
+                callback: function () {
+                    // Initialize client & auth libraries
+                    gapi.client.init({
+                        apiKey: '@ViewBag.GoogleApiKey',
+                        clientId: '@ViewBag.GoogleClientId',
+                        scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me'
+                    });
+                },
+                onerror: function () {
+                    console.log('error');
+                }
+            });
+
+            gapi.signin2.render('google-login-button', {
+                'scope': 'profile email',
+                'width': 242,
+                'height': 50,
+                'longtitle': true,
+                'theme': 'dark'
+            });
+        }
+
         function facebookLogin() {
             FB.login(function (response) {
                 if (response.status === 'connected') {
@@ -97,6 +124,19 @@
                     location.href = '/auth/facebooklogin?access_token=' + accessToken;
                 }
             }, {scope: 'public_profile,email'});
+        }
+
+        function googleLogin() {
+            gapi.auth2.getAuthInstance().signIn().then(
+                function (success) {
+                    console.log(success);
+                    var access_token = success.getAuthResponse().access_token;
+                    location.href = '/auth/googlelogin?access_token=' + access_token;
+                },
+                function (error) {
+                    console.log(error);
+                }
+            );
         }
 
         function doSubmit() {

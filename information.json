@@ -1,8 +1,8 @@
 {
     "Accounts": {
         "Google": {
-            "UserId": "idel19111@gmail.com",
-            "Passwd": "dltndus5900"
+            "UserId": "01039045902",
+            "Passwd": "idel8888!"
         },
         "Naver": {
             "UserId": "idel1911@naver.com",
@@ -10,11 +10,15 @@
         },
         "Kakao": {
             "UserId": "idel1911@naver.com",
-            "Passwd": "idel8888!"
+            "Passwd": "Aio670909"
         },
         "Instagram": {
             "UserId": "idel_._._",
             "Passwd": ""
+        },
+        "Facebook": {
+            "UserId": "idel1911@naver.com",
+            "Passwd": "idel8888!"
         },
         "Cafe24": {
             "UserId": "idel5900",

@@ -24,21 +24,18 @@ namespace IdelMedical.User.Kr.Controllers
             this.Db = db;
         }
 
-        public IActionResult Index()
-        {
-            if (this.IsMobile())
-            {
-                return View("MobileIndex");
-            }
-            else
-            {
-                return View();
-            }
-        }
-
         [HttpGet]
-        public async Task<IActionResult> Main()
+        public async Task<IActionResult> Index()
         {
+            ViewBag.YoutubeItems = await this.Db.IdelTVs
+                .OrderByDescending(x => x.CreateTime)
+                .Take(3)
+                .ToArrayAsync();
+
+            ViewBag.BeforeAfterItem = await this.Db.BeforeAfters
+                .OrderByDescending(x => x.CreateTime)
+                .FirstOrDefaultAsync();
+
             if (this.IsMobile())
             {
                 ViewBag.SlideItems = await this.Db.MainSlides

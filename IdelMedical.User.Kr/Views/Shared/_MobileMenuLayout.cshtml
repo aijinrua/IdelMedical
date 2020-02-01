@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    var controller = (string)ViewContext.RouteData.Values["controller"];
+    var action = (string)ViewContext.RouteData.Values["action"];
+    var userkey = Context.Session.GetString("UserKey");
+}
+
+<div class="top-bar">
+    <div>
+        <img src="~/images/mobile/button_menu.png" />
+    </div>
+    <div>
+        <img src="~/images/mobile/logo_main.png" />
+    </div>
+    <div>
+        <img src="~/images/mobile/reservation.png" />
+    </div>
+</div>
+
+<div class="menu-pannel">
+    <div class="background"></div>
+    <div class="menu-items">
+        <div>
+
+        </div>
+    </div>
+</div>

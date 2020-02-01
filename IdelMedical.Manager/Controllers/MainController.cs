@@ -37,6 +37,10 @@ namespace IdelMedical.Manager.Controllers
                 .Include(x => x.MainInstagrams)
                 .FirstOrDefaultAsync();
 
+            ViewBag.PopupNoticeItems = await this.Db.PopupNotices
+                .OrderBy(x => x.OrderIdx)
+                .ToArrayAsync();
+
             return View(item);
         }
 

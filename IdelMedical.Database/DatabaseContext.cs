@@ -105,5 +105,7 @@ namespace IdelMedical.Database
         public DbSet<Manager> Managers { get; set; }
         public DbSet<Main> Mains { get; set; }
         public DbSet<MainSlide> MainSlides { get; set; }
+        public DbSet<ModelGathering> ModelGatherings { get; set; }
+        public DbSet<PopupNotice> PopupNotices { get; set; }
     }
 }

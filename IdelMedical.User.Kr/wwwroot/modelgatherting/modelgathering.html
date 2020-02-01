@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>아이델 성형외과 - 모델모집</title>
+
+    <script src="../lib/jquery/jquery.min.js"></script>
+
+    <style>
+        body {
+            background-image:url(background.jpg);
+            background-repeat: repeat;
+        }
+
+        .content > img {
+            vertical-align: middle;
+            width: 100%;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .request-pannel {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .request-pannel > div {
+            overflow: auto;
+        }
+
+        .request-pannel > div > div {
+            float: left;
+            height: 35px;
+        }
+
+        .request-pannel > div .header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 20px;
+            color: #ffffff;
+            width: 110px;
+        }
+
+        .request-pannel > div .header img {
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .request-pannel > div > div:last-child {
+            width: calc(100% - 110px);
+            display: flex;
+            align-items: center;
+        }
+
+        .request-pannel > div > div input,
+        .request-pannel > div > div select {
+            width: 100%;
+            height: 30px;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .request-pannel .btn-submit {
+            width: 100%;
+            height: 46px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #000000;
+            background-color: #dedede;
+            border: none;
+            cursor: pointer;
+        }
+
+        .confirm-policy {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .confirm-policy input#cbox01 {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .confirm-policy label {
+            color: #ffffff;
+        }
+
+        a.btn-policy {
+            color: #ffffff;
+            margin-left: 28px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <img src="01.png" />
+        <img src="02.png" />
+        <img src="03.png" />
+        <img src="04.png" />
+        <form id="form01" class="request-pannel" onsubmit="return false;" style="margin-top: 20px; margin-bottom: 50px;">
+            <div style="margin-bottom: 10px;">
+                <div class="header">
+                    <img src="icon_label_header.jpg" />
+                    이름
+                </div>
+                <div>
+                    <input name="name" />
+                </div>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <div class="header">
+                    <img src="icon_label_header.jpg" />
+                    연락처
+                </div>
+                <div>
+                    <input name="phone" type="tel" />
+                </div>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <div class="header">
+                    <img src="icon_label_header.jpg" />
+                    모집분야
+                </div>
+                <div>
+                    <select name="category">
+                        <option value="">==모집분야를 선택해주세요==</option>
+                        <option value="가슴">가슴</option>
+                        <option value="리프팅">리프팅</option>
+                        <option value="지방흡입">지방흡입</option>
+                        <option value="눈">눈</option>
+                        <option value="코">코</option>
+                        <option value="지방이식">지방이식</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn-submit" style="margin-bottom: 20px;" onclick="doSubmit.call(this);">모델지원하기</button>
+
+            <div class="confirm-policy">
+                <input id="cbox01" name="cbox01" type="checkbox" value="True" />
+                <label for="cbox01">개인정보 수집 및 이용에 동의합니다.</label>
+            </div>
+
+            <a class="btn-policy" href="/policy.html" target="_blank">
+                [약관보기]
+            </a>
+        </form>
+        <img src="05.png" />
+        <img src="06.png" />
+        <img src="07.png" />
+    </div>
+
+    <script type="text/javascript">
+        function doSubmit() {
+
+            var form = $('#form01')[0];
+
+            $.ajax({
+                url: '/etc/modelgathering',
+                method: 'post',
+                processData: false,
+                contentType: false,
+                data: new FormData(form)
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('잠시 후에 다시 시도해 주세요');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    alert('지원되었습니다.');
+                    form.reset();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

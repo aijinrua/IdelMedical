@@ -34,6 +34,9 @@ namespace IdelMedical.User.Kr.Controllers
             ViewBag.KakaoJavascriptKey = this.Configuration["OauthKakao:JavascriptKey"];
             ViewBag.FacebookAppId = this.Configuration["OauthFacebook:AppId"];
             ViewBag.FacebookApiVersion = this.Configuration["OauthFacebook:ApiVersion"];
+            ViewBag.GoogleApiKey = this.Configuration["OauthGoogle:ApiKey"];
+            ViewBag.GoogleClientId = this.Configuration["OauthGoogle:ClientId"];
+            ViewBag.GoogleRedirectUrl = this.Configuration["OauthGoogle:RedirectUrl"];
 
 
             return View();
@@ -239,6 +242,58 @@ namespace IdelMedical.User.Kr.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GoogleLogin(string access_token)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(access_token))
+                {
+                    throw new Exception();
+                }
+                else
+                {
+                    using (var http = new HttpClient())
+                    {
+                        using (var response = await http.GetAsync($"https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token={access_token}"))
+                        {
+                            var content = await response.Content.ReadAsStringAsync();
+                            content = Regex.Unescape(content);
+                            var data = JsonConvert.DeserializeAnonymousType(content, new
+                            {
+                                id = default(string),
+                                email = default(string),
+                                name = default(string)
+                            });
+
+                            HttpContext.Session.SetString("AccountType", "Google");
+                            HttpContext.Session.SetString("AccessToken", access_token);
+
+                            if (this.Db.Users.Any(x => x.UserKey == $"google_{data.id}"))
+                            {
+                                HttpContext.Session.SetString("UserKey", $"google_{data.id}");
+                                return Redirect("/");
+                            }
+                            else
+                            {
+                                HttpContext.Session.SetString("Id", data.id);
+                                HttpContext.Session.SetString("Name", data.name ?? "");
+                                HttpContext.Session.SetString("Email", data.email ?? "");
+
+                                return Redirect("/Auth/Join?accountType=google");
+                            }
+                        }
+                    }
+                }
+
+                throw new Exception();
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpGet]
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("UserKey");
@@ -286,6 +341,12 @@ namespace IdelMedical.User.Kr.Controllers
                     break;
                 case "facebook":
                     ViewBag.AccountType = "Facebook";
+                    ViewBag.Id = HttpContext.Session.GetString("Id");
+                    ViewBag.Name = HttpContext.Session.GetString("Name");
+                    ViewBag.Email = HttpContext.Session.GetString("Email");
+                    break;
+                case "google":
+                    ViewBag.AccountType = "Google";
                     ViewBag.Id = HttpContext.Session.GetString("Id");
                     ViewBag.Name = HttpContext.Session.GetString("Name");
                     ViewBag.Email = HttpContext.Session.GetString("Email");
@@ -360,6 +421,14 @@ namespace IdelMedical.User.Kr.Controllers
 
                             var id = HttpContext.Session.GetString("Id");
                             userkey = $"facebook_{id}";
+                        }
+                        break;
+                    case "Google":
+                        {
+                            accountType = AccountTypes.Google;
+
+                            var id = HttpContext.Session.GetString("Id");
+                            userkey = $"google_{id}";
                         }
                         break;
                     case "Idel":

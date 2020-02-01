@@ -2,6 +2,7 @@
     var userkey = Context.Session.GetString("UserKey");
     var slideItems = (IdelMedical.Database.Tables.MainSlide[])ViewBag.SlideItems;
     var youtubeItems = (IdelMedical.Database.Tables.IdelTV[])ViewBag.YoutubeItems;
+    var beforeAfterItem = (IdelMedical.Database.Tables.BeforeAfter)ViewBag.BeforeAfterItem;
 }
 
 @section Styles {
@@ -145,18 +146,9 @@
                     </a>
                 </td>
                 <td colspan="3">
-                    @if (string.IsNullOrWhiteSpace(userkey))
-                    {
-                        <a href="/auth/login">
-                            <img src="~/images/pc/story/image02.jpg" />
-                        </a>
-                    }
-                    else
-                    {
-                        <a href="/auth/login">
-                            <img src="~/images/pc/story/image02.jpg" />
-                        </a>
-                    }
+                    <a href="/serviceresult/beforeafter">
+                        <img src="~/images/pc/story/image02.jpg" />
+                    </a>
                 </td>
             </tr>
             <tr>

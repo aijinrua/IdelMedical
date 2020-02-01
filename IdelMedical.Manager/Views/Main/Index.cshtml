@@ -1,5 +1,6 @@
 ﻿@model IdelMedical.Database.Tables.Main
 @{
+    var popupNoticeItems = (IdelMedical.Database.Tables.PopupNotice[])ViewBag.PopupNoticeItems;
 }
 
 @section Styles {
@@ -13,7 +14,54 @@
     <div class="contentArea">
         <div>
             <br />
-            <span class="label">1.메인 슬라이드</span>
+            <span class="label">1.팝업공지</span>
+            <div class="spliter1"></div>
+            <div class="slide-items">
+
+                @if (popupNoticeItems != null && popupNoticeItems.Length > 0)
+                {
+                    foreach (var item in popupNoticeItems)
+                    {
+                        <form class="item" onsubmit="return false;">
+                            <input name="id" type="hidden" value="@item.Id" />
+                            <input name="image" type="file" style="display: none;" onchange="updateImageSlideItem.call(this);" />
+                            <div class="thumb" style="background-image: url(@item.Url)" onclick="selectPCSlideItem.call(this);">
+                                <div>
+                                    <button onclick="movePrevItem.call(this, @item.Id); event.stopPropagation();">&lt;</button>
+                                    <button onclick="moveNextItem.call(this, @item.Id); event.stopPropagation();">&gt;</button>
+                                </div>
+                            </div>
+                            <input name="link" placeholder="클릭시 이동 링크" value="@item.Link" />
+                            <select name="linktarget" placeholder="클릭시 이동 링크">
+                                <option value="_blank" selected="@(item.LinkTarget == "_blank" ? "selected" : null)">새창</option>
+                                <option value="_self" selected="@(item.LinkTarget == "_self" ? "selected" : null)">현재창</option>
+                            </select>
+                            <button style="width: 70%;" onclick="updateSlideItem.call(this);">적용</button>
+                            <button style="width: 30%; background-color: #b70000;" onclick="removeSlideItem.call(this);">삭제</button>
+                        </form>
+                    }
+                }
+
+                <form class="item" onsubmit="return false;">
+                    <input name="image" type="file" style="display: none;" onchange="updateImageSlideItem.call(this);" />
+                    <input name="ismobile" type="hidden" value="False" />
+                    <div class="thumb" onclick="selectPCSlideItem.call(this);">
+                        +
+                    </div>
+                    <input name="link" placeholder="클릭시 이동 링크" />
+                    <select name="linktarget" placeholder="클릭시 이동 링크">
+                        <option value="_blank">새창</option>
+                        <option value="_self">현재창</option>
+                    </select>
+                    <button onclick="appendSlideItem.call(this);">추가</button>
+                </form>
+
+            </div>
+            <div class="spliter2"></div>
+
+            <br />
+            <br />
+            <span class="label">2.메인 슬라이드</span>
             <div class="spliter1"></div>
             <span class="sub-label">PC 슬라이드</span>
             <div class="slide-items">
