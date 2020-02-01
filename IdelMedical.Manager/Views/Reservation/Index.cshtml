@@ -48,27 +48,27 @@
                 count++;
                 if (count > 15) break;
                 <div>
-                    <div style="text-align: center;">
+                    <div>
                         <a href="/Reservation/Detail?id=@item.Id">@item.Id</a>
                     </div>
-                    <div style="text-align: center;">
+                    <div>
                         <a href="/Reservation/Detail?id=@item.Id">@item.Category</a>
                     </div>
-                    <div style="text-align: center;">
+                    <div>
                         <a href="/Reservation/Detail?id=@item.Id">@item.ReservationTime.ToString("yyyy-MM-dd")</a>
                         <br/>
                         <a href="/Reservation/Detail?id=@item.Id">@item.ReservationTime.ToString("tt hh:mm")</a>
                     </div>
-                    <div style="text-align: center;">
+                    <div>
                         <a href="/Reservation/Detail?id=@item.Id">@item.Name</a>
                     </div>
-                    <div style="text-align: center;">
+                    <div>
                         <a href="/Reservation/Detail?id=@item.Id">@item.Phone</a>
                     </div>
-                    <div style="text-align: center;">
+                    <div>
                         <a href="/Reservation/Detail?id=@item.Id">@(item.UseCall == true ? "승인" : "미승인")</a>
                     </div>
-                    <div style="text-align: center;">
+                    <div>
                         <a href="/Reservation/Detail?id=@item.Id">@item.ReservationTime.ToString("yyyy-MM-dd")</a>
                     </div>
                 </div>
