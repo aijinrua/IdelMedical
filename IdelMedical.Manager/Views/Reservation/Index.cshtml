@@ -12,6 +12,7 @@
         <span>예약요청</span>
         <span> > 목록</span>
     </div>
+    <div class="spliter1"></div>
     <div class="itemList">
         <div class="splitLine"></div>
 
@@ -54,7 +55,9 @@
                         <a href="/Reservation/Detail?id=@item.Id">@item.Category</a>
                     </div>
                     <div style="text-align: center;">
-                        <a href="/Reservation/Detail?id=@item.Id">@item.ReservationTime.ToString("yyyy-MM-dd tt hh:mm")</a>
+                        <a href="/Reservation/Detail?id=@item.Id">@item.ReservationTime.ToString("yyyy-MM-dd")</a>
+                        <br/>
+                        <a href="/Reservation/Detail?id=@item.Id">@item.ReservationTime.ToString("tt hh:mm")</a>
                     </div>
                     <div style="text-align: center;">
                         <a href="/Reservation/Detail?id=@item.Id">@item.Name</a>
@@ -71,6 +74,7 @@
                 </div>
             }
         </div>
+
         <div class="pager">
             <div class="paging">
                 @if (pager.PrevPage > 0)

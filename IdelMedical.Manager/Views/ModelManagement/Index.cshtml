@@ -1,14 +1,14 @@
 ﻿@{
     var pager = (PageHandler)ViewBag.Pager;
-    var items = (IdelMedical.Database.Tables.User[])ViewBag.Items;
+    var items = (IdelMedical.Database.Tables.ModelGathering[])ViewBag.Items;
 
 }
 @section Styles {
-    <link href="~/css/member.css" rel="stylesheet" />
+    <link href="~/css/modelManagement.css" rel="stylesheet" />
 }
-<div class="memberList">
+<div class="modelManagementList">
     <div class="title">
-        <span>회원목록</span>
+        <span>모델관리</span>
         <span> > 목록</span>
     </div>
     <div class="spliter1"></div>
@@ -22,19 +22,13 @@
                     이 름
                 </div>
                 <div style="width:200px;">
-                    생년월일
+                    연락처
                 </div>
                 <div style="width:200px;">
-                    전화번호
-                </div>
-                <div>
-                    이메일
-                </div>
-                <div style="width:120px;">
-                    성 별
+                    카테고리
                 </div>
                 <div style="width:200px;">
-                    가입일자
+                    작성시각
                 </div>
             </div>
             @foreach (var item in items)
@@ -47,19 +41,15 @@
                         @item.Name
                     </div>
                     <div>
-                        @item.Birthday
-                    </div>
-                    <div>
                         @item.Phone
                     </div>
                     <div>
-                        @item.Email
+                        @item.Category
                     </div>
                     <div>
-                        @item.Gender
-                    </div>
-                    <div style="text-align: center;">
                         @item.CreateTime.ToString("yyyy-MM-dd")
+                        <br />
+                        @item.CreateTime.ToString("tt hh:mm")
                     </div>
                 </div>
             }

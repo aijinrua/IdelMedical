@@ -84,6 +84,7 @@ namespace IdelMedical.Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(int id, string reservationMemo)
         {
+
             try
             {
 
