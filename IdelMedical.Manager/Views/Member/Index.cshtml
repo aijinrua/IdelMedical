@@ -56,7 +56,7 @@
                         @item.Email
                     </div>
                     <div>
-                        @item.Gender
+                        @(item.Gender == IdelMedical.Database.GenderTypes.Male ? "남성" : "여성")
                     </div>
                     <div>
                         @item.CreateTime.ToString("yyyy-MM-dd")

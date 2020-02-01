@@ -14,9 +14,6 @@ namespace IdelMedical.Database.Tables
         public int Id { get; set; }
 
         [Required]
-        public int MainId { get; set; }
-
-        [Required]
         public bool IsMobile { get; set; }
 
         [Required]
@@ -32,20 +29,11 @@ namespace IdelMedical.Database.Tables
         [Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime CreateTime { get; set; }
 
-        public Main Main { get; set; }
-
         public static void Build(ModelBuilder modelBuilder)
         {
             var entity = modelBuilder.Entity<MainSlide>();
 
             entity.HasIndex(x => x.IsMobile);
-
-            entity
-                .HasOne(x => x.Main)
-                .WithMany(x => x.MainSlides)
-                .HasForeignKey(x => x.MainId)
-                .HasPrincipalKey(x => x.Id)
-                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

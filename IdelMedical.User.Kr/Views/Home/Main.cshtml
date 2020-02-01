@@ -1,13 +1,44 @@
 ﻿@{
     var userkey = Context.Session.GetString("UserKey");
+    var popupNoticeItems = (IdelMedical.Database.Tables.PopupNotice[])ViewBag.PopupNoticeItems;
     var slideItems = (IdelMedical.Database.Tables.MainSlide[])ViewBag.SlideItems;
     var youtubeItems = (IdelMedical.Database.Tables.IdelTV[])ViewBag.YoutubeItems;
-    var beforeAfterItem = (IdelMedical.Database.Tables.BeforeAfter)ViewBag.BeforeAfterItem;
+    var mainInstagrams = (IdelMedical.Database.Tables.MainInstagram[])ViewBag.MainInstagrams;
 }
 
 @section Styles {
     <link href="/lib/owl-carousel/owl.carousel.min.css" rel="stylesheet" />
     <link href="/lib/owl-carousel/owl.theme.min.css" rel="stylesheet" />
+}
+
+@if (popupNoticeItems != null && popupNoticeItems.Length > 0)
+{
+    <div class="popupnotice-pannel">
+        @foreach (var item in popupNoticeItems)
+        {
+            <div class="item" popupid="popupnotice_@item.Id">
+                <div class="close-pannel">
+                    <button onclick="closePopup.call(this)">X</button>
+                </div>
+                <div class="content-pannel">
+                    @if (string.IsNullOrWhiteSpace(item.Link))
+                    {
+                        <img src="@item.Url" />
+                    }
+                    else
+                    {
+                        <a href="@item.Link" target="@item.LinkTarget">
+                            <img src="@item.Url" />
+                        </a>
+                    }
+                </div>
+                <div class="controller-pannel">
+                    <input id="popupnotice_@item.Id" type="checkbox" />
+                    <label for="popupnotice_@item.Id">오늘 하루 그만보기</label>
+                </div>
+            </div>
+        }
+    </div>
 }
 
 @if (slideItems != null && slideItems.Length > 0)
@@ -71,67 +102,32 @@
     </div>
 }
 
-<div class="instagram">
-    <div class="logo">
-        <img src="/images/logo_instagram.png" />
-    </div>
-    <div class="items">
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/76740072_599037694016938_1602429183758647705_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=110&_nc_ohc=EreIvflMlqQAX98h67l&oh=8c78d10234d22841ab4f88e857f0f8ca&oe=5E944030" />
+@if (mainInstagrams != null && mainInstagrams.Length > 0)
+{
+    <div class="instagram">
+        <div class="logo">
+            <img src="/images/logo_instagram.png" />
         </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/80519886_2505742329524510_7265702708480359130_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=102&_nc_ohc=rEOGd9OzZiQAX9-F_CW&oh=ab790c3b4ec56a465e322b7730ab1618&oe=5EA14B03" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/76740072_599037694016938_1602429183758647705_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=110&_nc_ohc=EreIvflMlqQAX98h67l&oh=8c78d10234d22841ab4f88e857f0f8ca&oe=5E944030" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/80519886_2505742329524510_7265702708480359130_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=102&_nc_ohc=rEOGd9OzZiQAX9-F_CW&oh=ab790c3b4ec56a465e322b7730ab1618&oe=5EA14B03" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/76740072_599037694016938_1602429183758647705_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=110&_nc_ohc=EreIvflMlqQAX98h67l&oh=8c78d10234d22841ab4f88e857f0f8ca&oe=5E944030" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/80519886_2505742329524510_7265702708480359130_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=102&_nc_ohc=rEOGd9OzZiQAX9-F_CW&oh=ab790c3b4ec56a465e322b7730ab1618&oe=5EA14B03" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/76740072_599037694016938_1602429183758647705_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=110&_nc_ohc=EreIvflMlqQAX98h67l&oh=8c78d10234d22841ab4f88e857f0f8ca&oe=5E944030" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/80519886_2505742329524510_7265702708480359130_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=102&_nc_ohc=rEOGd9OzZiQAX9-F_CW&oh=ab790c3b4ec56a465e322b7730ab1618&oe=5EA14B03" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/76740072_599037694016938_1602429183758647705_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=110&_nc_ohc=EreIvflMlqQAX98h67l&oh=8c78d10234d22841ab4f88e857f0f8ca&oe=5E944030" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/80519886_2505742329524510_7265702708480359130_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=102&_nc_ohc=rEOGd9OzZiQAX9-F_CW&oh=ab790c3b4ec56a465e322b7730ab1618&oe=5EA14B03" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/76740072_599037694016938_1602429183758647705_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=110&_nc_ohc=EreIvflMlqQAX98h67l&oh=8c78d10234d22841ab4f88e857f0f8ca&oe=5E944030" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/80519886_2505742329524510_7265702708480359130_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=102&_nc_ohc=rEOGd9OzZiQAX9-F_CW&oh=ab790c3b4ec56a465e322b7730ab1618&oe=5EA14B03" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/76740072_599037694016938_1602429183758647705_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=110&_nc_ohc=EreIvflMlqQAX98h67l&oh=8c78d10234d22841ab4f88e857f0f8ca&oe=5E944030" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/80519886_2505742329524510_7265702708480359130_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=102&_nc_ohc=rEOGd9OzZiQAX9-F_CW&oh=ab790c3b4ec56a465e322b7730ab1618&oe=5EA14B03" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/76740072_599037694016938_1602429183758647705_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=110&_nc_ohc=EreIvflMlqQAX98h67l&oh=8c78d10234d22841ab4f88e857f0f8ca&oe=5E944030" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/80519886_2505742329524510_7265702708480359130_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=102&_nc_ohc=rEOGd9OzZiQAX9-F_CW&oh=ab790c3b4ec56a465e322b7730ab1618&oe=5EA14B03" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/76740072_599037694016938_1602429183758647705_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=110&_nc_ohc=EreIvflMlqQAX98h67l&oh=8c78d10234d22841ab4f88e857f0f8ca&oe=5E944030" />
-        </div>
-        <div class="item">
-            <img src="https://scontent-icn1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/80519886_2505742329524510_7265702708480359130_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com&_nc_cat=102&_nc_ohc=rEOGd9OzZiQAX9-F_CW&oh=ab790c3b4ec56a465e322b7730ab1618&oe=5EA14B03" />
+        <div class="items">
+            @foreach (var item in mainInstagrams)
+            {
+                <div class="item">
+                    @if (string.IsNullOrWhiteSpace(item.Link))
+                    {
+                        <img src="@item.Url" />
+                    }
+                    else
+                    {
+                        <a href="@item.Link" target="@item.LinkTarget">
+                            <img src="@item.Url" />
+                        </a>
+                    }
+                </div>
+            }
         </div>
     </div>
-</div>
+}
+
 
 <div class="story">
     <div class="logo">
@@ -269,17 +265,38 @@
         $(document).ready(initPage);
 
         function initPage() {
+            initMainSlide();
+            initPopupNotices();
+            initSnowFlakes();
+            initInstagram();
+        }
+
+        function initMainSlide() {
             $('.main-slide').owlCarousel({
                 singleItem: true,
                 autoPlay: 3000,
                 stopOnHover: true,
             });
+        }
 
-            //var title = encodeURI('휴진안내');
-            //var img = encodeURI('/images/popup/2020011601.jpg');
-            //window.open('/Home/Popup?title=' + title + '&img=' + img, 'popup01', 'left=0,top=0,width=450,height=450');
+        function initPopupNotices() {
+            var items = $('.popupnotice-pannel .item');
 
-            initSnowFlakes();
+            for (var i = 0; i < items.length; i++) {
+                var item = $(items[i]);
+                var popupid = item.attr('popupid');
+
+                if (getCookie(popupid) === 'none') {
+                    item.remove();
+                }
+            }
+
+            if ($('.popupnotice-pannel .item').length > 0) {
+                $('.popupnotice-pannel').css('display', 'flex');
+            }
+            else {
+                $('.popupnotice-pannel').remove();
+            }
         }
 
         function initSnowFlakes() {
@@ -291,6 +308,55 @@
                 maxSize: 18,
                 wind: false
             });
+        }
+
+        function initInstagram() {
+            var items = $('.instagram .items .item img');
+            items.on('mouseover', function () {
+                $(this).stop().animate({ left: -18, top: -18, width: 216, height: 216 });
+            });
+            items.on('mouseout', function () {
+                $(this).stop().animate({ left: 0, top: 0, width: 180, height: 180 });
+            });
+        }
+
+
+
+        function setCookie(name, value, expiredays) {
+            var todayDate = new Date();
+            todayDate.setDate(todayDate.getDate() + expiredays);
+            document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+        }
+
+        function getCookie(name) {
+            var cookieString = document.cookie;
+            var cookieItems = cookieString.split(';');
+
+            for (var i = 0; i < cookieItems.length; i++) {
+                var item = cookieItems[i];
+                item = item.trim().split('=');
+
+                if (item[0] === name)
+                    return item[1];
+            }
+
+            return null;
+        }
+
+        function closePopup() {
+            var item = $(this).parents('.popupnotice-pannel .item');
+            var popupid = item.attr('popupid');
+            var ischecked = $('#' + popupid).prop('checked');
+
+            item.remove();
+
+            if ($('.popupnotice-pannel .item').length === 0) {
+                $('.popupnotice-pannel').remove();
+            }
+
+            if (ischecked) {
+                setCookie(popupid, 'none', 1);
+            }
         }
 
         function sendQuestionForm() {
@@ -326,8 +392,8 @@
 
         function openVideoPannel() {
             var iframe = $(this).find('input').val();
-                $('.video-pannel .video').html(iframe);
-                $('.video-pannel').css('display', 'flex');
+            $('.video-pannel .video').html(iframe);
+            $('.video-pannel').css('display', 'flex');
         }
 
         function closeVideoPannel() {

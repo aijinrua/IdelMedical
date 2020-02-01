@@ -15,12 +15,6 @@ namespace IdelMedical.Database.Tables
         [Required]
         public string Url { get; set; }
 
-        [Required]
-        public int Width { get; set; }
-
-        [Required]
-        public int Height { get; set; }
-
         public string Link { get; set; }
 
         public string LinkTarget { get; set; }

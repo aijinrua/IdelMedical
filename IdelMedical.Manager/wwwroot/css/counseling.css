@@ -268,8 +268,9 @@ a {
     margin: 10px 0;
     display: flex;
     align-items: center;
-    font: 400 13.3333px Arial;
+    font-family: 'Noto Sans KR', sans-serif;
 }
+
 .counselingDetail .textLine {
     padding: 0 10px;
     border: 1px solid #55908a;
@@ -282,6 +283,7 @@ a {
     align-items:center;
     font: 400 13.3333px Arial;
 }
+
 .counselingDetail .writerInfo {
     padding: 0 10px;
     -moz-box-sizing: border-box;
@@ -290,18 +292,22 @@ a {
     display:table;
     font: 400 13.3333px Arial;
 }
-    .counselingDetail .writerInfo > div {
-        display:table-row;
+
+.counselingDetail .writerInfo > div {
+    display:table-row;
 }
-    .counselingDetail .writerInfo span {
-        display: table-cell;
-        padding:5px 0px;
-        font: bold 16px sans-serif;
-    }
-    .counselingDetail .writerInfo span:nth-of-type(2) {
-        padding-left: 20px;
-        font: 400 16px sans-serif;
-    }
+
+.counselingDetail .writerInfo span {
+    display: table-cell;
+    padding:5px 0px;
+    font: bold 16px sans-serif;
+}
+
+.counselingDetail .writerInfo span:nth-of-type(2) {
+    padding-left: 20px;
+    font: 400 16px sans-serif;
+}
+
 .counselingDetail .questionArea {
     padding: 7px 10px;
     -moz-box-sizing: border-box;
@@ -309,9 +315,10 @@ a {
     box-sizing: border-box;
     margin: 5px 0;
     width: 100%;
-    display:inline-block;
-    font: 400 13.3333px Arial;
+    display: inline-block;
+    font-family: 'Noto Sans KR', sans-serif;
 }
+
 .counselingDetail .replyArea {
     padding: 7px 10px;
     border: 1px solid #55908a;
@@ -323,6 +330,7 @@ a {
     font: 400 13.3333px Arial;
     resize:vertical;
 }
+
 .counselingDetail .memoArea {
     padding: 7px 10px;
     border: 1px solid #55908a;

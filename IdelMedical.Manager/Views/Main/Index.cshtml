@@ -1,6 +1,8 @@
-﻿@model IdelMedical.Database.Tables.Main
-@{
+﻿@{
+    var mainItem = (IdelMedical.Database.Tables.Main)ViewBag.MainItem;
     var popupNoticeItems = (IdelMedical.Database.Tables.PopupNotice[])ViewBag.PopupNoticeItems;
+    var mainSlides = (IdelMedical.Database.Tables.MainSlide[])ViewBag.MainSlides;
+    var mainInstagrams = (IdelMedical.Database.Tables.MainInstagram[])ViewBag.InstagramItems;
 }
 
 @section Styles {
@@ -13,6 +15,7 @@
     </div>
     <div class="contentArea">
         <div>
+
             <br />
             <span class="label">1.팝업공지</span>
             <div class="spliter1"></div>
@@ -24,11 +27,11 @@
                     {
                         <form class="item" onsubmit="return false;">
                             <input name="id" type="hidden" value="@item.Id" />
-                            <input name="image" type="file" style="display: none;" onchange="updateImageSlideItem.call(this);" />
-                            <div class="thumb" style="background-image: url(@item.Url)" onclick="selectPCSlideItem.call(this);">
+                            <input name="image" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                            <div class="thumb" style="background-image: url(@item.Url)" onclick="selectImage.call(this);">
                                 <div>
-                                    <button onclick="movePrevItem.call(this, @item.Id); event.stopPropagation();">&lt;</button>
-                                    <button onclick="moveNextItem.call(this, @item.Id); event.stopPropagation();">&gt;</button>
+                                    <button onclick="movePrevPopupNoticeItem.call(this, @item.Id); event.stopPropagation();">&lt;</button>
+                                    <button onclick="moveNextPopupNoticeItem.call(this, @item.Id); event.stopPropagation();">&gt;</button>
                                 </div>
                             </div>
                             <input name="link" placeholder="클릭시 이동 링크" value="@item.Link" />
@@ -36,16 +39,16 @@
                                 <option value="_blank" selected="@(item.LinkTarget == "_blank" ? "selected" : null)">새창</option>
                                 <option value="_self" selected="@(item.LinkTarget == "_self" ? "selected" : null)">현재창</option>
                             </select>
-                            <button style="width: 70%;" onclick="updateSlideItem.call(this);">적용</button>
-                            <button style="width: 30%; background-color: #b70000;" onclick="removeSlideItem.call(this);">삭제</button>
+                            <button style="width: 70%;" onclick="updatePopupNoticeItem.call(this);">적용</button>
+                            <button style="width: 30%; background-color: #b70000;" onclick="removePopupNoticeItem.call(this, @item.Id);">삭제</button>
                         </form>
                     }
                 }
 
                 <form class="item" onsubmit="return false;">
-                    <input name="image" type="file" style="display: none;" onchange="updateImageSlideItem.call(this);" />
+                    <input name="image" type="file" style="display: none;" onchange="updateImage.call(this);" />
                     <input name="ismobile" type="hidden" value="False" />
-                    <div class="thumb" onclick="selectPCSlideItem.call(this);">
+                    <div class="thumb" onclick="selectImage.call(this);">
                         +
                     </div>
                     <input name="link" placeholder="클릭시 이동 링크" />
@@ -53,7 +56,7 @@
                         <option value="_blank">새창</option>
                         <option value="_self">현재창</option>
                     </select>
-                    <button onclick="appendSlideItem.call(this);">추가</button>
+                    <button onclick="appendPopupNoticeItem.call(this);">추가</button>
                 </form>
 
             </div>
@@ -66,15 +69,15 @@
             <span class="sub-label">PC 슬라이드</span>
             <div class="slide-items">
 
-                @foreach (var item in Model.MainSlides.Where(x => !x.IsMobile).OrderBy(x => x.OrderIdx))
+                @foreach (var item in mainSlides.Where(x => !x.IsMobile).OrderBy(x => x.OrderIdx))
                 {
                     <form class="item" onsubmit="return false;">
                         <input name="id" type="hidden" value="@item.Id" />
-                        <input name="image" type="file" style="display: none;" onchange="updateImageSlideItem.call(this);" />
-                        <div class="thumb" style="background-image: url(@item.Url)" onclick="selectPCSlideItem.call(this);">
+                        <input name="image" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                        <div class="thumb" style="background-image: url(@item.Url)" onclick="selectImage.call(this);">
                             <div>
-                                <button onclick="movePrevItem.call(this, @item.Id); event.stopPropagation();">&lt;</button>
-                                <button onclick="moveNextItem.call(this, @item.Id); event.stopPropagation();">&gt;</button>
+                                <button onclick="movePrevSlideItem.call(this, @item.Id); event.stopPropagation();">&lt;</button>
+                                <button onclick="moveNextSlideItem.call(this, @item.Id); event.stopPropagation();">&gt;</button>
                             </div>
                         </div>
                         <input name="link" placeholder="클릭시 이동 링크" value="@item.Link" />
@@ -83,14 +86,14 @@
                             <option value="_self" selected="@(item.LinkTarget == "_self" ? "selected" : null)">현재창</option>
                         </select>
                         <button style="width: 70%;" onclick="updateSlideItem.call(this);">적용</button>
-                        <button style="width: 30%; background-color: #b70000;" onclick="removeSlideItem.call(this);">삭제</button>
+                        <button style="width: 30%; background-color: #b70000;" onclick="removeSlideItem.call(this, @item.Id);">삭제</button>
                     </form>
                 }
 
                 <form class="item" onsubmit="return false;">
-                    <input name="image" type="file" style="display: none;" onchange="updateImageSlideItem.call(this);" />
+                    <input name="image" type="file" style="display: none;" onchange="updateImage.call(this);" />
                     <input name="ismobile" type="hidden" value="False" />
-                    <div class="thumb" onclick="selectPCSlideItem.call(this);">
+                    <div class="thumb" onclick="selectImage.call(this);">
                         +
                     </div>
                     <input name="link" placeholder="클릭시 이동 링크" />
@@ -106,15 +109,15 @@
             <span class="sub-label">Mobile 슬라이드</span>
             <div class="slide-items">
 
-                @foreach (var item in Model.MainSlides.Where(x => x.IsMobile).OrderBy(x => x.OrderIdx))
+                @foreach (var item in mainSlides.Where(x => x.IsMobile).OrderBy(x => x.OrderIdx))
                 {
                     <form class="item" onsubmit="return false;">
                         <input name="id" type="hidden" value="@item.Id" />
-                        <input name="image" type="file" style="display: none;" onchange="updateImageSlideItem.call(this);" />
-                        <div class="thumb" style="background-image: url(@item.Url)" onclick="selectPCSlideItem.call(this);">
+                        <input name="image" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                        <div class="thumb" style="background-image: url(@item.Url)" onclick="selectImage.call(this);">
                             <div>
-                                <button onclick="movePrevItem.call(this, @item.Id); event.stopPropagation();">&lt;</button>
-                                <button onclick="moveNextItem.call(this, @item.Id); event.stopPropagation();">&gt;</button>
+                                <button onclick="movePrevSlideItem.call(this, @item.Id); event.stopPropagation();">&lt;</button>
+                                <button onclick="moveNextSlideItem.call(this, @item.Id); event.stopPropagation();">&gt;</button>
                             </div>
                         </div>
                         <input name="link" placeholder="클릭시 이동 링크" value="@item.Link" />
@@ -123,14 +126,14 @@
                             <option value="_self" selected="@(item.LinkTarget == "_self" ? "selected" : null)">현재창</option>
                         </select>
                         <button style="width: 70%;" onclick="updateSlideItem.call(this);">적용</button>
-                        <button style="width: 30%; background-color: #b70000;" onclick="removeSlideItem.call(this);">삭제</button>
+                        <button style="width: 30%; background-color: #b70000;" onclick="removeSlideItem.call(this, @item.Id);">삭제</button>
                     </form>
                 }
 
                 <form class="item" onsubmit="return false;">
-                    <input name="image" type="file" style="display: none;" onchange="updateImageSlideItem.call(this);" />
+                    <input name="image" type="file" style="display: none;" onchange="updateImage.call(this);" />
                     <input name="ismobile" type="hidden" value="True" />
-                    <div class="thumb" onclick="selectPCSlideItem.call(this);">
+                    <div class="thumb" onclick="selectImage.call(this);">
                         +
                     </div>
                     <input name="link" placeholder="클릭시 이동 링크" />
@@ -143,17 +146,63 @@
 
             </div>
             <div class="spliter2"></div>
+
+            <br />
+            <span class="label">3.Instagram</span>
+            <div class="spliter1"></div>
+            <div class="slide-items">
+
+                @if (mainInstagrams != null && mainInstagrams.Length > 0)
+                {
+                    foreach (var item in mainInstagrams)
+                    {
+                        <form class="item" onsubmit="return false;">
+                            <input name="id" type="hidden" value="@item.Id" />
+                            <input name="image" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                            <div class="thumb" style="background-image: url(@item.Url)" onclick="selectImage.call(this);">
+                                <div>
+                                    <button onclick="movePrevInstagramItem.call(this, @item.Id); event.stopPropagation();">&lt;</button>
+                                    <button onclick="moveNextInstagramItem.call(this, @item.Id); event.stopPropagation();">&gt;</button>
+                                </div>
+                            </div>
+                            <input name="link" placeholder="클릭시 이동 링크" value="@item.Link" />
+                            <select name="linktarget" placeholder="클릭시 이동 링크">
+                                <option value="_blank" selected="@(item.LinkTarget == "_blank" ? "selected" : null)">새창</option>
+                                <option value="_self" selected="@(item.LinkTarget == "_self" ? "selected" : null)">현재창</option>
+                            </select>
+                            <button style="width: 70%;" onclick="updateInstagramItem.call(this);">적용</button>
+                            <button style="width: 30%; background-color: #b70000;" onclick="removeInstagramItem.call(this, @item.Id);">삭제</button>
+                        </form>
+                    }
+                }
+
+                <form class="item" onsubmit="return false;">
+                    <input name="image" type="file" style="display: none;" onchange="updateImage.call(this);" />
+                    <input name="ismobile" type="hidden" value="False" />
+                    <div class="thumb" onclick="selectImage.call(this);">
+                        +
+                    </div>
+                    <input name="link" placeholder="클릭시 이동 링크" />
+                    <select name="linktarget" placeholder="클릭시 이동 링크">
+                        <option value="_blank">새창</option>
+                        <option value="_self">현재창</option>
+                    </select>
+                    <button onclick="appendInstagramItem.call(this);">추가</button>
+                </form>
+
+            </div>
+            <div class="spliter2"></div>
         </div>
     </div>
 </div>
 
 @section Scripts {
     <script type="text/javascript">
-        function selectPCSlideItem() {
+        function selectImage() {
             $(this).parents('form').find('input[name=image]').click();
         }
 
-        function updateImageSlideItem() {
+        function updateImage() {
             if ($(this).prop('files').length === 0) {
                 return;
             }
@@ -165,6 +214,116 @@
             }
             thumb.css('background-image', 'url(' + url + ')');
         }
+
+
+        function appendPopupNoticeItem() {
+            var form = $(this).parents('form')[0];
+
+            $.ajax({
+                url: '/main/appendpopupnoticeitem',
+                method: 'post',
+                processData: false,
+                contentType: false,
+                data: new FormData(form)
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+
+        function updatePopupNoticeItem() {
+            var form = $(this).parents('form')[0];
+
+            $.ajax({
+                url: '/main/updatepopupnoticeitem',
+                method: 'post',
+                processData: false,
+                contentType: false,
+                data: new FormData(form)
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    alert('적용되었습니다.');
+                }
+            });
+        }
+
+        function movePrevPopupNoticeItem(id) {
+            $.ajax({
+                url: '/main/moveprevpopupnoticeitem',
+                method: 'post',
+                data: {
+                    id: id
+                }
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+
+        function moveNextPopupNoticeItem(id) {
+            $.ajax({
+                url: '/main/movenextpopupnoticeitem',
+                method: 'post',
+                data: {
+                    id: id
+                }
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+
+        function removePopupNoticeItem(id) {
+
+            if (!confirm('해당 항목을 삭제하시겠습니까?'))
+                return;
+
+            $.ajax({
+                url: '/main/removepopupnoticeitem',
+                method: 'post',
+                data: {
+                    id: id
+                }
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+
 
         function appendSlideItem() {
             var form = $(this).parents('form')[0];
@@ -210,35 +369,13 @@
             });
         }
 
-        function removeSlideItem() {
+        function removeSlideItem(id) {
 
             if (!confirm('해당 항목을 삭제하시겠습니까?'))
                 return;
 
-            var form = $(this).parents('form')[0];
-
             $.ajax({
                 url: '/main/removeslideitem',
-                method: 'post',
-                processData: false,
-                contentType: false,
-                data: new FormData(form)
-            }).always(function (data, status, xhr) {
-                if (status !== 'success') {
-                    alert('담당자에게 문의해 주시기 바랍니다.');
-                }
-                else if (!data.status) {
-                    alert(data.message);
-                }
-                else {
-                    location.reload();
-                }
-            });
-        }
-
-        function movePrevItem(id) {
-            $.ajax({
-                url: '/main/moveprevitem',
                 method: 'post',
                 data: {
                     id: id
@@ -256,9 +393,138 @@
             });
         }
 
-        function moveNextItem(id) {
+        function movePrevSlideItem(id) {
             $.ajax({
-                url: '/main/movenextitem',
+                url: '/main/moveprevslideitem',
+                method: 'post',
+                data: {
+                    id: id
+                }
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+
+        function moveNextSlideItem(id) {
+            $.ajax({
+                url: '/main/movenextslideitem',
+                method: 'post',
+                data: {
+                    id: id
+                }
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+
+
+        function appendInstagramItem() {
+            var form = $(this).parents('form')[0];
+
+            $.ajax({
+                url: '/main/appendinstagramitem',
+                method: 'post',
+                processData: false,
+                contentType: false,
+                data: new FormData(form)
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+
+        function updateInstagramItem() {
+            var form = $(this).parents('form')[0];
+
+            $.ajax({
+                url: '/main/updateinstagramitem',
+                method: 'post',
+                processData: false,
+                contentType: false,
+                data: new FormData(form)
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    alert('적용되었습니다.');
+                }
+            });
+        }
+
+        function movePrevInstagramItem(id) {
+            $.ajax({
+                url: '/main/moveprevinstagramitem',
+                method: 'post',
+                data: {
+                    id: id
+                }
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+
+        function moveNextInstagramItem(id) {
+            $.ajax({
+                url: '/main/movenextinstagramitem',
+                method: 'post',
+                data: {
+                    id: id
+                }
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+
+        function removeInstagramItem(id) {
+
+            if (!confirm('해당 항목을 삭제하시겠습니까?'))
+                return;
+
+            $.ajax({
+                url: '/main/removeinstagramitem',
                 method: 'post',
                 data: {
                     id: id

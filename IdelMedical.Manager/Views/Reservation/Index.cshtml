@@ -34,7 +34,7 @@
                     연락처
                 </div>
                 <div style="width:200px;">
-                    연락희망여부
+                    전화상담 동의 여부
                 </div>
                 <div style="width:200px;">
                     작성일자
@@ -66,7 +66,7 @@
                         <a href="/Reservation/Detail?id=@item.Id">@item.Phone</a>
                     </div>
                     <div>
-                        <a href="/Reservation/Detail?id=@item.Id">@(item.UseCall == true ? "승인" : "미승인")</a>
+                        <a href="/Reservation/Detail?id=@item.Id">@(item.UseCall == true ? "동의" : "거부")</a>
                     </div>
                     <div>
                         <a href="/Reservation/Detail?id=@item.Id">@item.ReservationTime.ToString("yyyy-MM-dd")</a>

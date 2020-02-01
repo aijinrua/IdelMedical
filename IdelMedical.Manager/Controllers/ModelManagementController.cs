@@ -24,6 +24,7 @@ namespace IdelMedical.Manager.Controllers
             this.Db = db;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index(int Page = 1)
         {
             var query = this.Db.ModelGatherings.AsQueryable();
@@ -49,5 +50,24 @@ namespace IdelMedical.Manager.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> RemoveModelGatheringItem(int id)
+        {
+            try
+            {
+                this.Db.ModelGatherings.Remove(new Database.Tables.ModelGathering
+                {
+                    Id = id
+                });
+
+                await this.Db.SaveChangesAsync();
+
+                return Json(new { status = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = false, message = ex.Message });
+            }
+        }
     }
 }

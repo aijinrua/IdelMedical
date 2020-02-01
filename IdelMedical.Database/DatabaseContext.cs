@@ -107,5 +107,6 @@ namespace IdelMedical.Database
         public DbSet<MainSlide> MainSlides { get; set; }
         public DbSet<ModelGathering> ModelGatherings { get; set; }
         public DbSet<PopupNotice> PopupNotices { get; set; }
+        public DbSet<MainInstagram> MainInstagrams { get; set; }
     }
 }

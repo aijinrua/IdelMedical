@@ -199,7 +199,7 @@ namespace IdelMedical.User.Kr.Controllers
             }
             else
             {
-                ViewBag.IsShow = false;
+                ViewBag.IsShow = true;
             }
 
             ViewBag.Item = item;

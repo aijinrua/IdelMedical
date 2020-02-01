@@ -65,7 +65,7 @@
                     }
                     else {
                         alert('상담 문의글이 등록되었습니다.');
-                        history.back();
+                        location.href = document.referrer;
                     }
                 });
             } catch (e) {

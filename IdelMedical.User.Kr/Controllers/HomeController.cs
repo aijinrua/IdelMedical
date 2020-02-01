@@ -27,20 +27,25 @@ namespace IdelMedical.User.Kr.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            ViewBag.PopupNoticeItems = await this.Db.PopupNotices
+                .OrderBy(x => x.OrderIdx)
+                .ToArrayAsync();
+
             ViewBag.YoutubeItems = await this.Db.IdelTVs
                 .OrderByDescending(x => x.CreateTime)
                 .Take(3)
                 .ToArrayAsync();
-
-            ViewBag.BeforeAfterItem = await this.Db.BeforeAfters
-                .OrderByDescending(x => x.CreateTime)
-                .FirstOrDefaultAsync();
 
             if (this.IsMobile())
             {
                 ViewBag.SlideItems = await this.Db.MainSlides
                     .Where(x => x.IsMobile)
                     .OrderBy(x => x.OrderIdx)
+                    .ToArrayAsync();
+
+                ViewBag.MainInstagrams = await this.Db.MainInstagrams
+                    .OrderBy(x => x.OrderIdx)
+                    .Take(9)
                     .ToArrayAsync();
 
                 return View("MainMobile");
@@ -52,9 +57,9 @@ namespace IdelMedical.User.Kr.Controllers
                     .OrderBy(x => x.OrderIdx)
                     .ToArrayAsync();
 
-                ViewBag.YoutubeItems = await this.Db.IdelTVs
-                    .OrderByDescending(x => x.CreateTime)
-                    .Take(3)
+                ViewBag.MainInstagrams = await this.Db.MainInstagrams
+                    .OrderBy(x => x.OrderIdx)
+                    .Take(18)
                     .ToArrayAsync();
 
                 return View("Main");

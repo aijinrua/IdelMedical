@@ -13,6 +13,68 @@ img {
     vertical-align: middle;
 }
 
+.popupnotice-pannel {
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    max-width: calc(100% - 100px);
+    z-index: 1000;
+    display: none;
+    -webkit-align-items: start;
+    align-items: start;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.popupnotice-pannel .item {
+    margin: 10px;
+    border: 3px solid #84cfcb;
+}
+
+.popupnotice-pannel .item .content-pannel {
+    background-color: #ffffff;
+}
+
+.popupnotice-pannel .item .close-pannel {
+    height: 0;
+    overflow: visible;
+    text-align: right;
+}
+
+.popupnotice-pannel .item .close-pannel button {
+    position: relative;
+    z-index: 1001;
+    width: 30px;
+    height: 30px;
+    background-color: #84cfcb;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-bottom-left-radius: 5px;
+}
+
+.popupnotice-pannel .item .content-pannel img {
+    vertical-align: middle;
+}
+
+.popupnotice-pannel .item .controller-pannel {
+    background-color: #ffffff;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.popupnotice-pannel .item .controller-pannel input {
+    width: 15px;
+    height: 15px;
+    vertical-align: text-top;
+}
+
+.popupnotice-pannel .item .controller-pannel label {
+    cursor: pointer;
+}
+
 .top-bar {
     background-color: #000000;
     width: 100%;
@@ -252,7 +314,7 @@ img {
 }
 
 .instagram .items {
-    overflow: auto;
+    overflow: visible;
     width: 1200px;
     margin: 0 auto;
 }
@@ -270,6 +332,7 @@ img {
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover;
+    position: relative;
 }
 
 .story {

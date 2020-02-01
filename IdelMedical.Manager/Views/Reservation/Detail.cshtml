@@ -18,11 +18,11 @@
             <div class="spliter1"></div>
             <div class="infoTable">
                 <div class="infoTable-row">
-                    <span>예약일 :</span>
+                    <span>예약요청 날짜 :</span>
                     <span class="onlyText">@Model.ReservationTime.ToString("yyyy-MM-dd")</span>
                 </div>
                 <div class="infoTable-row">
-                    <span>시간 :</span>
+                    <span>예약요청 시간 :</span>
                     <span class="onlyText">@Model.ReservationTime.ToString("tt hh:mm")</span>
                 </div>
                 <div class="infoTable-row">
@@ -36,12 +36,16 @@
             <div class="spliter1"></div>
             <div class="infoTable">
                 <div class="infoTable-row">
-                    <span>이름 :</span>
+                    <span>가입자 이름 :</span>
+                    <span class="onlyText">@Model.User.Name</span>
+                </div>
+                <div class="infoTable-row">
+                    <span>신청자 이름 :</span>
                     <span class="onlyText">@Model.Name</span>
                 </div>
                 <div class="infoTable-row">
                     <span>휴대폰 :</span>
-                    <span class="onlyText">@Model.Category (@(Model.UseCall == true ? "상담동의" : "상담미동의"))</span>
+                    <span class="onlyText">@Model.Phone (@(Model.UseCall == true ? "전화상담 동의" : "전화상담 거부"))</span>
                 </div>
                 <div class="infoTable-row">
                     <span>초진여부 :</span>
@@ -50,10 +54,6 @@
                 <div class="infoTable-row">
                     <span>내원경로 :</span>
                     <span class="onlyText">@Model.Channel</span>
-                </div>
-                <div class="infoTable-row">
-                    <span>신청인 이름 :</span>
-                    <span class="onlyText">@Model.User.Name</span>
                 </div>
             </div>
             <div class="spliter2"></div>

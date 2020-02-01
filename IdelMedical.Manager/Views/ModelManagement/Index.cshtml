@@ -15,20 +15,23 @@
     <div class="itemList">
         <div class="table">
             <div class="header">
-                <div>
+                <div style="width: 120px;">
                     No.
                 </div>
-                <div>
+                <div style="width: 200px;">
                     이 름
                 </div>
                 <div>
                     연락처
                 </div>
-                <div>
+                <div style="width: 180px;">
                     카테고리
                 </div>
-                <div>
-                    작성시각
+                <div style="width: 180px;">
+                    신청시간
+                </div>
+                <div style="width: 100px;">
+                    &nbsp;
                 </div>
             </div>
             @foreach (var item in items)
@@ -51,6 +54,9 @@
                         <br />
                         @item.CreateTime.ToString("tt hh:mm")
                     </div>
+                    <div>
+                        <button onclick="removeModelGatheringItem.call(this, @item.Id)">X</button>
+                    </div>
                 </div>
             }
         </div>
@@ -72,3 +78,31 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function removeModelGatheringItem(id) {
+
+            if (!confirm('해당 항목을 삭제하시겠습니까?'))
+                return;
+
+            $.ajax({
+                url: '/modelmanagement/removemodelgatheringitem',
+                method: 'post',
+                data: {
+                    id: id
+                }
+            }).always(function (data, status, xhr) {
+                if (status !== 'success') {
+                    alert('담당자에게 문의해 주시기 바랍니다.');
+                }
+                else if (!data.status) {
+                    alert(data.message);
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+    </script>
+}
